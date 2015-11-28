@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -39,14 +39,14 @@ rains, bring umbrella, else do not.&#8221; The same logic could be easily implem
 in any programming&nbsp;language.</p>
 <div class="highlight"><pre>x <span class="o">&lt;-</span> <span class="m">3</span>
 <span class="kr">if</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
-    print<span class="p">(</span><span class="s">&quot;x is larger than 3&quot;</span><span class="p">)</span>
+    <span class="kp">print</span><span class="p">(</span><span class="s">&quot;x is larger than 3&quot;</span><span class="p">)</span>
 <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
-    print<span class="p">(</span><span class="s">&quot;x is not larger than 3&quot;</span><span class="p">)</span>
+    <span class="kp">print</span><span class="p">(</span><span class="s">&quot;x is not larger than 3&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] &quot;x is not larger than 3&quot;</span>
+<div class="highlight"><pre>## [1] &quot;x is not larger than 3&quot;
 </pre></div>
 
 
@@ -61,11 +61,11 @@ the first 1000 numbers and add&nbsp;them.</p>
 <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">1000</span><span class="p">)</span> <span class="p">{</span>
     sum <span class="o">&lt;-</span> sum <span class="o">+</span> i
 <span class="p">}</span>
-sum
+<span class="kp">sum</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] 500500</span>
+<div class="highlight"><pre>## [1] 500500
 </pre></div>
 
 
@@ -79,7 +79,7 @@ you can assign a name to it with the same assignment&nbsp;operator.</p>
     <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> <span class="p">{</span>
         sum <span class="o">&lt;-</span> sum <span class="o">+</span> i
     <span class="p">}</span>
-    <span class="kr">return</span><span class="p">(</span>sum<span class="p">)</span>
+    <span class="kr">return</span><span class="p">(</span><span class="kp">sum</span><span class="p">)</span>
 <span class="p">}</span>
 
 
@@ -87,13 +87,13 @@ add_first_n_numbers
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c1">## function(n) {</span>
-<span class="c1">##     sum &lt;- 0</span>
-<span class="c1">##     for (i in 1:n) {</span>
-<span class="c1">##         sum &lt;- sum + i</span>
-<span class="c1">##     }</span>
-<span class="c1">##     return(sum)</span>
-<span class="c1">## }</span>
+<div class="highlight"><pre><span class="err">##</span> <span class="kd">function</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">##</span>     <span class="nx">sum</span> <span class="o">&lt;-</span> <span class="mi">0</span>
+<span class="err">##</span>     <span class="k">for</span> <span class="p">(</span><span class="nx">i</span> <span class="k">in</span> <span class="mi">1</span><span class="o">:</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+<span class="err">##</span>         <span class="nx">sum</span> <span class="o">&lt;-</span> <span class="nx">sum</span> <span class="o">+</span> <span class="nx">i</span>
+<span class="err">##</span>     <span class="p">}</span>
+<span class="err">##</span>     <span class="k">return</span><span class="p">(</span><span class="nx">sum</span><span class="p">)</span>
+<span class="err">##</span> <span class="p">}</span>
 </pre></div>
 
 
@@ -101,7 +101,7 @@ add_first_n_numbers
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] 500500</span>
+<div class="highlight"><pre>## [1] 500500
 </pre></div>
 
 
@@ -109,46 +109,46 @@ add_first_n_numbers
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] 2001000</span>
+<div class="highlight"><pre>## [1] 2001000
 </pre></div>
 
 
 <p>Functions are easily&nbsp;testable.</p>
 <div class="highlight"><pre>is_larger_than_three <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>number<span class="p">)</span> <span class="p">{</span>
     <span class="kr">if</span> <span class="p">(</span>number <span class="o">&gt;</span> <span class="m">3</span><span class="p">)</span> <span class="p">{</span>
-        print<span class="p">(</span><span class="s">&quot;number is larger than 3&quot;</span><span class="p">)</span>
+        <span class="kp">print</span><span class="p">(</span><span class="s">&quot;number is larger than 3&quot;</span><span class="p">)</span>
     <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
-        print<span class="p">(</span><span class="s">&quot;number is not larger than 3&quot;</span><span class="p">)</span>
+        <span class="kp">print</span><span class="p">(</span><span class="s">&quot;number is not larger than 3&quot;</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span> <span class="p">{</span>
-    print<span class="p">(</span>i<span class="p">)</span>
+    <span class="kp">print</span><span class="p">(</span>i<span class="p">)</span>
     is_larger_than_three<span class="p">(</span>i<span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] 1</span>
-<span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] 2</span>
-<span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] 3</span>
-<span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] 4</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 5</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 6</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 7</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 8</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 9</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] 10</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
+<div class="highlight"><pre>## [1] 1
+## [1] &quot;number is not larger than 3&quot;
+## [1] 2
+## [1] &quot;number is not larger than 3&quot;
+## [1] 3
+## [1] &quot;number is not larger than 3&quot;
+## [1] 4
+## [1] &quot;number is larger than 3&quot;
+## [1] 5
+## [1] &quot;number is larger than 3&quot;
+## [1] 6
+## [1] &quot;number is larger than 3&quot;
+## [1] 7
+## [1] &quot;number is larger than 3&quot;
+## [1] 8
+## [1] &quot;number is larger than 3&quot;
+## [1] 9
+## [1] &quot;number is larger than 3&quot;
+## [1] 10
+## [1] &quot;number is larger than 3&quot;
 </pre></div>
 
 
@@ -159,20 +159,20 @@ see more complicated examples as&nbsp;well.)</p>
 In this cases, <code>lapply()</code> is your friend. This function takes a list and a
 function as input, applies the function on to each element of the list and
 returns the result in a&nbsp;list.</p>
-<div class="highlight"><pre>my_result <span class="o">&lt;-</span> lapply<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> is_larger_than_three<span class="p">)</span>
+<div class="highlight"><pre>my_result <span class="o">&lt;-</span> <span class="kp">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> is_larger_than_three<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is not larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
-<span class="c">## [1] &quot;number is larger than 3&quot;</span>
+<div class="highlight"><pre>## [1] &quot;number is not larger than 3&quot;
+## [1] &quot;number is not larger than 3&quot;
+## [1] &quot;number is not larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
+## [1] &quot;number is larger than 3&quot;
 </pre></div>
 
 
@@ -180,37 +180,37 @@ returns the result in a&nbsp;list.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## List of 10</span>
-<span class="c">##  $ : chr &quot;number is not larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is not larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is not larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
-<span class="c">##  $ : chr &quot;number is larger than 3&quot;</span>
+<div class="highlight"><pre>## List of 10
+##  $ : chr &quot;number is not larger than 3&quot;
+##  $ : chr &quot;number is not larger than 3&quot;
+##  $ : chr &quot;number is not larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
+##  $ : chr &quot;number is larger than 3&quot;
 </pre></div>
 
 
 <p>You can define the function within <code>lapply()</code></p>
-<div class="highlight"><pre>my_result <span class="o">&lt;-</span> lapply<span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>x <span class="o">+</span> <span class="m">1</span><span class="p">})</span>
+<div class="highlight"><pre>my_result <span class="o">&lt;-</span> <span class="kp">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>x <span class="o">+</span> <span class="m">1</span><span class="p">})</span>
 str<span class="p">(</span>my_result<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## List of 10</span>
-<span class="c">##  $ : num 2</span>
-<span class="c">##  $ : num 3</span>
-<span class="c">##  $ : num 4</span>
-<span class="c">##  $ : num 5</span>
-<span class="c">##  $ : num 6</span>
-<span class="c">##  $ : num 7</span>
-<span class="c">##  $ : num 8</span>
-<span class="c">##  $ : num 9</span>
-<span class="c">##  $ : num 10</span>
-<span class="c">##  $ : num 11</span>
+<div class="highlight"><pre>## List of 10
+##  $ : num 2
+##  $ : num 3
+##  $ : num 4
+##  $ : num 5
+##  $ : num 6
+##  $ : num 7
+##  $ : num 8
+##  $ : num 9
+##  $ : num 10
+##  $ : num 11
 </pre></div>
 
 
@@ -218,14 +218,14 @@ str<span class="p">(</span>my_result<span class="p">)</span>
 <p>Write a function which gives the first n square&nbsp;numbers.</p>
 <div class="highlight"><pre><span class="c1"># Version 1 (returns list)</span>
 square_numbers <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n<span class="p">)</span> <span class="p">{</span>
-    lapply<span class="p">(</span><span class="m">1</span><span class="o">:</span>n<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> i<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+    <span class="kp">lapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span>n<span class="p">,</span> <span class="kr">function</span><span class="p">(</span>i<span class="p">)</span> i<span class="o">^</span><span class="m">2</span><span class="p">)</span>
 <span class="p">}</span>
 
 <span class="c1"># Version 2 (returns vector)</span>
 square_numbers <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>n<span class="p">)</span> <span class="p">{</span>
-    square_numbers <span class="o">&lt;-</span> c<span class="p">()</span>
+    square_numbers <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">()</span>
     <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>n<span class="p">)</span> <span class="p">{</span>
-        square_numbers <span class="o">&lt;-</span> c<span class="p">(</span>square_numbers<span class="p">,</span> i<span class="o">^</span><span class="m">2</span><span class="p">)</span>
+        square_numbers <span class="o">&lt;-</span> <span class="kt">c</span><span class="p">(</span>square_numbers<span class="p">,</span> i<span class="o">^</span><span class="m">2</span><span class="p">)</span>
     <span class="p">}</span>
     <span class="kr">return</span><span class="p">(</span>square_numbers<span class="p">)</span>
 <span class="p">}</span>

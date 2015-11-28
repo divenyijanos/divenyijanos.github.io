@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -49,7 +49,7 @@ positive elements should be transformed to one. Call this function as <code>dumm
 For example, if <code>a &lt;- c(0, 34, 2)</code> then the <code>dummify(a)</code> should return  <code>c(0, 1,
 1)</code>. (You can assume that the function will only get vectors with non-negative&nbsp;elements.)</p>
 <div class="highlight"><pre>dummify <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
-    as.numeric<span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+    <span class="kp">as.numeric</span><span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 
@@ -68,9 +68,9 @@ together following the steps&nbsp;below:</p>
 <div class="highlight"><pre>trade_files <span class="o">&lt;-</span> <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/trade/&quot;</span>
 <span class="kr">for</span> <span class="p">(</span>year <span class="kr">in</span> <span class="m">2003</span><span class="o">:</span><span class="m">2013</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">if</span> <span class="p">(</span>year <span class="o">==</span> <span class="m">2003</span><span class="p">)</span> <span class="p">{</span>
-        total <span class="o">&lt;-</span> read.csv<span class="p">(</span>paste0<span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">))</span>
+        total <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">))</span>
     <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
-        total <span class="o">&lt;-</span> rbind<span class="p">(</span>total<span class="p">,</span> read.csv<span class="p">(</span>paste0<span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">)))</span>
+        total <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>total<span class="p">,</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">)))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -80,49 +80,49 @@ together following the steps&nbsp;below:</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## &#39;data.frame&#39;:    2347 obs. of  5 variables:</span>
-<span class="c">##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...</span>
-<span class="c">##  $ Exports            : chr  &quot;5467271&quot; &quot;127&quot; &quot;161&quot; &quot;31&quot; ...</span>
-<span class="c">##  $ General.Imports    : chr  &quot;66604064&quot; &quot;13&quot; &quot;9&quot; NA ...</span>
-<span class="c">##  $ Consumption.Imports: chr  &quot;66503921&quot; &quot;13&quot; &quot;9&quot; NA ...</span>
-<span class="c">##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...</span>
+<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
+##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
+##  $ Exports            : chr  &quot;5467271&quot; &quot;127&quot; &quot;161&quot; &quot;31&quot; ...
+##  $ General.Imports    : chr  &quot;66604064&quot; &quot;13&quot; &quot;9&quot; NA ...
+##  $ Consumption.Imports: chr  &quot;66503921&quot; &quot;13&quot; &quot;9&quot; NA ...
+##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
 </pre></div>
 
 
 <div class="highlight"><pre><span class="c1"># Change numbers stored as characters into numbers stored as numbers</span>
-total<span class="p">[</span>c<span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)]</span> <span class="o">&lt;-</span> sapply<span class="p">(</span>
-    total<span class="p">[</span>c<span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)],</span>
-    as.numeric
+total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kp">sapply</span><span class="p">(</span>
+    total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)],</span>
+    <span class="kp">as.numeric</span>
 <span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion</span>
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion</span>
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion</span>
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
 </pre></div>
 
 
 <div class="highlight"><pre><span class="c1"># dplyr solution</span>
-library<span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 total <span class="o">&lt;-</span> total <span class="o">%&gt;%</span>
-    mutate_each<span class="p">(</span>funs<span class="p">(</span>as.numeric<span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;ports&quot;</span><span class="p">))</span>
+    mutate_each<span class="p">(</span>funs<span class="p">(</span><span class="kp">as.numeric</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;ports&quot;</span><span class="p">))</span>
 str<span class="p">(</span>total<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## &#39;data.frame&#39;:    2347 obs. of  5 variables:</span>
-<span class="c">##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...</span>
-<span class="c">##  $ Exports            : num  5467271 127 161 31 449 ...</span>
-<span class="c">##  $ General.Imports    : num  66604064 13 9 NA 2 ...</span>
-<span class="c">##  $ Consumption.Imports: num  66503921 13 9 NA 2 ...</span>
-<span class="c">##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...</span>
+<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
+##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
+##  $ Exports            : num  5467271 127 161 31 449 ...
+##  $ General.Imports    : num  66604064 13 9 NA 2 ...
+##  $ Consumption.Imports: num  66503921 13 9 NA 2 ...
+##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
 </pre></div>
 </section>
         <section id="extras" class="body">

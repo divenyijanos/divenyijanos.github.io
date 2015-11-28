@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -29,8 +29,8 @@
 <p>Download the <code>purchases.csv</code> from the data section. Load it into&nbsp;R.</p>
 <h2>Task&nbsp;1</h2>
 <p>Give the mean and the median of the individual&nbsp;purchases.</p>
-<div class="highlight"><pre><span class="c">##   mean(sales) median(sales)</span>
-<span class="c">## 1       92.42          55.9</span>
+<div class="highlight"><pre>##   mean(sales) median(sales)
+## 1       92.42          55.9
 </pre></div>
 
 
@@ -38,22 +38,22 @@
 <p>Tell R that your <code>purchase_date</code> variable is a date. You can do this by applying
 the <code>as.Date()</code> function to the original variable (similar to how we can use
 <code>as.character()</code>). Then you can get the median day of the&nbsp;purchases.</p>
-<div class="highlight"><pre><span class="c">##   median(purchase_date)</span>
-<span class="c">## 1            2012-11-22</span>
+<div class="highlight"><pre>##   median(purchase_date)
+## 1            2012-11-22
 </pre></div>
 
 
 <h2>Task&nbsp;3</h2>
 <p>List the 5 biggest buyer along with their aggregate&nbsp;purchases.</p>
-<div class="highlight"><pre><span class="c">## Source: local data frame [5 x 2]</span>
-<span class="c">## </span>
-<span class="c">##   contact_id sales</span>
-<span class="c">##        (int) (dbl)</span>
-<span class="c">## 1   35244243 29906</span>
-<span class="c">## 2   49141897 19804</span>
-<span class="c">## 3   46092347 16821</span>
-<span class="c">## 4   35117040 13026</span>
-<span class="c">## 5   14316018 12459</span>
+<div class="highlight"><pre>## Source: local data frame [5 x 2]
+## 
+##   contact_id sales
+##        (int) (dbl)
+## 1   35244243 29906
+## 2   49141897 19804
+## 3   46092347 16821
+## 4   35117040 13026
+## 5   14316018 12459
 </pre></div>
 
 
@@ -64,22 +64,22 @@ For this you should have the year variable as&nbsp;factor.</p>
 <h2>Task&nbsp;5</h2>
 <p>List the number of buyers in each month by year. (Hint: you might need <code>tidyr</code>
 for accomplishing&nbsp;this).</p>
-<div class="highlight"><pre><span class="c">## Source: local data frame [12 x 3]</span>
-<span class="c">## </span>
-<span class="c">##    month  2012  2013</span>
-<span class="c">##    (int) (int) (int)</span>
-<span class="c">## 1      1  2079  1559</span>
-<span class="c">## 2      2  1651  1041</span>
-<span class="c">## 3      3  1714  1273</span>
-<span class="c">## 4      4  1648  1300</span>
-<span class="c">## 5      5  1917  1309</span>
-<span class="c">## 6      6  1873  1342</span>
-<span class="c">## 7      7  1736  1235</span>
-<span class="c">## 8      8  1738  1247</span>
-<span class="c">## 9      9  1640  1162</span>
-<span class="c">## 10    10  1781  1323</span>
-<span class="c">## 11    11  2497  1624</span>
-<span class="c">## 12    12  2415  1831</span>
+<div class="highlight"><pre>## Source: local data frame [12 x 3]
+## 
+##    month  2012  2013
+##    (int) (int) (int)
+## 1      1  2079  1559
+## 2      2  1651  1041
+## 3      3  1714  1273
+## 4      4  1648  1300
+## 5      5  1917  1309
+## 6      6  1873  1342
+## 7      7  1736  1235
+## 8      8  1738  1247
+## 9      9  1640  1162
+## 10    10  1781  1323
+## 11    11  2497  1624
+## 12    12  2415  1831
 </pre></div>
 
 
@@ -89,11 +89,11 @@ want to aggregate sales by contact first and then to use the <code>cumsum()</cod
 to calculate cumulative&nbsp;sums.</p>
 <p>Hint: this table is an intermediate state you may want to&nbsp;achive.</p>
 <p>The correct answer you should get is (from the previous&nbsp;table)</p>
-<div class="highlight"><pre><span class="c">## Source: local data frame [1 x 1]</span>
-<span class="c">## </span>
-<span class="c">##   top5_share</span>
-<span class="c">##        (dbl)</span>
-<span class="c">## 1    0.02366</span>
+<div class="highlight"><pre>## Source: local data frame [1 x 1]
+## 
+##   top5_share
+##        (dbl)
+## 1    0.02366
 </pre></div>
 
 
@@ -103,13 +103,13 @@ Note that you should have <code>purchase_date</code> as date instead of factor o
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
 <code>geom_smooth()</code> to control the smoothness of your&nbsp;line).</p>
 <p>Default:</p>
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
 <p><img alt="plot of chunk smooth" src="figure/smooth-1.png" /> </p>
 <p>With <code>span = 0.2</code>:</p>
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -133,7 +133,7 @@ task&nbsp;6.)</p>
     mutate<span class="p">(</span>
         id <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
         cumulative_sales_share <span class="o">=</span> cumulative_sales<span class="o">/</span>all_sales<span class="p">,</span>
-        cumulative_buyer_share <span class="o">=</span> cumsum<span class="p">(</span>id<span class="p">)</span><span class="o">/</span>n<span class="p">()</span>
+        cumulative_buyer_share <span class="o">=</span> <span class="kp">cumsum</span><span class="p">(</span>id<span class="p">)</span><span class="o">/</span>n<span class="p">()</span>
     <span class="p">)</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>cumulative_buyer_share<span class="p">,</span> y<span class="o">=</span>cumulative_sales_share<span class="p">))</span> <span class="o">+</span>
     geom_line<span class="p">(</span>size<span class="o">=</span><span class="m">2</span><span class="p">)</span>

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -22,9 +22,9 @@
 <section id="content" class="body">
     <h1 class="entry-title">Homework 2 &#8212; <span class="caps">SOLUTIONS</span></h1>
     
-    <div class="highlight"><pre>library<span class="p">(</span>dplyr<span class="p">)</span>
-library<span class="p">(</span>tidyr<span class="p">)</span>
-library<span class="p">(</span>ggplot2<span class="p">)</span>
+    <div class="highlight"><pre><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
 </pre></div>
 
 
@@ -42,12 +42,12 @@ library<span class="p">(</span>ggplot2<span class="p">)</span>
 <h2>Task&nbsp;1</h2>
 <p>Give the mean and the median of the individual&nbsp;purchases.</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>mean<span class="p">(</span>sales<span class="p">),</span> median<span class="p">(</span>sales<span class="p">))</span>
+    summarise<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>sales<span class="p">),</span> median<span class="p">(</span>sales<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##   mean(sales) median(sales)</span>
-<span class="c">## 1       92.42          55.9</span>
+<div class="highlight"><pre>##   mean(sales) median(sales)
+## 1       92.42          55.9
 </pre></div>
 
 
@@ -55,14 +55,14 @@ library<span class="p">(</span>ggplot2<span class="p">)</span>
 <p>Tell R that your <code>purchase_date</code> variable is a date. You can do this by applying
 the <code>as.Date()</code> function to the original variable (similar to how we can use
 <code>as.character()</code>). Then you can get the median day of the&nbsp;purchases.</p>
-<div class="highlight"><pre>purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> mutate<span class="p">(</span>purchase_date <span class="o">=</span> as.Date<span class="p">(</span>purchase_date<span class="p">))</span>
+<div class="highlight"><pre>purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> mutate<span class="p">(</span>purchase_date <span class="o">=</span> <span class="kp">as.Date</span><span class="p">(</span>purchase_date<span class="p">))</span>
 purchases <span class="o">%&gt;%</span>
     summarise<span class="p">(</span>median<span class="p">(</span>purchase_date<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##   median(purchase_date)</span>
-<span class="c">## 1            2012-11-22</span>
+<div class="highlight"><pre>##   median(purchase_date)
+## 1            2012-11-22
 </pre></div>
 
 
@@ -70,21 +70,21 @@ purchases <span class="o">%&gt;%</span>
 <p>List the 5 biggest buyer along with their aggregate&nbsp;purchases.</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>contact_id<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
-    head<span class="p">(</span><span class="m">5</span><span class="p">)</span>
+    <span class="kp">head</span><span class="p">(</span><span class="m">5</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [5 x 2]</span>
-<span class="c">## </span>
-<span class="c">##   contact_id sales</span>
-<span class="c">##        (int) (dbl)</span>
-<span class="c">## 1   35244243 29906</span>
-<span class="c">## 2   49141897 19804</span>
-<span class="c">## 3   46092347 16821</span>
-<span class="c">## 4   35117040 13026</span>
-<span class="c">## 5   14316018 12459</span>
+<div class="highlight"><pre>## Source: local data frame [5 x 2]
+## 
+##   contact_id sales
+##        (int) (dbl)
+## 1   35244243 29906
+## 2   49141897 19804
+## 3   46092347 16821
+## 4   35117040 13026
+## 5   14316018 12459
 </pre></div>
 
 
@@ -92,7 +92,7 @@ purchases <span class="o">%&gt;%</span>
 <p>Plot the distributions of log sales amounts for the two years separately.
 For this you should have the year variable as&nbsp;factor.</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>log<span class="p">(</span>sales<span class="p">),</span> fill<span class="o">=</span>factor<span class="p">(</span>year<span class="p">)))</span> <span class="o">+</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span><span class="kp">log</span><span class="p">(</span>sales<span class="p">),</span> fill<span class="o">=</span><span class="kp">factor</span><span class="p">(</span>year<span class="p">)))</span> <span class="o">+</span>
     geom_density<span class="p">(</span>alpha<span class="o">=</span><span class="m">0.3</span><span class="p">)</span>
 </pre></div>
 
@@ -108,22 +108,22 @@ for accomplishing&nbsp;this).</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [12 x 3]</span>
-<span class="c">## </span>
-<span class="c">##    month  2012  2013</span>
-<span class="c">##    (int) (int) (int)</span>
-<span class="c">## 1      1  2079  1559</span>
-<span class="c">## 2      2  1651  1041</span>
-<span class="c">## 3      3  1714  1273</span>
-<span class="c">## 4      4  1648  1300</span>
-<span class="c">## 5      5  1917  1309</span>
-<span class="c">## 6      6  1873  1342</span>
-<span class="c">## 7      7  1736  1235</span>
-<span class="c">## 8      8  1738  1247</span>
-<span class="c">## 9      9  1640  1162</span>
-<span class="c">## 10    10  1781  1323</span>
-<span class="c">## 11    11  2497  1624</span>
-<span class="c">## 12    12  2415  1831</span>
+<div class="highlight"><pre>## Source: local data frame [12 x 3]
+## 
+##    month  2012  2013
+##    (int) (int) (int)
+## 1      1  2079  1559
+## 2      2  1651  1041
+## 3      3  1714  1273
+## 4      4  1648  1300
+## 5      5  1917  1309
+## 6      6  1873  1342
+## 7      7  1736  1235
+## 8      8  1738  1247
+## 9      9  1640  1162
+## 10    10  1781  1323
+## 11    11  2497  1624
+## 12    12  2415  1831
 </pre></div>
 
 
@@ -135,25 +135,25 @@ to calculate cumulative&nbsp;sums.</p>
 <div class="highlight"><pre>middle <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span>
     filter<span class="p">(</span>year <span class="o">==</span> <span class="m">2013</span><span class="p">)</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>contact_id<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
-    mutate<span class="p">(</span>cumulative_sales <span class="o">=</span> cumsum<span class="p">(</span>sales<span class="p">),</span> all_sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span>
+    mutate<span class="p">(</span>cumulative_sales <span class="o">=</span> <span class="kp">cumsum</span><span class="p">(</span>sales<span class="p">),</span> all_sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span>
 </pre></div>
 
 
 <p>The correct answer you should get is (from the previous&nbsp;table)</p>
 <div class="highlight"><pre>middle <span class="o">%&gt;%</span>
-    head<span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="o">%&gt;%</span> tail<span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="kp">head</span><span class="p">(</span><span class="m">5</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="kp">tail</span><span class="p">(</span><span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span>
     mutate<span class="p">(</span>top5_share <span class="o">=</span> cumulative_sales<span class="o">/</span>all_sales<span class="p">)</span> <span class="o">%&gt;%</span>
     select<span class="p">(</span>top5_share<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [1 x 1]</span>
-<span class="c">## </span>
-<span class="c">##   top5_share</span>
-<span class="c">##        (dbl)</span>
-<span class="c">## 1    0.02366</span>
+<div class="highlight"><pre>## Source: local data frame [1 x 1]
+## 
+##   top5_share
+##        (dbl)
+## 1    0.02366
 </pre></div>
 
 
@@ -165,14 +165,14 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 <p>Default:</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>purchase_date<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
         geom_line<span class="p">()</span> <span class="o">+</span>
         geom_smooth<span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -180,14 +180,14 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 <p>With <code>span = 0.2</code>:</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>purchase_date<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
         geom_line<span class="p">()</span> <span class="o">+</span>
         geom_smooth<span class="p">(</span>span <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -198,10 +198,10 @@ month. Look at the documentation of <code>geom_bar()</code> to solve this. Note 
 of the x axis (the documentation helps to&nbsp;reproduce).</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>month<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">)</span> <span class="o">+</span>
-    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> seq<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
+    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
 </pre></div>
 
 
@@ -212,10 +212,10 @@ of the x axis (the documentation helps to&nbsp;reproduce).</p>
 achieve side-by-side&nbsp;bars).</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>year<span class="p">,</span> month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>month<span class="p">,</span> y<span class="o">=</span>sales<span class="p">,</span> fill<span class="o">=</span>factor<span class="p">(</span>year<span class="p">)))</span> <span class="o">+</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>month<span class="p">,</span> y<span class="o">=</span>sales<span class="p">,</span> fill<span class="o">=</span><span class="kp">factor</span><span class="p">(</span>year<span class="p">)))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat<span class="o">=</span><span class="s">&quot;identity&quot;</span><span class="p">,</span> position<span class="o">=</span><span class="s">&quot;dodge&quot;</span><span class="p">)</span> <span class="o">+</span>
-    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> seq<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
+    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
 </pre></div>
 
 
@@ -229,7 +229,7 @@ task&nbsp;6.)</p>
     mutate<span class="p">(</span>
         id <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
         cumulative_sales_share <span class="o">=</span> cumulative_sales<span class="o">/</span>all_sales<span class="p">,</span>
-        cumulative_buyer_share <span class="o">=</span> cumsum<span class="p">(</span>id<span class="p">)</span><span class="o">/</span>n<span class="p">()</span>
+        cumulative_buyer_share <span class="o">=</span> <span class="kp">cumsum</span><span class="p">(</span>id<span class="p">)</span><span class="o">/</span>n<span class="p">()</span>
     <span class="p">)</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>cumulative_buyer_share<span class="p">,</span> y<span class="o">=</span>cumulative_sales_share<span class="p">))</span> <span class="o">+</span>
     geom_line<span class="p">(</span>size<span class="o">=</span><span class="m">2</span><span class="p">)</span>

@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -30,18 +30,18 @@ Load the data into R and check whether the type of your variables are correct
 <div class="highlight"><pre>purchases <span class="o">&lt;-</span> read_csv<span class="p">(</span>
     <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/BME_adat/data/purchases.csv&quot;</span>
     <span class="p">)</span>
-purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> mutate<span class="p">(</span>purchase_date <span class="o">=</span> as.Date<span class="p">(</span>purchase_date<span class="p">))</span>
+purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> mutate<span class="p">(</span>purchase_date <span class="o">=</span> <span class="kp">as.Date</span><span class="p">(</span>purchase_date<span class="p">))</span>
 </pre></div>
 
 
 <h2>Task&nbsp;1</h2>
 <p>Plot the histogram of all the log&nbsp;sales.</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> log<span class="p">(</span>sales<span class="p">)))</span> <span class="o">+</span> geom_histogram<span class="p">()</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> <span class="kp">log</span><span class="p">(</span>sales<span class="p">)))</span> <span class="o">+</span> geom_histogram<span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</span>
+<div class="highlight"><pre>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 </pre></div>
 
 
@@ -51,8 +51,8 @@ purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> m
 Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/">documentation</a> of
 <code>ggplot2</code>. Here is what you should&nbsp;get.</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    mutate<span class="p">(</span>year <span class="o">=</span> factor<span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>log<span class="p">(</span>sales<span class="p">),</span> fill<span class="o">=</span>year<span class="p">))</span> <span class="o">+</span>
+    mutate<span class="p">(</span>year <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span><span class="kp">log</span><span class="p">(</span>sales<span class="p">),</span> fill<span class="o">=</span>year<span class="p">))</span> <span class="o">+</span>
     geom_density<span class="p">(</span>alpha<span class="o">=</span><span class="m">0.3</span><span class="p">)</span>
 </pre></div>
 
@@ -65,14 +65,14 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 <p>Default:</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>purchase_date<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
         geom_line<span class="p">()</span> <span class="o">+</span>
         geom_smooth<span class="p">()</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -80,14 +80,14 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 <p>With <code>span = 0.2</code>:</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>purchase_date<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
         geom_line<span class="p">()</span> <span class="o">+</span>
         geom_smooth<span class="p">(</span>span <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -97,9 +97,9 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
 of the x axis (the documentation helps to&nbsp;reproduce).</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    mutate<span class="p">(</span>month <span class="o">=</span> factor<span class="p">(</span>month<span class="p">))</span> <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>month <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>month<span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> sales<span class="p">))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">)</span>
 </pre></div>
@@ -111,12 +111,12 @@ of the x axis (the documentation helps to&nbsp;reproduce).</p>
 (map the year variable to the fill of the bars and see the examples in the
 documentation to achieve side-by-side&nbsp;bars).</p>
 <div class="highlight"><pre>purchases <span class="o">%&gt;%</span>
-    mutate<span class="p">(</span>year <span class="o">=</span> factor<span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>year <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>year<span class="p">,</span> month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> sum<span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> sales<span class="p">,</span> fill <span class="o">=</span> year<span class="p">))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">,</span> position <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">)</span> <span class="o">+</span>
-    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> seq<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
+    scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
 </pre></div>
 
 

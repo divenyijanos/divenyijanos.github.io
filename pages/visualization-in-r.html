@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -23,7 +23,7 @@
     <h1 class="entry-title">Visualization in&nbsp;R</h1>
     
     <h2>Base-R&nbsp;graphs</h2>
-<div class="highlight"><pre>library<span class="p">(</span>dplyr<span class="p">)</span>
+<div class="highlight"><pre><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 </pre></div>
 
 
@@ -48,7 +48,7 @@ It is powerful visualization tool for R which is built upon the logic of
 <a href="http://vita.had.co.nz/papers/layered-grammar.pdf">grammar of graphics</a>.</p>
 <p>Most of the basic plots could be created by the &#8220;quick-plot&#8221; command <code>qplot()</code>.</p>
 <div class="highlight"><pre><span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
-library<span class="p">(</span>ggplot2<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
 qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
 </pre></div>
 
@@ -58,7 +58,7 @@ qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</span>
+<div class="highlight"><pre>## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.
 </pre></div>
 
 
@@ -111,7 +111,7 @@ of the male variable to the color of the&nbsp;points.</p>
 <p><img alt="plot of chunk unnamed-chunk-10" src="figure/unnamed-chunk-10-1.png" /> </p>
 <p>Here, factors help a lot. They show that our variable is categorical and could
 take only two&nbsp;values.</p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 </pre></div>
 
@@ -123,7 +123,7 @@ new layer to the&nbsp;plot.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
 </pre></div>
 
 
@@ -135,7 +135,7 @@ new layer to the&nbsp;plot.</p>
 <p><img alt="plot of chunk unnamed-chunk-12" src="figure/unnamed-chunk-12-2.png" /> </p>
 <p>By carefully controlling the aesthetics of different geometries, we can fit the
 line either to each points or separately by&nbsp;gender.</p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
     geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
 </pre></div>
@@ -143,7 +143,7 @@ line either to each points or separately by&nbsp;gender.</p>
 
 <p><img alt="plot of chunk unnamed-chunk-13" src="figure/unnamed-chunk-13-1.png" /> </p>
 <div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> 
-    geom_point<span class="p">(</span>aes<span class="p">(</span>color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
+    geom_point<span class="p">(</span>aes<span class="p">(</span>color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
     geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
 </pre></div>
 

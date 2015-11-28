@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -24,8 +24,8 @@
     
     <h2>Task&nbsp;0</h2>
 <p>Load <code>dplyr</code> and the <code>flights</code> data into&nbsp;R.</p>
-<div class="highlight"><pre>library<span class="p">(</span>dplyr<span class="p">)</span>
-library<span class="p">(</span>nycflights13<span class="p">)</span>
+<div class="highlight"><pre><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span>
 data<span class="p">(</span>flights<span class="p">)</span>
 </pre></div>
 
@@ -43,17 +43,17 @@ accomplish this with one&nbsp;chain.</p>
     <span class="p">)</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>relative_delay<span class="p">))</span> <span class="o">%&gt;%</span>
     select<span class="p">(</span>tailnum<span class="p">,</span> relative_delay<span class="p">)</span> <span class="o">%&gt;%</span>
-    head<span class="p">(</span><span class="m">3</span><span class="p">)</span>
+    <span class="kp">head</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [3 x 2]</span>
-<span class="c">## </span>
-<span class="c">##   tailnum relative_delay</span>
-<span class="c">##     (chr)          (dbl)</span>
-<span class="c">## 1  N942MQ          9.261</span>
-<span class="c">## 2  N950UW          6.885</span>
-<span class="c">## 3  N8672A          6.872</span>
+<div class="highlight"><pre>## Source: local data frame [3 x 2]
+## 
+##   tailnum relative_delay
+##     (chr)          (dbl)
+## 1  N942MQ          9.261
+## 2  N950UW          6.885
+## 3  N8672A          6.872
 </pre></div>
 
 
@@ -67,13 +67,13 @@ accomplish this with one&nbsp;chain.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [3 x 2]</span>
-<span class="c">## </span>
-<span class="c">##   origin     n</span>
-<span class="c">##    (chr) (int)</span>
-<span class="c">## 1    JFK  5898</span>
-<span class="c">## 2    EWR  5327</span>
-<span class="c">## 3    LGA  4283</span>
+<div class="highlight"><pre>## Source: local data frame [3 x 2]
+## 
+##   origin     n
+##    (chr) (int)
+## 1    JFK  5898
+## 2    EWR  5327
+## 3    LGA  4283
 </pre></div>
 
 
@@ -83,49 +83,49 @@ accomplish this with one&nbsp;chain.</p>
 calculating an average). Is this ordering the same for each&nbsp;month?</p>
 <div class="highlight"><pre>flights <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>delay <span class="o">=</span> mean<span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>delay <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>delay<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [3 x 2]</span>
-<span class="c">## </span>
-<span class="c">##   origin delay</span>
-<span class="c">##    (chr) (dbl)</span>
-<span class="c">## 1    EWR 15.11</span>
-<span class="c">## 2    JFK 12.11</span>
-<span class="c">## 3    LGA 10.35</span>
+<div class="highlight"><pre>## Source: local data frame [3 x 2]
+## 
+##   origin delay
+##    (chr) (dbl)
+## 1    EWR 15.11
+## 2    JFK 12.11
+## 3    LGA 10.35
 </pre></div>
 
 
 <div class="highlight"><pre>flights <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>origin<span class="p">,</span> month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>delay <span class="o">=</span> mean<span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>delay <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
-    mutate<span class="p">(</span>max_delay <span class="o">=</span> max<span class="p">(</span>delay<span class="p">))</span> <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>max_delay <span class="o">=</span> <span class="kp">max</span><span class="p">(</span>delay<span class="p">))</span> <span class="o">%&gt;%</span>
     filter<span class="p">(</span>delay <span class="o">==</span> max_delay<span class="p">)</span> <span class="o">%&gt;%</span>
     select<span class="p">(</span>month<span class="p">,</span> origin<span class="p">)</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>month<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Source: local data frame [12 x 2]</span>
-<span class="c">## Groups: month [12]</span>
-<span class="c">## </span>
-<span class="c">##    month origin</span>
-<span class="c">##    (int)  (chr)</span>
-<span class="c">## 1      1    EWR</span>
-<span class="c">## 2      2    EWR</span>
-<span class="c">## 3      3    EWR</span>
-<span class="c">## 4      4    EWR</span>
-<span class="c">## 5      5    EWR</span>
-<span class="c">## 6      6    EWR</span>
-<span class="c">## 7      7    JFK</span>
-<span class="c">## 8      8    EWR</span>
-<span class="c">## 9      9    EWR</span>
-<span class="c">## 10    10    EWR</span>
-<span class="c">## 11    11    EWR</span>
-<span class="c">## 12    12    EWR</span>
+<div class="highlight"><pre>## Source: local data frame [12 x 2]
+## Groups: month [12]
+## 
+##    month origin
+##    (int)  (chr)
+## 1      1    EWR
+## 2      2    EWR
+## 3      3    EWR
+## 4      4    EWR
+## 5      5    EWR
+## 6      6    EWR
+## 7      7    JFK
+## 8      8    EWR
+## 9      9    EWR
+## 10    10    EWR
+## 11    11    EWR
+## 12    12    EWR
 </pre></div>
 </section>
         <section id="extras" class="body">

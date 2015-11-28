@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="../theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -27,17 +27,17 @@
 </pre></div>
 
 
-<div class="highlight"><pre>summary<span class="p">(</span>height_weight<span class="p">)</span>
+<div class="highlight"><pre><span class="kp">summary</span><span class="p">(</span>height_weight<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##       male           height           weight     </span>
-<span class="c">##  Min.   :0.000   Min.   :  1.75   Min.   : 39.0  </span>
-<span class="c">##  1st Qu.:0.000   1st Qu.:167.75   1st Qu.: 57.0  </span>
-<span class="c">##  Median :0.000   Median :173.50   Median : 65.0  </span>
-<span class="c">##  Mean   :0.492   Mean   :172.16   Mean   : 66.5  </span>
-<span class="c">##  3rd Qu.:1.000   3rd Qu.:180.25   3rd Qu.: 74.0  </span>
-<span class="c">##  Max.   :1.000   Max.   :266.00   Max.   :120.0</span>
+<div class="highlight"><pre>##       male           height           weight     
+##  Min.   :0.000   Min.   :  1.75   Min.   : 39.0  
+##  1st Qu.:0.000   1st Qu.:167.75   1st Qu.: 57.0  
+##  Median :0.000   Median :173.50   Median : 65.0  
+##  Mean   :0.492   Mean   :172.16   Mean   : 66.5  
+##  3rd Qu.:1.000   3rd Qu.:180.25   3rd Qu.: 74.0  
+##  Max.   :1.000   Max.   :266.00   Max.   :120.0
 </pre></div>
 
 
@@ -50,21 +50,21 @@
 <div class="highlight"><pre>height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span><span class="o">*</span><span class="m">100</span>
 height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span><span class="m">-100</span>
 
-height_weight<span class="o">$</span>male <span class="o">&lt;-</span> factor<span class="p">(</span>height_weight<span class="o">$</span>male<span class="p">,</span> labels<span class="o">=</span>c<span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
+height_weight<span class="o">$</span>male <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span>height_weight<span class="o">$</span>male<span class="p">,</span> labels<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre>summary<span class="p">(</span>height_weight<span class="p">)</span>
+<div class="highlight"><pre><span class="kp">summary</span><span class="p">(</span>height_weight<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##      male        height        weight     </span>
-<span class="c">##  female:65   Min.   :152   Min.   : 39.0  </span>
-<span class="c">##  male  :63   1st Qu.:168   1st Qu.: 57.0  </span>
-<span class="c">##              Median :174   Median : 65.0  </span>
-<span class="c">##              Mean   :174   Mean   : 66.5  </span>
-<span class="c">##              3rd Qu.:180   3rd Qu.: 74.0  </span>
-<span class="c">##              Max.   :195   Max.   :120.0</span>
+<div class="highlight"><pre>##      male        height        weight     
+##  female:65   Min.   :152   Min.   : 39.0  
+##  male  :63   1st Qu.:168   1st Qu.: 57.0  
+##              Median :174   Median : 65.0  
+##              Mean   :174   Mean   : 66.5  
+##              3rd Qu.:180   3rd Qu.: 74.0  
+##              Max.   :195   Max.   :120.0
 </pre></div>
 
 
@@ -73,7 +73,7 @@ height_weight<span class="o">$</span>male <span class="o">&lt;-</span> factor<sp
 makes the working with data easier. One of the bests is the package <code>dplyr</code>
 developed by Hadley&nbsp;Wickham.</p>
 <div class="highlight"><pre><span class="c1"># install.packages(&quot;dplyr&quot;)  # issue this in the first time</span>
-library<span class="p">(</span>dplyr<span class="p">)</span>  <span class="c1"># load package if you want to use it</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>  <span class="c1"># load package if you want to use it</span>
 </pre></div>
 
 
@@ -88,20 +88,20 @@ is really helpful in learning the basic commands of <code>dplyr</code>.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Warning in file(file, &quot;rt&quot;): cannot open file &#39;../Data/height_weight.csv&#39;:</span>
-<span class="c">## No such file or directory</span>
+<div class="highlight"><pre>## Warning in file(file, &quot;rt&quot;): cannot open file &#39;../Data/height_weight.csv&#39;:
+## No such file or directory
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">## Error in file(file, &quot;rt&quot;): cannot open the connection</span>
+<div class="highlight"><pre>## Error in file(file, &quot;rt&quot;): cannot open the connection
 </pre></div>
 
 
 <div class="highlight"><pre>height_weight <span class="o">&lt;-</span> mutate<span class="p">(</span>
         height_weight<span class="p">,</span>
-        height <span class="o">=</span> ifelse<span class="p">(</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">,</span> height<span class="o">*</span><span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
-        height <span class="o">=</span> ifelse<span class="p">(</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">,</span> height <span class="o">-</span> <span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
-        male <span class="o">=</span> factor<span class="p">(</span>male<span class="p">,</span> labels <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
+        height <span class="o">=</span> <span class="kp">ifelse</span><span class="p">(</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">,</span> height<span class="o">*</span><span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
+        height <span class="o">=</span> <span class="kp">ifelse</span><span class="p">(</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">,</span> height <span class="o">-</span> <span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
+        male <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">,</span> labels <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
     <span class="p">)</span>
 </pre></div>
 
@@ -114,23 +114,23 @@ our life. This works similarly to the piping operator <code>|</code> of unix-typ
 piping operator you can pass the result of on call as an argument to the next&nbsp;call.</p>
 <p>Let&#8217;s calculate the average height of males. The standard logic is to filter for
 males and then summarize the&nbsp;height.</p>
-<div class="highlight"><pre>summarize<span class="p">(</span>filter<span class="p">(</span>height_weight<span class="p">,</span> male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">),</span> mean<span class="p">(</span>height<span class="p">))</span>
+<div class="highlight"><pre>summarize<span class="p">(</span>filter<span class="p">(</span>height_weight<span class="p">,</span> male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">),</span> <span class="kp">mean</span><span class="p">(</span>height<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##   mean(height)</span>
-<span class="c">## 1        180.7</span>
+<div class="highlight"><pre>##   mean(height)
+## 1        180.7
 </pre></div>
 
 
 <p>With piping the same call could formulate to better follow the logic: first
 filter, than summarize the filtered&nbsp;result.</p>
-<div class="highlight"><pre>height_weight <span class="o">%&gt;%</span> filter<span class="p">(</span>male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> summarize<span class="p">(</span>mean<span class="p">(</span>height<span class="p">))</span>
+<div class="highlight"><pre>height_weight <span class="o">%&gt;%</span> filter<span class="p">(</span>male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> summarize<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>height<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c">##   mean(height)</span>
-<span class="c">## 1        180.7</span>
+<div class="highlight"><pre>##   mean(height)
+## 1        180.7
 </pre></div>
 
 

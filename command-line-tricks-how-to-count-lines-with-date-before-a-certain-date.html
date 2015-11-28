@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="./theme/css/main.css" />
 
         <!--[if IE]>
-            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 </head>
 
@@ -36,7 +36,7 @@
         <address class="vcard author">
                 By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
         </address>
-<p>In <a href="./category/blog.html">blog</a>. </p>
+<p>In <a href="./category/blog.html">blog</a>.</p>
 
 </footer><!-- /.post-info -->      <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
 <div class="highlight"><pre>head -2 file-with-dates.csv
@@ -52,7 +52,7 @@ language hard to learn. There is an easy solution which combines sorting with
 <code>grep</code> instead of trying to count the dates directly. By writing out total
 number of lines in  the data I can also get the share of the articles before the
  certain&nbsp;date.</p>
-<div class="highlight"><pre><span class="o">(</span>cat file-with-dates.csv; <span class="nb">echo </span>certainDate<span class="o">)</span> | sort | grep -n <span class="s1">&#39;certainDate&#39;</span>
+<div class="highlight"><pre><span class="o">(</span>cat file-with-dates.csv<span class="p">;</span> <span class="nb">echo </span>certainDate<span class="o">)</span> <span class="p">|</span> sort <span class="p">|</span> grep -n <span class="s1">&#39;certainDate&#39;</span>
 wc file-with-dates.csv -l
 </pre></div>
     </div><!-- /.entry-content -->
