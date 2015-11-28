@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Introduction</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Introduction</h1>
+    
+    <p><em>These notes heavily rely on the <a href="http://adv-r.had.co.nz/">work</a> of <a href="http://had.co.nz/">Hadley
+Wickham</a>.</em></p>
+<p>Very simplified way of how to think about programming: variables and functions.
+<code>f(x): x -&gt; y</code> <code>f</code> is a function which accepts an argument <code>x</code>, performs some
+action on it, and returns the result <code>y</code>. We combine variables and functions to
+achieve the desired&nbsp;result.</p>
+<p>Variables usually contain some data. Functions usually perform some action on&nbsp;data.</p>
+<p>Variables and functions are called objects. You can call an object by its
+name. You can create a new object by assigning it to a name. In R, the
+assignment operator is <code>&lt;-</code>.</p>
+<div class="highlight"><pre><span class="c1"># Call an object</span>
+pi
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 3.142</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># Create a new object</span>
+my_pi <span class="o">&lt;-</span> <span class="m">3.1</span>
+my_pi
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 3.1</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># Call a function to an object</span>
+rep<span class="p">(</span>my_pi<span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 3.1 3.1 3.1</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># Get help for a function</span>
+help<span class="p">(</span>rep<span class="p">)</span>
+<span class="o">?</span>rep
+</pre></div>
+
+
+<h2>Data&nbsp;structures</h2>
+<p>In R, there are 3 main data&nbsp;types:</p>
+<ol>
+<li>Atomic vector: 1-dimensional,&nbsp;homogeneous</li>
+<li>List: 1-dimensional,&nbsp;heterogeneous</li>
+<li>Data frame: 2-dimensional,&nbsp;heterogeneous</li>
+</ol>
+<p>You can use function <code>str()</code> to understand the structure of an&nbsp;object.</p>
+<h3>Atomic&nbsp;vector</h3>
+<p>Basic data type of R. R understands individual values (scalars) as <code>pi</code> and
+<code>my_pi</code> as vectors of length 1. There are 4 common types of vectors: logical,
+integer, double (numeric), character (string). You can combine more values into
+a vector by using function <code>c()</code>.</p>
+<div class="highlight"><pre>my_vector <span class="o">&lt;-</span> c<span class="p">(</span>pi<span class="p">,</span> my_pi<span class="p">)</span>
+my_vector
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 3.142 3.100</span>
+</pre></div>
+
+
+<div class="highlight"><pre>length<span class="p">(</span>pi<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 1</span>
+</pre></div>
+
+
+<div class="highlight"><pre>length<span class="p">(</span>my_vector<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 2</span>
+</pre></div>
+
+
+<p><br>
+Atomic vectors are <strong>homogeneous</strong>. If you add an a value of other type, all
+values are coerced to the most flexible&nbsp;type.</p>
+<div class="highlight"><pre>str<span class="p">(</span>my_vector<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">##  num [1:2] 3.14 3.1</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_vector <span class="o">&lt;-</span> c<span class="p">(</span>my_vector<span class="p">,</span> <span class="s">&quot;a&quot;</span><span class="p">)</span>
+my_vector
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;3.14159265358979&quot; &quot;3.1&quot;              &quot;a&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>str<span class="p">(</span>my_vector<span class="p">)</span>  <span class="c1"># all values are coerced to character</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">##  chr [1:3] &quot;3.14159265358979&quot; &quot;3.1&quot; &quot;a&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_logical_vector <span class="o">&lt;-</span> c<span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">)</span>
+my_logical_vector
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1]  TRUE FALSE</span>
+</pre></div>
+
+
+<div class="highlight"><pre>c<span class="p">(</span>my_logical_vector<span class="p">,</span> <span class="m">4</span><span class="p">)</span>  <span class="c1"># all values are coerced to integer</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 1 0 4</span>
+</pre></div>
+
+
+<h3>List</h3>
+<p>Lists differ from atomic vectors because their elements can be of any type,
+including lists. We can construct a list by using <code>list()</code>.</p>
+<div class="highlight"><pre>my_list <span class="o">&lt;-</span> list<span class="p">(</span>my_vector<span class="p">,</span> my_logical_vector<span class="p">,</span> c<span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span> <span class="kc">FALSE</span><span class="p">))</span>
+str<span class="p">(</span>my_list<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## List of 3</span>
+<span class="c">##  $ : chr [1:3] &quot;3.14159265358979&quot; &quot;3.1&quot; &quot;a&quot;</span>
+<span class="c">##  $ : logi [1:2] TRUE FALSE</span>
+<span class="c">##  $ : logi [1:2] TRUE FALSE</span>
+</pre></div>
+
+
+<p><br>
+Lists can contain other lists as&nbsp;well.</p>
+<div class="highlight"><pre>my_second_list <span class="o">&lt;-</span> list<span class="p">(</span>my_list<span class="p">,</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+str<span class="p">(</span>my_second_list<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## List of 2</span>
+<span class="c">##  $ :List of 3</span>
+<span class="c">##   ..$ : chr [1:3] &quot;3.14159265358979&quot; &quot;3.1&quot; &quot;a&quot;</span>
+<span class="c">##   ..$ : logi [1:2] TRUE FALSE</span>
+<span class="c">##   ..$ : logi [1:2] TRUE FALSE</span>
+<span class="c">##  $ : num [1:2] 3 4</span>
+</pre></div>
+
+
+<p><code>c()</code> combine several lists into&nbsp;one.</p>
+<div class="highlight"><pre>my_second_list_2 <span class="o">&lt;-</span> c<span class="p">(</span>my_list<span class="p">,</span> c<span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">))</span>
+str<span class="p">(</span>my_second_list_2<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## List of 5</span>
+<span class="c">##  $ : chr [1:3] &quot;3.14159265358979&quot; &quot;3.1&quot; &quot;a&quot;</span>
+<span class="c">##  $ : logi [1:2] TRUE FALSE</span>
+<span class="c">##  $ : logi [1:2] TRUE FALSE</span>
+<span class="c">##  $ : num 3</span>
+<span class="c">##  $ : num 4</span>
+</pre></div>
+
+
+<p><br>
+Lists (and vectors as well) could be&nbsp;named.</p>
+<div class="highlight"><pre>names<span class="p">(</span>my_second_list<span class="p">)</span> <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">&quot;my_list&quot;</span><span class="p">,</span> <span class="s">&quot;random_integers&quot;</span><span class="p">)</span>
+str<span class="p">(</span>my_second_list<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## List of 2</span>
+<span class="c">##  $ my_list        :List of 3</span>
+<span class="c">##   ..$ : chr [1:3] &quot;3.14159265358979&quot; &quot;3.1&quot; &quot;a&quot;</span>
+<span class="c">##   ..$ : logi [1:2] TRUE FALSE</span>
+<span class="c">##   ..$ : logi [1:2] TRUE FALSE</span>
+<span class="c">##  $ random_integers: num [1:2] 3 4</span>
+</pre></div>
+
+
+<p>You can define them with names right&nbsp;away.</p>
+<div class="highlight"><pre>my_third_list <span class="o">&lt;-</span> list<span class="p">(</span>letters <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">),</span> integers <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">))</span>
+str<span class="p">(</span>my_third_list<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## List of 2</span>
+<span class="c">##  $ letters : chr [1:3] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span>
+<span class="c">##  $ integers: num [1:2] 1 2</span>
+</pre></div>
+
+
+<h3>Data&nbsp;frame</h3>
+<p>This is a special type of list: list of equal-length vectors. We usually store
+data in a data frame (this is what we call table in everyday language). We can
+create a data frame by using the <code>data.frame()</code> function.</p>
+<div class="highlight"><pre>my_df <span class="o">&lt;-</span> data.frame<span class="p">(</span>x <span class="o">=</span> c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> y <span class="o">=</span> c<span class="p">(</span><span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">))</span>
+str<span class="p">(</span>my_df<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## &#39;data.frame&#39;:    3 obs. of  2 variables:</span>
+<span class="c">##  $ x: num  1 2 3</span>
+<span class="c">##  $ y: int  4 5 6</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_df
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">##   x y</span>
+<span class="c">## 1 1 4</span>
+<span class="c">## 2 2 5</span>
+<span class="c">## 3 3 6</span>
+</pre></div>
+
+
+<p>You can add columns to the data frame by using <code>cbind()</code> (or rows by <code>rbind()</code>).</p>
+<div class="highlight"><pre>z <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">)</span>
+my_new_df <span class="o">&lt;-</span> cbind<span class="p">(</span>my_df<span class="p">,</span> z<span class="p">)</span>
+my_new_df
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">##   x y z</span>
+<span class="c">## 1 1 4 a</span>
+<span class="c">## 2 2 5 b</span>
+<span class="c">## 3 3 6 c</span>
+</pre></div>
+
+
+<div class="highlight"><pre>str<span class="p">(</span>my_new_df<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## &#39;data.frame&#39;:    3 obs. of  3 variables:</span>
+<span class="c">##  $ x: num  1 2 3</span>
+<span class="c">##  $ y: int  4 5 6</span>
+<span class="c">##  $ z: Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1 2 3</span>
+</pre></div>
+
+
+<p>Note that the type of column <code>z</code> is <code>factor</code>. <strong>Factors</strong> are used in R to store
+categorical variables. They are vectors which can only contain predefined
+values. By default, every character variable are turned into factors. Working
+with factors make life easier, but sometimes they could be&nbsp;tricky.</p>
+<div class="highlight"><pre>x <span class="o">&lt;-</span> factor<span class="p">(</span>c<span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;a&quot;</span><span class="p">))</span>
+x
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] a b b a</span>
+<span class="c">## Levels: a b</span>
+</pre></div>
+
+
+<div class="highlight"><pre>class<span class="p">(</span>x<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;factor&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>levels<span class="p">(</span>x<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;a&quot; &quot;b&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># You can&#39;t use values that are not in the levels</span>
+x<span class="p">[</span><span class="m">2</span><span class="p">]</span> <span class="o">&lt;-</span> <span class="s">&quot;c&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1">## Warning in `[&lt;-.factor`(`*tmp*`, 2, value = &quot;c&quot;): invalid factor level, NA</span>
+<span class="c1">## generated</span>
+</pre></div>
+
+
+<p>Factors are useful when you know the possible values it will&nbsp;take.</p>
+<div class="highlight"><pre>sex_char <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">&quot;m&quot;</span><span class="p">,</span> <span class="s">&quot;m&quot;</span><span class="p">,</span> <span class="s">&quot;m&quot;</span><span class="p">)</span>
+sex_factor <span class="o">&lt;-</span> factor<span class="p">(</span>sex_char<span class="p">,</span> levels <span class="o">=</span> c<span class="p">(</span><span class="s">&quot;m&quot;</span><span class="p">,</span> <span class="s">&quot;f&quot;</span><span class="p">))</span>
+
+table<span class="p">(</span>sex_char<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## sex_char</span>
+<span class="c">## m </span>
+<span class="c">## 3</span>
+</pre></div>
+
+
+<div class="highlight"><pre>table<span class="p">(</span>sex_factor<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## sex_factor</span>
+<span class="c">## m f </span>
+<span class="c">## 3 0</span>
+</pre></div>
+
+
+<h2>Subsetting</h2>
+<p>What if you want to turn the variable <code>z</code> in <code>my_new_df</code> back to character? You
+could change <code>z</code> within <code>my_new_df</code> to be character by using <code>as.character()</code>.
+But how to refer to <code>z</code> within <code>my_new_df</code>? We should know more about the
+<strong>subsetting operators</strong> to answer this&nbsp;question.</p>
+<p><em>Vectors</em> could be subsetted by using the <code>[]</code> operator.</p>
+<div class="highlight"><pre>my_vector<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;3.14159265358979&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_vector<span class="p">[</span>c<span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;3.14159265358979&quot; &quot;3.1&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>names<span class="p">(</span>my_vector<span class="p">)</span> <span class="o">&lt;-</span> c<span class="p">(</span><span class="s">&quot;pi&quot;</span><span class="p">,</span> <span class="s">&quot;my_pi&quot;</span><span class="p">,</span> <span class="s">&quot;letter&quot;</span><span class="p">)</span>
+my_vector<span class="p">[</span><span class="s">&quot;pi&quot;</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">##                 pi </span>
+<span class="c">## &quot;3.14159265358979&quot;</span>
+</pre></div>
+
+
+<p><br>
+<em>Lists</em> could be subsetted by <code>[]</code> as well. The important thing to know is that
+<code>[]</code> will always give back an object of the same type as the object which was
+subsetted. So subsetting lists by <code>[]</code> will return <code>list</code>.</p>
+<div class="highlight"><pre>my_list<span class="p">[</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [[1]]</span>
+<span class="c">## [1] &quot;3.14159265358979&quot; &quot;3.1&quot;              &quot;a&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>class<span class="p">(</span>my_list<span class="p">[</span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;list&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_list<span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [[1]]</span>
+<span class="c">## [1] &quot;3.14159265358979&quot; &quot;3.1&quot;              &quot;a&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>class<span class="p">(</span>my_list<span class="p">[</span><span class="m">1</span><span class="p">][</span><span class="m">1</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;list&quot;</span>
+</pre></div>
+
+
+<p>You can use the <code>[[]]</code> operator to get back the element within the&nbsp;list.</p>
+<div class="highlight"><pre>my_list<span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;3.14159265358979&quot; &quot;3.1&quot;              &quot;a&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>class<span class="p">(</span>my_list<span class="p">[[</span><span class="m">1</span><span class="p">]])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;character&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_list<span class="p">[[</span><span class="m">1</span><span class="p">]][</span><span class="m">1</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;3.14159265358979&quot;</span>
+</pre></div>
+
+
+<p>Nice illustration for R indexing:
+<img src="../images/R_indexing.png" width="100%" /></p>
+<p><br>
+There is a third subsetting operator <code>$</code> which works similar to <code>[[]]</code> but works
+better with&nbsp;names.</p>
+<div class="highlight"><pre>my_third_list
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## $letters</span>
+<span class="c">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span>
+<span class="c">## </span>
+<span class="c">## $integers</span>
+<span class="c">## [1] 1 2</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_third_list<span class="p">[[</span><span class="s">&quot;letters&quot;</span><span class="p">]]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_third_list<span class="o">$</span>letters  <span class="c1"># equivalent to the previous one</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</span>
+</pre></div>
+
+
+<p><br>
+<em>Data frames</em> are just special lists, so you can use the same subsetting
+operators. Note that <code>[]</code> will return a data frame (same type), while <code>[[]]</code> and
+<code>$</code> can be used to return the vectors within the data&nbsp;frame.</p>
+<div class="highlight"><pre>my_df<span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 4 5 6</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_df<span class="p">[[</span><span class="s">&quot;y&quot;</span><span class="p">]]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 4 5 6</span>
+</pre></div>
+
+
+<div class="highlight"><pre>my_df<span class="o">$</span>y
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## [1] 4 5 6</span>
+</pre></div>
+
+
+<p>Thus, the answer to our starting&nbsp;question:</p>
+<div class="highlight"><pre>my_new_df<span class="o">$</span>z <span class="o">&lt;-</span> as.character<span class="p">(</span>my_new_df<span class="o">$</span>z<span class="p">)</span>
+str<span class="p">(</span>my_new_df<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## &#39;data.frame&#39;:    3 obs. of  3 variables:</span>
+<span class="c">##  $ x: num  1 2 3</span>
+<span class="c">##  $ y: int  4 5 6</span>
+<span class="c">##  $ z: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot;</span>
+</pre></div>
+
+
+<h2>R is open&nbsp;source</h2>
+<p>R is open source which has two main&nbsp;advantages.</p>
+<p>First, everyone can develop methods for it. Therefore, if you want to do
+something more special, there is high chance that someone already wrote a
+<strong>package</strong> for that special task. You can install a new package by
+<code>install.packages()</code> function. E.g. to install the package <code>dplyr</code> which we
+are going to use extensively, issue the command <code>install.packages("dplyr")</code>.
+You can also install the packages in Rstudio in the &#8220;Packages&#8221; panel (this
+calls then the&nbsp;command).</p>
+<p>Second, there is a really active community of R users. If you have a question,
+there is high chance that someone already had the same problem and someone
+else already solved it. Just google your question, and you probably will find
+yourself on <strong>Stack Overflow</strong> which is a <a href="http://stackoverflow.com/">Q&amp;A site</a>
+for programmers. (Before doing so, it could help a lot to look at the
+documentation by using <code>help()</code> or just <code>?</code>.)</p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

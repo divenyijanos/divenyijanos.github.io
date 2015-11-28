@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>A Pelican Blog</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">A Pelican Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about-me.html">about me</a></li>
+                    <li><a href="/pages/research.html">research</a></li>
+                    <li><a href="/pages/teaching.html">teaching</a></li>
+                    <li><a href="/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/which-binary-classification-model-is-better.html">Which binary classification model is better?</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-05-27T00:00:00+00:00">
+                Published: Wed 27 May 2015
+        </abbr>
+
+<p>In <a href="/category/blog.html">blog</a>. </p>
+
+</footer><!-- /.post-info --><p><a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic">Receiver Operating Characteristic curve</a> 
+is a great tool to visually illustrate the performance of a binary classifier. 
+It plots the true positive rate ($TPR$) or the sensitivity against the false 
+positive rate ($FPR$) or 1 - specificity. Usually, the algorithm gives you a
+probability (e.g. simple 
+<a href="http://en.wikipedia.org/wiki/Logistic_regression">logistic regresssion</a>),
+so for classification you need to choose a cutoff point. The FPR-TPR pairs for
+different values of the cutoff gives you the ROC curve. Non-informative
+algorithms lie on the 45-degree line, as they classify the same fraction of
+positives and negatives as positives, that is $TPR = TP/P = FP/N = FPR$.</p>
+<p>But what if you want to compare two algorithms which give direct classification,
+i.e. you have only two points in the plot? How to decide whether algorithm (2)
+is better than algorithm (1)?</p>
+<p><img src="../images/roc.png" width="60%" /></p>
+<p>It is clear that algorithm (2) classifies more items as positive than algorithm
+(1) and that this results in both more true positives (higher sensitivity) and
+more false positives (lower specificity). Is this higher rate of positive
+classification informative? What would we get if we just got labels negatively
+classified by algorithm (1) and classified them randomly as positive? How would 
+we move from algorithm (1) on the graph?</p>
+<p>The original negative-labels are both true negatives and false negatives. A 
+random classifier would classify them as positives in the same share. Let's say
+we are classifying an item as positive by probability $\lambda$. Then, we are
+going to have $\lambda<em>TN$ new false positives and $\lambda</em>FN$ new true
+positives relative to algorithm (1). This results in the following measures for
+the ROC curve:</p>
+<p>$$Sensitivity' = Sensitivity + \frac{\lambda<em>FN}{P} 
+1 - Specificity' = 1 - Specificity + \frac{\lambda</em>TN}{N}$$</p>
+<p>Thus, the slope of the movement is just</p>
+<p>$$\frac{\lambda<em>FN / P}{\lambda</em>TN / N} = \frac{1 - TP / P}{1 - TN / N} =
+\frac{1 - Sensitivity}{Specificity}$$</p>
+<p>It depends on $\lambda$ where we end up along this line. Therefore, it seems
+that algorithm (2) not just randomly adds more positively-classified items but 
+also contains some information relative to algorithm (1).</p>
+<p><img src="../images/roc_random.png" width="60%" /></p>
+<p>We can arrive to the same conclusion by less calculation as well. A possible
+random classification is to classify each item as positive ($\lambda = 1$). If
+we take all the negatively-labeled item and classify them "randomly" as
+positive, we end up having only positively classified items which leads to
+extreme values of specificity (0) and sensitivity (1). To connect the point with
+the (1, 1) point we should draw a line with slope $\frac{1 -
+Sensitivity}{Specificity}$.</p>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/my-favorite-chart-this-year.html" rel="bookmark"
+                           title="Permalink to My Favorite Chart This Year">My Favorite Chart This Year</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-30T00:00:00+00:00">
+                Published: Mon 30 March 2015
+        </abbr>
+
+<p>In <a href="/category/blog.html">blog</a>. </p>
+
+</footer><!-- /.post-info -->                <p><img src="../images/chart.png" width="100%" /></p>
+                <a class="readmore" href="/my-favorite-chart-this-year.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/does-iv-always-identify-late.html" rel="bookmark"
+                           title="Permalink to Does IV always identify LATE?">Does IV always identify LATE?</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-02T00:00:00+00:00">
+                Published: Mon 02 March 2015
+        </abbr>
+
+<p>In <a href="/category/blog.html">blog</a>. </p>
+
+</footer><!-- /.post-info -->                <!-- Latex macros for math -->
+
+<p>$\newcommand{\E}{\mathbb{E}}$
+$\newcommand{\P}{\mathbb{P}}$</p>
+<h1>Local average treatment effect (LATE)</h1>
+<p><a href="http://en.wikipedia.org/wiki/Instrumental_variable">Instrumental variables</a> are
+often used in causal analysis when randomized control trials are out of option.
+However, it is not always emphasized that <strong>the instrumental variable
+estimator</strong> -- even if the instrument is valid and relevant --  does not ...</p></!-->
+                <a class="readmore" href="/does-iv-always-identify-late.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html" rel="bookmark"
+                           title="Permalink to Command Line Tricks: How to count lines with date before a certain date?">Command Line Tricks: How to count lines with date before a certain date?</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-02-27T00:00:00+00:00">
+                Published: Fri 27 February 2015
+        </abbr>
+
+<p>In <a href="/category/blog.html">blog</a>. </p>
+
+</footer><!-- /.post-info -->                <p>Assume I have a file with downloaded articles with a similar structure as follows:</p>
+<div class="highlight"><pre>head -2 file-with-dates.csv
+title,url,tag,date
+<span class="s2">&quot;title of the article&quot;</span>,http://www.url-of-the-article.com,<span class="s2">&quot;tag1,etc&quot;</span>,2015-02-27
+</pre></div>
+
+
+<p>How could I calculate the number of articles posted before a certain date
+without having to load ...</p>
+                <a class="readmore" href="/command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

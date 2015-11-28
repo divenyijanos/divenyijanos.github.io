@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Does IV always identify LATE?</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">A Pelican Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/pages/about-me.html">about me</a></li>
+                    <li><a href="/pages/research.html">research</a></li>
+                    <li><a href="/pages/teaching.html">teaching</a></li>
+                    <li class="active"><a href="/category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/does-iv-always-identify-late.html" rel="bookmark"
+           title="Permalink to Does IV always identify LATE?">Does IV always identify LATE?</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-02T00:00:00+00:00">
+                Published: Mon 02 March 2015
+        </abbr>
+
+<p>In <a href="/category/blog.html">blog</a>. </p>
+
+</footer><!-- /.post-info -->      <!-- Latex macros for math -->
+
+<p>$\newcommand{\E}{\mathbb{E}}$
+$\newcommand{\P}{\mathbb{P}}$</p>
+<h1>Local average treatment effect (LATE)</h1>
+<p><a href="http://en.wikipedia.org/wiki/Instrumental_variable">Instrumental variables</a> are
+often used in causal analysis when randomized control trials are out of option.
+However, it is not always emphasized that <strong>the instrumental variable
+estimator</strong> -- even if the instrument is valid and relevant --  does not
+necessarily identify the average treatment effect (ATE) or the average treatment
+effect on the treated (ATET); most often, it <strong>only identifies the local average
+treatment effect (LATE)</strong>: the average treatment effect on the complier
+subpopulation (see <a href="http://www.jstor.org/stable/2951620">Angrist&amp;Imbens, 1994</a>).</p>
+<p>Who are the <strong>compliers</strong>? Unfortunately, we do not know. These are the <strong>people
+who are induced into the treatment by the instrumental variable</strong>. But from the
+data it is <strong>impossible to tell who</strong> these people really are.</p>
+<p>Let us take the standard example of a job training program for unemployed. 
+The treatment is binary (participating in the program or not) and participants
+are assigned to the treatment randomly. However, assignment does not fit
+perfectly with actual participation: there are people who take up the treatment
+even when non-assigned and other people who are assigned but not take the
+treatment. That is, there is some selection into the treatment. In this case --
+when certain assumptions hold -- one can <strong>use the assignment variable as
+instrument to identify LATE</strong>, the average treatment effect on the complier
+population. In other words, we can get the treatment effect on those who take up
+the treatment because they are assigned and would not take the treatment had
+they not been assigned. This is a useful result even if we are unable to tell
+who these people are. But we should keep in mind that this result <strong>only applies
+to a subpopulation</strong> and that this <strong>subpopulation is likely to change</strong> when
+using another instrument.</p>
+<p>Why this fact is often neglected? Because there is a tradition to assume
+<strong>homogeneous treatment effect</strong>, that the effect of the
+program is the same for everyone. In this case, the estimated effect for the
+complier  subpopulation is the same as the effect for the whole population. But
+most often we cannot be sure that this assumption holds. If there is nothing 
+which can rule out a <strong>heterogeneous treatment effect</strong>, LATE usually differs
+from ATE.</p>
+<h1>Statistical intuition</h1>
+<p>What is the <strong>statistical intuition</strong> behind this result? In causal analysis we
+generally compare outcomes of certain groups who differ in terms of the extent
+they get a treatment. Taking the previous example we would like to  compare the
+outcomes of the group who get the treatment to the group who do not. We relate
+the variation in the outcome to the variation in the treatment.  In standard
+regression framework, we relate variation in $y$ to variation in $x$,  and see
+whether there is some correlation between them. However, as <a href="http://xkcd.com/552/">correlation does
+not imply causation</a> we should <strong>make sure that the
+correlation what we measure is only due to $x$, and not due to a third
+variable.</strong></p>
+<p>Assume that our previous example is about a job training program for unemployed.
+Even if the program is randomized, people may -- at least to some extent -- have
+the choice whether they take the treatment. In such cases we usually observe
+that a third (unobservable) variable (let us call it ability), drives part of
+the variation in both $x$ and $y$: more able people take the treatment more
+likely and also find a job more likely, irrespectively of any program.
+Therefore, a simple correlation would show a larger "effect" as it would take up
+the correlation generated by the third variable as well, not just the
+correlation which goes from $x$ to $y$.</p>
+<p>An <strong>instrumental variable enables us to use only a part of variation</strong> in $x$
+which is independent of the third variable and compare only this part of
+variation to the variation in $y$. This way we can get a correlation which
+indeed measures the part of correlation between $y$ and $x$ that is due only to
+$x$. In other words, we can get the <strong>causal effect</strong> of $x$ on $y$. This is how
+two stage least squares estimation works. We just
+need a variable which is independent of $y$ and correlated with $x$. That is, a
+variable which influences $y$ only through $x$. In case of the job training
+program, assignment was truly random so independent of $y$. Using the assignment
+variable as instrument  we can keep the variation in the actual participation in
+the treatment which is due to the assignment (and therefore, random) and partial
+out the rest which could be due to a third variable (which is also correlated
+with the outcome as well). Relating this part of the variation in the treatment
+to the variation in the outcome we can get the effect of the treatment on the
+outcome -- but be careful how to interpret this effect.</p>
+<p>As <strong>only part of the variation</strong> in $x$ (treatment) was used, we <strong>get the
+effect only for this part of the population</strong>. What is the population which is
+defined by the variation in $x$ due the instrument? The complier subpopulation.
+Those who participated in the treatment because they were assigned.</p>
+<p>I used a simple example of a program to illustrate my points. However, this
+reasoning applies to every setup when instrumental variables are used. 
+<a href="http://davidcard.berkeley.edu/papers/geo_var_schooling.pdf">Card (1995)</a>
+tries to estimate the returns to schooling and uses proximity to college as an
+instrument. To use this instrument we should assume that proximity to a college
+only influences future wages through schooling as those who live closer to a
+college are more likely to go to a college. Let us maintain this assumption.
+Then the IV estimator identifies LATE: the returns to schooling on the complier
+population. That is the effect on those who went to college because they were 
+living close to a college (and would not have gone to college had they not lived
+close).</p>
+<h1>Program evaluation language</h1>
+<p>Thinking about causal effects is easier when we use the <strong>potential outcome 
+framework</strong> by <a href="http://en.wikipedia.org/wiki/Donald_Rubin">Donald Rubin</a>. It 
+builds on the idea that the outcome of each individual depends on her treatment
+status: if she gets the treatment she will realize an outcome $Y(1)$, whereas
+if she does not get the treatment she will realize a potentially different 
+outcome $Y(0)$. These are called potential outcomes as by definition only one
+of them will be realized. A person either gets the treatment (and realizes her
+potential outcome with the treatment), or does not get the treatment (and 
+realizes her potential outcome without the treatment).</p>
+<p>The <strong>same logic can be applied to the treatment status</strong> which is influenced by
+the instrument. Considering the assignment to treatment used as instrument, one
+can be either assigned or not. For an assigned person we can observe whether she
+participates, but do not know what would she do had she been not assigned. Her
+potential treatment status given the different values of the instrument can be
+denoted by $D(0)$ and $D(1)$. In this framework, the compliers are those for
+whom $D(1) - D(0) = 1$: those who participate because the assignment, they
+participate if assigned $(D(1) = 1)$, but do not participate if not assigned
+$(D(0) = 0)$. In principle, there could be three other types of people: always-
+takers who take the treatment irrespective of their assignment $(D(1) = D(0) =
+1)$, never takers who do not take the treatment irrespective of their assignment
+$(D(1) =D(0) = 0)$ and defiers who participate when not assigned but do not
+participate when assigned. Now we can formally give the <strong>assumptions which are
+needed for the identification of LATE</strong> (I denote the instrument by $Z$).</p>
+<ol>
+<li>$Z \perp D(0), D(1), Y(0), Y(1)$ -- The instrument is independent of the
+potential outcomes ("as good as random"). The instrument is valid.</li>
+<li>$\P[D=1 | Z=1] \neq \P[D=1 | Z = 0]$ -- The instrument does influence the
+treatment status, that is there are at least some compliers. The instrument is
+relevant.</li>
+<li>$D(1) \geq D(0)$ -- There are no defiers.</li>
+</ol>
+<p>The first two assumptions are standard IV assumptions. The third one is new but
+usually a much less restrictive assumption than the homogeneity of the treatment
+effect. If these assumptions hold, one can derive that the classical IV
+estimator identifies LATE. In our training example where the instrument is
+binary the resulting estimator collapses to the so called <strong>Wald estimator</strong>:</p>
+<p>$$LATE = \E[Y(1) - Y(0)|D(1) - D(0) = 1] = 
+\frac{\E[Y|Z=1] - \E[Y|Z=0]}{\P[D=1 | Z=1] - \P[D=1 | Z=0]}$$</p>
+<p>Intuitively, this formula says the following. There are two subgroups of people:
+those who were assigned $(Z = 1)$ and those who were not $(Z = 0)$. As the
+assignment is random regarding the potential outcomes two results follow: (1)
+both subgroups have the same distribution of types regarding their potential
+treatments (compliers, always-takers and never-takers), and (2) both subgroups
+have the same distribution of potential outcomes. Therefore, if we see any
+difference between the outcomes of the subgroups, this difference could be only
+due to the fact that in the assigned group compliers realized $Y(1)$ and in the
+non-assigned group compliers realized $Y(0)$. That is <strong>the difference in the 
+average outcomes shows the effect of the program on the compliers</strong>. One
+should just adjust by the ratio of compliers to get LATE.</p>
+<p>The <strong>program evaluation language extends naturally to other setups</strong> as well.
+Let us consider the example of returns to schooling. $Y(1)$ expresses the 
+potential wage of the individual if she goes to college and $Y(0)$ stands for
+the potential wage of the individual if she does not go to college. $D(1)$ 
+says whether the individual goes to college if she lives close to a college
+and $D(0)$ expresses whether the individual goes to college if she lives far
+from a college. The IV estimator gives us the returns to schooling for those
+who went to college because of living close to a college.</p>
+<h1>Long story short</h1>
+<ul>
+<li>Classical IV estimator most often identifies LATE: average treatment effect on
+the complier population. Complier population consists of those who take up the
+treatment because of the instrument. </li>
+<li>If treatment effect is heterogeneous, LATE differs from ATE or ATET.</li>
+<li>Statistical intuition: When using IV, we partial out variation in the 
+dependent variable $x$ which is not due to the instrument $z$. So any
+correlation between the outcome $y$ and the partialled out $x$ shows the 
+correlation for those units where $x$ varies because of $z$. </li>
+<li>The potential outcomes framework makes thinking about causality easier. </li>
+<li>As instrument is random regarding the potential outcomes, the subgroups 
+defined by the instrument should be the same in terms of their potential outcome
+distributions.</li>
+<li>If we see any difference in the average outcomes of the subgroups, this could
+be due only to different take up rates, showing the effect of the program. 
+One should only scale by the difference of the take up rates to get LATE.</li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

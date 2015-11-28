@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Visualization in&nbsp;R</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Visualization in&nbsp;R</h1>
+    
+    <h2>Base-R&nbsp;graphs</h2>
+<div class="highlight"><pre>library<span class="p">(</span>dplyr<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/height_weight.csv&quot;</span><span class="p">)</span>
+height_weight <span class="o">&lt;-</span> filter<span class="p">(</span>height_weight<span class="p">,</span> <span class="m">100</span> <span class="o">&lt;</span> height<span class="p">,</span> height <span class="o">&lt;</span> <span class="m">250</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>plot<span class="p">(</span>height_weight<span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-3" src="figure/unnamed-chunk-3-1.png" /> </p>
+<div class="highlight"><pre>plot<span class="p">(</span>height_weight<span class="o">$</span>height<span class="p">,</span> height_weight<span class="o">$</span>weight<span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-4" src="figure/unnamed-chunk-4-1.png" /> </p>
+<h2>Package&nbsp;ggplot2</h2>
+<p><code>ggplot2</code> is a package developed by Hadley Wickham (so part of the &#8220;hadleyverse&#8221;).
+It is powerful visualization tool for R which is built upon the logic of
+<a href="http://vita.had.co.nz/papers/layered-grammar.pdf">grammar of graphics</a>.</p>
+<p>Most of the basic plots could be created by the &#8220;quick-plot&#8221; command <code>qplot()</code>.</p>
+<div class="highlight"><pre><span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
+library<span class="p">(</span>ggplot2<span class="p">)</span>
+qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-5" src="figure/unnamed-chunk-5-1.png" /> </p>
+<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## stat_bin: binwidth defaulted to range/30. Use &#39;binwidth = x&#39; to adjust this.</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-5" src="figure/unnamed-chunk-5-2.png" /> </p>
+<p>Quick-plot could be customized&nbsp;easily.</p>
+<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-6" src="figure/unnamed-chunk-6-1.png" /> </p>
+<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">,</span> facets <span class="o">=</span> <span class="o">~</span> male<span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-6" src="figure/unnamed-chunk-6-2.png" /> </p>
+<p>For complicated graphics, it is better to use the standard <code>ggplot()</code> formulation,
+which makes the underlying logic more explicit. What is behind a plot? We map
+different collections of data to different characteristics of a plot and use
+different visual elements to show them. In the graph above, we map the data
+about heigths to the x axis of the plot, the weights to the y axis (aesthetics),
+and use points to make them appear&nbsp;(geometries).</p>
+<div class="highlight"><pre>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> geom_point<span class="p">()</span>
+g
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-7" src="figure/unnamed-chunk-7-1.png" /> </p>
+<p>We can customize the geometries by setting the&nbsp;options.</p>
+<div class="highlight"><pre>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> 
+    geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">)</span>
+g
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-8" src="figure/unnamed-chunk-8-1.png" /> </p>
+<p>We can modify the general properties of the&nbsp;graph.</p>
+<div class="highlight"><pre>g <span class="o">+</span> xlab<span class="p">(</span><span class="s">&quot;Height (cm)&quot;</span><span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">)</span> <span class="o">+</span> ggtitle<span class="p">(</span><span class="s">&quot;Height vs weight&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-9" src="figure/unnamed-chunk-9-1.png" /> </p>
+<p>This formulation is great as it is really flexible. What if we would like to use
+different colors for males and females. This essentially requires the mapping
+of the male variable to the color of the&nbsp;points.</p>
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> male<span class="p">))</span> <span class="o">+</span> 
+    geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-10" src="figure/unnamed-chunk-10-1.png" /> </p>
+<p>Here, factors help a lot. They show that our variable is categorical and could
+take only two&nbsp;values.</p>
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
+    geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-11" src="figure/unnamed-chunk-11-1.png" /> </p>
+<p>What if we would like to add a fitted line to the points? We could just add a
+new layer to the&nbsp;plot.</p>
+<div class="highlight"><pre>g <span class="o">+</span> geom_smooth<span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c">## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-12" src="figure/unnamed-chunk-12-1.png" /> </p>
+<div class="highlight"><pre>g <span class="o">+</span> geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-12" src="figure/unnamed-chunk-12-2.png" /> </p>
+<p>By carefully controlling the aesthetics of different geometries, we can fit the
+line either to each points or separately by&nbsp;gender.</p>
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
+    geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
+    geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-13" src="figure/unnamed-chunk-13-1.png" /> </p>
+<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> 
+    geom_point<span class="p">(</span>aes<span class="p">(</span>color <span class="o">=</span> factor<span class="p">(</span>male<span class="p">)),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
+    geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-13" src="figure/unnamed-chunk-13-2.png" /> </p>
+<p><a href="https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html">Here</a> is a
+really good tutorial of the <code>ggplot2</code> package and the grammar of graphics.
+It is also worth looking at the <a href="http://docs.ggplot2.org/current/">documentation</a>
+which summarises all of the available options with lots of&nbsp;examples.</p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

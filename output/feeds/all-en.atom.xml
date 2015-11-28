@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>A Pelican Blog</title><link href="/" rel="alternate"></link><link href="/feeds/all-en.atom.xml" rel="self"></link><id>/</id><updated>2015-05-27T00:00:00+00:00</updated><entry><title>Which binary classification model is better?</title><link href="/which-binary-classification-model-is-better.html" rel="alternate"></link><updated>2015-05-27T00:00:00+00:00</updated><author><name></name></author><id>tag:,2015-05-27:which-binary-classification-model-is-better.html</id><summary type="html">&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic"&gt;Receiver Operating Characteristic curve&lt;/a&gt; 
+is a great tool to visually illustrate the performance of a binary classifier. 
+It plots the true positive rate ($TPR$) or the sensitivity against the false 
+positive rate ($FPR$) or 1 - specificity. Usually, the algorithm gives you a
+probability (e.g. simple 
+&lt;a href="http://en.wikipedia.org/wiki/Logistic_regression"&gt;logistic regresssion&lt;/a&gt;),
+so for classification you need to choose a cutoff point. The FPR-TPR pairs for
+different values of the cutoff gives you the ROC curve. Non-informative
+algorithms lie on the 45-degree line, as they classify the same fraction of
+positives and negatives as positives, that is $TPR = TP/P = FP/N = FPR$.&lt;/p&gt;
+&lt;p&gt;But what if you want to compare two algorithms which give direct classification,
+i.e. you have only two points in the plot? How to decide whether algorithm (2)
+is better than algorithm (1)?&lt;/p&gt;
+&lt;p&gt;&lt;img src="../images/roc.png" width="60%" /&gt;&lt;/p&gt;
+&lt;p&gt;It is clear that algorithm (2) classifies more items as positive than algorithm
+(1) and that this results in both more true positives (higher sensitivity) and
+more false positives (lower specificity). Is this higher rate of positive
+classification informative? What would we get if we just got labels negatively
+classified by algorithm (1) and classified them randomly as positive? How would 
+we move from algorithm (1) on the graph?&lt;/p&gt;
+&lt;p&gt;The original negative-labels are both true negatives and false negatives. A 
+random classifier would classify them as positives in the same share. Let's say
+we are classifying an item as positive by probability $\lambda$. Then, we are
+going to have $\lambda&lt;em&gt;TN$ new false positives and $\lambda&lt;/em&gt;FN$ new true
+positives relative to algorithm (1). This results in the following measures for
+the ROC curve:&lt;/p&gt;
+&lt;p&gt;$$Sensitivity' = Sensitivity + \frac{\lambda&lt;em&gt;FN}{P} 
+1 - Specificity' = 1 - Specificity + \frac{\lambda&lt;/em&gt;TN}{N}$$&lt;/p&gt;
+&lt;p&gt;Thus, the slope of the movement is just&lt;/p&gt;
+&lt;p&gt;$$\frac{\lambda&lt;em&gt;FN / P}{\lambda&lt;/em&gt;TN / N} = \frac{1 - TP / P}{1 - TN / N} =
+\frac{1 - Sensitivity}{Specificity}$$&lt;/p&gt;
+&lt;p&gt;It depends on $\lambda$ where we end up along this line. Therefore, it seems
+that algorithm (2) not just randomly adds more positively-classified items but 
+also contains some information relative to algorithm (1).&lt;/p&gt;
+&lt;p&gt;&lt;img src="../images/roc_random.png" width="60%" /&gt;&lt;/p&gt;
+&lt;p&gt;We can arrive to the same conclusion by less calculation as well. A possible
+random classification is to classify each item as positive ($\lambda = 1$). If
+we take all the negatively-labeled item and classify them "randomly" as
+positive, we end up having only positively classified items which leads to
+extreme values of specificity (0) and sensitivity (1). To connect the point with
+the (1, 1) point we should draw a line with slope $\frac{1 -
+Sensitivity}{Specificity}$.&lt;/p&gt;</summary></entry><entry><title>My Favorite Chart This Year</title><link href="/my-favorite-chart-this-year.html" rel="alternate"></link><updated>2015-03-30T00:00:00+00:00</updated><author><name></name></author><id>tag:,2015-03-30:my-favorite-chart-this-year.html</id><summary type="html">&lt;p&gt;&lt;img src="../images/chart.png" width="100%" /&gt;&lt;/p&gt;</summary></entry><entry><title>Does IV always identify LATE?</title><link href="/does-iv-always-identify-late.html" rel="alternate"></link><updated>2015-03-02T00:00:00+00:00</updated><author><name></name></author><id>tag:,2015-03-02:does-iv-always-identify-late.html</id><summary type="html">&lt;!-- Latex macros for math --&gt;
+
+&lt;p&gt;$\newcommand{\E}{\mathbb{E}}$
+$\newcommand{\P}{\mathbb{P}}$&lt;/p&gt;
+&lt;h1&gt;Local average treatment effect (LATE)&lt;/h1&gt;
+&lt;p&gt;&lt;a href="http://en.wikipedia.org/wiki/Instrumental_variable"&gt;Instrumental variables&lt;/a&gt; are
+often used in causal analysis when randomized control trials are out of option.
+However, it is not always emphasized that &lt;strong&gt;the instrumental variable
+estimator&lt;/strong&gt; -- even if the instrument is valid and relevant --  does not
+necessarily identify the average treatment effect (ATE) or the average treatment
+effect on the treated (ATET); most often, it &lt;strong&gt;only identifies the local average
+treatment effect (LATE)&lt;/strong&gt;: the average treatment effect on the complier
+subpopulation (see &lt;a href="http://www.jstor.org/stable/2951620"&gt;Angrist&amp;amp;Imbens, 1994&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Who are the &lt;strong&gt;compliers&lt;/strong&gt;? Unfortunately, we do not know. These are the &lt;strong&gt;people
+who are induced into the treatment by the instrumental variable&lt;/strong&gt;. But from the
+data it is &lt;strong&gt;impossible to tell who&lt;/strong&gt; these people really are.&lt;/p&gt;
+&lt;p&gt;Let us take the standard example of a job training program for unemployed. 
+The treatment is binary (participating in the program or not) and participants
+are assigned to the treatment randomly. However, assignment does not fit
+perfectly with actual participation: there are people who take up the treatment
+even when non-assigned and other people who are assigned but not take the
+treatment. That is, there is some selection into the treatment. In this case --
+when certain assumptions hold -- one can &lt;strong&gt;use the assignment variable as
+instrument to identify LATE&lt;/strong&gt;, the average treatment effect on the complier
+population. In other words, we can get the treatment effect on those who take up
+the treatment because they are assigned and would not take the treatment had
+they not been assigned. This is a useful result even if we are unable to tell
+who these people are. But we should keep in mind that this result &lt;strong&gt;only applies
+to a subpopulation&lt;/strong&gt; and that this &lt;strong&gt;subpopulation is likely to change&lt;/strong&gt; when
+using another instrument.&lt;/p&gt;
+&lt;p&gt;Why this fact is often neglected? Because there is a tradition to assume
+&lt;strong&gt;homogeneous treatment effect&lt;/strong&gt;, that the effect of the
+program is the same for everyone. In this case, the estimated effect for the
+complier  subpopulation is the same as the effect for the whole population. But
+most often we cannot be sure that this assumption holds. If there is nothing 
+which can rule out a &lt;strong&gt;heterogeneous treatment effect&lt;/strong&gt;, LATE usually differs
+from ATE.&lt;/p&gt;
+&lt;h1&gt;Statistical intuition&lt;/h1&gt;
+&lt;p&gt;What is the &lt;strong&gt;statistical intuition&lt;/strong&gt; behind this result? In causal analysis we
+generally compare outcomes of certain groups who differ in terms of the extent
+they get a treatment. Taking the previous example we would like to  compare the
+outcomes of the group who get the treatment to the group who do not. We relate
+the variation in the outcome to the variation in the treatment.  In standard
+regression framework, we relate variation in $y$ to variation in $x$,  and see
+whether there is some correlation between them. However, as &lt;a href="http://xkcd.com/552/"&gt;correlation does
+not imply causation&lt;/a&gt; we should &lt;strong&gt;make sure that the
+correlation what we measure is only due to $x$, and not due to a third
+variable.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Assume that our previous example is about a job training program for unemployed.
+Even if the program is randomized, people may -- at least to some extent -- have
+the choice whether they take the treatment. In such cases we usually observe
+that a third (unobservable) variable (let us call it ability), drives part of
+the variation in both $x$ and $y$: more able people take the treatment more
+likely and also find a job more likely, irrespectively of any program.
+Therefore, a simple correlation would show a larger "effect" as it would take up
+the correlation generated by the third variable as well, not just the
+correlation which goes from $x$ to $y$.&lt;/p&gt;
+&lt;p&gt;An &lt;strong&gt;instrumental variable enables us to use only a part of variation&lt;/strong&gt; in $x$
+which is independent of the third variable and compare only this part of
+variation to the variation in $y$. This way we can get a correlation which
+indeed measures the part of correlation between $y$ and $x$ that is due only to
+$x$. In other words, we can get the &lt;strong&gt;causal effect&lt;/strong&gt; of $x$ on $y$. This is how
+two stage least squares estimation works. We just
+need a variable which is independent of $y$ and correlated with $x$. That is, a
+variable which influences $y$ only through $x$. In case of the job training
+program, assignment was truly random so independent of $y$. Using the assignment
+variable as instrument  we can keep the variation in the actual participation in
+the treatment which is due to the assignment (and therefore, random) and partial
+out the rest which could be due to a third variable (which is also correlated
+with the outcome as well). Relating this part of the variation in the treatment
+to the variation in the outcome we can get the effect of the treatment on the
+outcome -- but be careful how to interpret this effect.&lt;/p&gt;
+&lt;p&gt;As &lt;strong&gt;only part of the variation&lt;/strong&gt; in $x$ (treatment) was used, we &lt;strong&gt;get the
+effect only for this part of the population&lt;/strong&gt;. What is the population which is
+defined by the variation in $x$ due the instrument? The complier subpopulation.
+Those who participated in the treatment because they were assigned.&lt;/p&gt;
+&lt;p&gt;I used a simple example of a program to illustrate my points. However, this
+reasoning applies to every setup when instrumental variables are used. 
+&lt;a href="http://davidcard.berkeley.edu/papers/geo_var_schooling.pdf"&gt;Card (1995)&lt;/a&gt;
+tries to estimate the returns to schooling and uses proximity to college as an
+instrument. To use this instrument we should assume that proximity to a college
+only influences future wages through schooling as those who live closer to a
+college are more likely to go to a college. Let us maintain this assumption.
+Then the IV estimator identifies LATE: the returns to schooling on the complier
+population. That is the effect on those who went to college because they were 
+living close to a college (and would not have gone to college had they not lived
+close).&lt;/p&gt;
+&lt;h1&gt;Program evaluation language&lt;/h1&gt;
+&lt;p&gt;Thinking about causal effects is easier when we use the &lt;strong&gt;potential outcome 
+framework&lt;/strong&gt; by &lt;a href="http://en.wikipedia.org/wiki/Donald_Rubin"&gt;Donald Rubin&lt;/a&gt;. It 
+builds on the idea that the outcome of each individual depends on her treatment
+status: if she gets the treatment she will realize an outcome $Y(1)$, whereas
+if she does not get the treatment she will realize a potentially different 
+outcome $Y(0)$. These are called potential outcomes as by definition only one
+of them will be realized. A person either gets the treatment (and realizes her
+potential outcome with the treatment), or does not get the treatment (and 
+realizes her potential outcome without the treatment).&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;same logic can be applied to the treatment status&lt;/strong&gt; which is influenced by
+the instrument. Considering the assignment to treatment used as instrument, one
+can be either assigned or not. For an assigned person we can observe whether she
+participates, but do not know what would she do had she been not assigned. Her
+potential treatment status given the different values of the instrument can be
+denoted by $D(0)$ and $D(1)$. In this framework, the compliers are those for
+whom $D(1) - D(0) = 1$: those who participate because the assignment, they
+participate if assigned $(D(1) = 1)$, but do not participate if not assigned
+$(D(0) = 0)$. In principle, there could be three other types of people: always-
+takers who take the treatment irrespective of their assignment $(D(1) = D(0) =
+1)$, never takers who do not take the treatment irrespective of their assignment
+$(D(1) =D(0) = 0)$ and defiers who participate when not assigned but do not
+participate when assigned. Now we can formally give the &lt;strong&gt;assumptions which are
+needed for the identification of LATE&lt;/strong&gt; (I denote the instrument by $Z$).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;$Z \perp D(0), D(1), Y(0), Y(1)$ -- The instrument is independent of the
+potential outcomes ("as good as random"). The instrument is valid.&lt;/li&gt;
+&lt;li&gt;$\P[D=1 | Z=1] \neq \P[D=1 | Z = 0]$ -- The instrument does influence the
+treatment status, that is there are at least some compliers. The instrument is
+relevant.&lt;/li&gt;
+&lt;li&gt;$D(1) \geq D(0)$ -- There are no defiers.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The first two assumptions are standard IV assumptions. The third one is new but
+usually a much less restrictive assumption than the homogeneity of the treatment
+effect. If these assumptions hold, one can derive that the classical IV
+estimator identifies LATE. In our training example where the instrument is
+binary the resulting estimator collapses to the so called &lt;strong&gt;Wald estimator&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;$$LATE = \E[Y(1) - Y(0)|D(1) - D(0) = 1] = 
+\frac{\E[Y|Z=1] - \E[Y|Z=0]}{\P[D=1 | Z=1] - \P[D=1 | Z=0]}$$&lt;/p&gt;
+&lt;p&gt;Intuitively, this formula says the following. There are two subgroups of people:
+those who were assigned $(Z = 1)$ and those who were not $(Z = 0)$. As the
+assignment is random regarding the potential outcomes two results follow: (1)
+both subgroups have the same distribution of types regarding their potential
+treatments (compliers, always-takers and never-takers), and (2) both subgroups
+have the same distribution of potential outcomes. Therefore, if we see any
+difference between the outcomes of the subgroups, this difference could be only
+due to the fact that in the assigned group compliers realized $Y(1)$ and in the
+non-assigned group compliers realized $Y(0)$. That is &lt;strong&gt;the difference in the 
+average outcomes shows the effect of the program on the compliers&lt;/strong&gt;. One
+should just adjust by the ratio of compliers to get LATE.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;program evaluation language extends naturally to other setups&lt;/strong&gt; as well.
+Let us consider the example of returns to schooling. $Y(1)$ expresses the 
+potential wage of the individual if she goes to college and $Y(0)$ stands for
+the potential wage of the individual if she does not go to college. $D(1)$ 
+says whether the individual goes to college if she lives close to a college
+and $D(0)$ expresses whether the individual goes to college if she lives far
+from a college. The IV estimator gives us the returns to schooling for those
+who went to college because of living close to a college.&lt;/p&gt;
+&lt;h1&gt;Long story short&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Classical IV estimator most often identifies LATE: average treatment effect on
+the complier population. Complier population consists of those who take up the
+treatment because of the instrument. &lt;/li&gt;
+&lt;li&gt;If treatment effect is heterogeneous, LATE differs from ATE or ATET.&lt;/li&gt;
+&lt;li&gt;Statistical intuition: When using IV, we partial out variation in the 
+dependent variable $x$ which is not due to the instrument $z$. So any
+correlation between the outcome $y$ and the partialled out $x$ shows the 
+correlation for those units where $x$ varies because of $z$. &lt;/li&gt;
+&lt;li&gt;The potential outcomes framework makes thinking about causality easier. &lt;/li&gt;
+&lt;li&gt;As instrument is random regarding the potential outcomes, the subgroups 
+defined by the instrument should be the same in terms of their potential outcome
+distributions.&lt;/li&gt;
+&lt;li&gt;If we see any difference in the average outcomes of the subgroups, this could
+be due only to different take up rates, showing the effect of the program. 
+One should only scale by the difference of the take up rates to get LATE.&lt;/li&gt;
+&lt;/ul&gt;</summary></entry><entry><title>Command Line Tricks: How to count lines with date before a certain date?</title><link href="/command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html" rel="alternate"></link><updated>2015-02-27T00:00:00+00:00</updated><author><name></name></author><id>tag:,2015-02-27:command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html</id><summary type="html">&lt;p&gt;Assume I have a file with downloaded articles with a similar structure as follows:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;head -2 file-with-dates.csv
+title,url,tag,date
+&lt;span class="s2"&gt;&amp;quot;title of the article&amp;quot;&lt;/span&gt;,http://www.url-of-the-article.com,&lt;span class="s2"&gt;&amp;quot;tag1,etc&amp;quot;&lt;/span&gt;,2015-02-27
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;How could I calculate the number of articles posted before a certain date
+without having to load the data into python, R, or any other software? I think
+that some solution with &lt;code&gt;awk&lt;/code&gt; would definitely work but I always found that 
+language hard to learn. There is an easy solution which combines sorting with 
+&lt;code&gt;grep&lt;/code&gt; instead of trying to count the dates directly. By writing out total
+number of lines in  the data I can also get the share of the articles before the
+ certain date.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="o"&gt;(&lt;/span&gt;cat file-with-dates.csv; &lt;span class="nb"&gt;echo &lt;/span&gt;certainDate&lt;span class="o"&gt;)&lt;/span&gt; | sort | grep -n &lt;span class="s1"&gt;&amp;#39;certainDate&amp;#39;&lt;/span&gt;
+wc file-with-dates.csv -l
+&lt;/pre&gt;&lt;/div&gt;</summary></entry></feed>
