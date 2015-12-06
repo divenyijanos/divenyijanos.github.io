@@ -15,6 +15,7 @@
                 <h1><a href="../">János K. Divényi </a></h1>
                 <nav><ul>
                     <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
                     <li><a href="../pages/teaching.html">teaching</a></li>
                     <li><a href="../category/blog.html">blog</a></li>
                 </ul></nav>
@@ -45,7 +46,7 @@
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-2" src="figure/unnamed-chunk-2-1.png" /> </p>
+<p><img alt="plot of chunk unnamed-chunk-2" src="../figure/unnamed-chunk-2-1.png" /> </p>
 <h2>Cleaning</h2>
 <div class="highlight"><pre>height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span><span class="o">*</span><span class="m">100</span>
 height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span><span class="m">-100</span>
@@ -85,11 +86,6 @@ which is applied in <code>SQL</code> (if you do not know <code>SQL</code>, do no
 is really helpful in learning the basic commands of <code>dplyr</code>.</p>
 <p>The same cleaning task could be accomplished as&nbsp;follows:</p>
 <div class="highlight"><pre>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;../Data/height_weight.csv&quot;</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre>## Warning in file(file, &quot;rt&quot;): cannot open file &#39;../Data/height_weight.csv&#39;:
-## No such file or directory
 </pre></div>
 
 

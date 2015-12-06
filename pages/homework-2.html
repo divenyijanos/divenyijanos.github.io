@@ -15,6 +15,7 @@
                 <h1><a href="../">János K. Divényi </a></h1>
                 <nav><ul>
                     <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
                     <li><a href="../pages/teaching.html">teaching</a></li>
                     <li><a href="../category/blog.html">blog</a></li>
                 </ul></nav>
@@ -60,7 +61,7 @@ the <code>as.Date()</code> function to the original variable (similar to how we 
 <h2>Task&nbsp;4</h2>
 <p>Plot the distributions of log sales amounts for the two years separately.
 For this you should have the year variable as&nbsp;factor.</p>
-<p><img alt="plot of chunk distr_year" src="figure/distr_year-1.png" /> </p>
+<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png" /> </p>
 <h2>Task&nbsp;5</h2>
 <p>List the number of buyers in each month by year. (Hint: you might need <code>tidyr</code>
 for accomplishing&nbsp;this).</p>
@@ -103,27 +104,19 @@ Note that you should have <code>purchase_date</code> as date instead of factor o
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
 <code>geom_smooth()</code> to control the smoothness of your&nbsp;line).</p>
 <p>Default:</p>
-<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
-</pre></div>
-
-
-<p><img alt="plot of chunk smooth" src="figure/smooth-1.png" /> </p>
+<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /> </p>
 <p>With <code>span = 0.2</code>:</p>
-<div class="highlight"><pre>## geom_smooth: method=&quot;auto&quot; and size of largest group is &lt;1000, so using loess. Use &#39;method = x&#39; to change the smoothing method.
-</pre></div>
-
-
-<p><img alt="plot of chunk smooth02" src="figure/smooth02-1.png" /> </p>
+<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png" /> </p>
 <h2>Task&nbsp;8</h2>
 <p>Which month brings the most sales? Plot a bar graph with aggregate sales per
 month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
 of the x axis (the documentation helps to&nbsp;reproduce).</p>
-<p><img alt="plot of chunk bar_month" src="figure/bar_month-1.png" /> </p>
+<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png" /> </p>
 <h2>Task&nbsp;9</h2>
 <p>Recreate the previous graph by drawing the columns separately for the years
 (map the year variable to column and see the examples in the documentation to
 achieve side-by-side&nbsp;bars).</p>
-<p><img alt="plot of chunk bar_month_year" src="figure/bar_month_year-1.png" /> </p>
+<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png" /> </p>
 <h2>Task&nbsp;10</h2>
 <p>Plot a graph which gives you that to what share of all sales are the top x% of
 buyers responsible. So a point at <code>x = 0.5, y = 0.8</code> would tell 80% of all sales
@@ -140,7 +133,7 @@ task&nbsp;6.)</p>
 </pre></div>
 
 
-<p><img alt="plot of chunk cumsum" src="figure/cumsum-1.png" /> </p>
+<p><img alt="plot of chunk cumsum" src="../figure/cumsum-1.png" /> </p>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">

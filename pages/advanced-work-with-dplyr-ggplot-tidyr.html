@@ -15,6 +15,7 @@
                 <h1><a href="../">János K. Divényi </a></h1>
                 <nav><ul>
                     <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
                     <li><a href="../pages/teaching.html">teaching</a></li>
                     <li><a href="../category/blog.html">blog</a></li>
                 </ul></nav>
@@ -88,27 +89,23 @@ to use only the <code>gather()</code> and the <code>spread()</code> function.</p
 </pre></div>
 
 
-<p><img alt="plot of chunk density-dep-delay" src="figure/density-dep-delay-1.png" /> </p>
+<p><img alt="plot of chunk density-dep-delay" src="../figure/density-dep-delay-1.png" /> </p>
 <p>If we would like to plot more variables on the same plot, it is best to first
 collect them into one with <code>gather()</code> and then map the type into a new dimension
-of the graph (say, color). Here we plot the distribution of the arrival and 
+of the graph (say, color). Here we plot the distribution of the arrival and
 departure delay on the same&nbsp;plot.</p>
 <div class="highlight"><pre>flights <span class="o">%&gt;%</span> gather<span class="p">(</span>delay<span class="p">,</span> value<span class="p">,</span> dep_delay<span class="p">,</span> arr_delay<span class="p">)</span> <span class="o">%&gt;%</span>
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>value<span class="p">,</span> fill<span class="o">=</span>delay<span class="p">))</span> <span class="o">+</span> geom_density<span class="p">(</span>alpha <span class="o">=</span> <span class="m">.3</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre>## Warning: Removed 1160 rows containing non-finite values (stat_density).
-</pre></div>
-
-
-<p><img alt="plot of chunk overlaid-density" src="figure/overlaid-density-1.png" /> </p>
+<p><img alt="plot of chunk overlaid-density" src="../figure/overlaid-density-1.png" /> </p>
 <p>The package could be used for creating nice summary tables as well. See an
 illustration below, where we first gather the variables we would like to use,
 and apply several summary functions after grouping them by their types.
 (It may help to understand the command below step-by-step, by looking at the
 intermediate&nbsp;results).</p>
-<div class="highlight"><pre>flights <span class="o">%&gt;%</span> 
+<div class="highlight"><pre>flights <span class="o">%&gt;%</span>
     gather<span class="p">(</span>measure<span class="p">,</span> value<span class="p">,</span> dep_delay<span class="p">,</span> arr_delay<span class="p">,</span> air_time<span class="p">,</span> distance<span class="p">)</span> <span class="o">%&gt;%</span>
     select<span class="p">(</span>value<span class="p">,</span> measure<span class="p">)</span> <span class="o">%&gt;%</span>
     filter<span class="p">(</span><span class="o">!</span><span class="kp">is.na</span><span class="p">(</span>value<span class="p">))</span> <span class="o">%&gt;%</span>
@@ -130,13 +127,13 @@ intermediate&nbsp;results).</p>
 
 <h2>For loop and&nbsp;ggplot</h2>
 <p>If you would like to create the same plot for different variables, you may want
-to use loops instead of typing in the same thing again and again. However, 
+to use loops instead of typing in the same thing again and again. However,
 looping over variable names is tricky. It is better to loop over the names as
 strings, and using the <code>aes_string()</code> function within <code>ggplot()</code> as illustrated
 in this&nbsp;example.</p>
 <div class="highlight"><pre><span class="kr">for</span> <span class="p">(</span>var <span class="kr">in</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;dep_delay&quot;</span><span class="p">,</span> <span class="s">&quot;arr_delay&quot;</span><span class="p">))</span> <span class="p">{</span>
     flights <span class="o">%&gt;%</span>
-        ggplot<span class="p">(</span>aes_string<span class="p">(</span>x<span class="o">=</span>var<span class="p">))</span> <span class="o">+</span> 
+        ggplot<span class="p">(</span>aes_string<span class="p">(</span>x<span class="o">=</span>var<span class="p">))</span> <span class="o">+</span>
         geom_histogram<span class="p">()</span>
     <span class="c1"># ggsave(paste(var, &quot;_hist.png&quot;))  # you can save them within the loop</span>
 <span class="p">}</span>
