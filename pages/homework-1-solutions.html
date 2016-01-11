@@ -29,32 +29,12 @@
 <p>Write a function which defines whether a number is prime. You can presume that
 your function will take an integer as argument. (Hint: the <code>%%</code> operator gives
 the remainder after division. So <code>5 %% 3 = 2</code> and <code>5 %% 5 = 0</code>.)</p>
-<div class="highlight"><pre>is_prime <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
-    is_prime <span class="o">=</span> <span class="kc">TRUE</span>
-    <span class="kr">if</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">2</span><span class="o">:</span><span class="p">(</span>x<span class="m">-1</span><span class="p">))</span> <span class="p">{</span>
-            <span class="kr">if</span> <span class="p">(</span>x <span class="o">%%</span> i <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
-                is_prime <span class="o">=</span> <span class="kc">FALSE</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    <span class="kr">return</span><span class="p">(</span>is_prime<span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
 <h1>Task&nbsp;2</h1>
 <p>Write a function which takes a non-negative numeric vector and returns back a
 0-1 vector according to the followings: zero elements should stay zero and
 positive elements should be transformed to one. Call this function as <code>dummify</code>.
 For example, if <code>a &lt;- c(0, 34, 2)</code> then the <code>dummify(a)</code> should return  <code>c(0, 1,
 1)</code>. (You can assume that the function will only get vectors with non-negative&nbsp;elements.)</p>
-<div class="highlight"><pre>dummify <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
-    <span class="kp">as.numeric</span><span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-
-
 <h1>Task&nbsp;3</h1>
 <p>In Data directory you find a <code>trade.zip</code> folder. Download and extract it to
 a directory in your machine. You are going to find 11 <code>csv</code> files there which
@@ -66,17 +46,6 @@ together following the steps&nbsp;below:</p>
 <li>Bind this file to the&nbsp;rest.</li>
 </ol>
 <p><em>Hint</em>: You can achive this with a for loop by looping over the&nbsp;years.</p>
-<div class="highlight"><pre>trade_files <span class="o">&lt;-</span> <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/trade/&quot;</span>
-<span class="kr">for</span> <span class="p">(</span>year <span class="kr">in</span> <span class="m">2003</span><span class="o">:</span><span class="m">2013</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">if</span> <span class="p">(</span>year <span class="o">==</span> <span class="m">2003</span><span class="p">)</span> <span class="p">{</span>
-        total <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">))</span>
-    <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
-        total <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>total<span class="p">,</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">)))</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-
-
 <div class="highlight"><pre>str<span class="p">(</span>total<span class="p">)</span>
 </pre></div>
 
