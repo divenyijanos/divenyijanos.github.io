@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Homework 1 &#8212; <span class="caps">SOLUTIONS</span></title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Homework 1 &#8212; <span class="caps">SOLUTIONS</span></h1>
+    
+    <h1>Task&nbsp;0</h1>
+<p>Finish practice examples 1. For yourself. (They won&#8217;t be&nbsp;graded.)</p>
+<h1>Task&nbsp;1</h1>
+<p>Write a function which defines whether a number is prime. You can presume that
+your function will take an integer as argument. (Hint: the <code>%%</code> operator gives
+the remainder after division. So <code>5 %% 3 = 2</code> and <code>5 %% 5 = 0</code>.)</p>
+<div class="highlight"><pre>is_prime <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+    is_prime <span class="o">=</span> <span class="kc">TRUE</span>
+    <span class="kr">if</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">2</span><span class="o">:</span><span class="p">(</span>x<span class="m">-1</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kr">if</span> <span class="p">(</span>x <span class="o">%%</span> i <span class="o">==</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+                is_prime <span class="o">=</span> <span class="kc">FALSE</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="kr">return</span><span class="p">(</span>is_prime<span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1>Task&nbsp;2</h1>
+<p>Write a function which takes a non-negative numeric vector and returns back a
+0-1 vector according to the followings: zero elements should stay zero and
+positive elements should be transformed to one. Call this function as <code>dummify</code>.
+For example, if <code>a &lt;- c(0, 34, 2)</code> then the <code>dummify(a)</code> should return  <code>c(0, 1,
+1)</code>. (You can assume that the function will only get vectors with non-negative&nbsp;elements.)</p>
+<div class="highlight"><pre>dummify <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+    <span class="kp">as.numeric</span><span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1>Task&nbsp;3</h1>
+<p>In Data directory you find a <code>trade.zip</code> folder. Download and extract it to
+a directory in your machine. You are going to find 11 <code>csv</code> files there which
+contain trade data from World Bank from different years. Load and bind them
+together following the steps&nbsp;below:</p>
+<ol>
+<li>Load the&nbsp;file.</li>
+<li>Create a year variable which takes the value of that&nbsp;year.</li>
+<li>Bind this file to the&nbsp;rest.</li>
+</ol>
+<p><em>Hint</em>: You can achive this with a for loop by looping over the&nbsp;years.</p>
+<div class="highlight"><pre>trade_files <span class="o">&lt;-</span> <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/trade/&quot;</span>
+<span class="kr">for</span> <span class="p">(</span>year <span class="kr">in</span> <span class="m">2003</span><span class="o">:</span><span class="m">2013</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">if</span> <span class="p">(</span>year <span class="o">==</span> <span class="m">2003</span><span class="p">)</span> <span class="p">{</span>
+        total <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">))</span>
+    <span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
+        total <span class="o">&lt;-</span> <span class="kp">rbind</span><span class="p">(</span>total<span class="p">,</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">)))</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre>str<span class="p">(</span>total<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
+##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
+##  $ Exports            : chr  &quot;5467271&quot; &quot;127&quot; &quot;161&quot; &quot;31&quot; ...
+##  $ General.Imports    : chr  &quot;66604064&quot; &quot;13&quot; &quot;9&quot; NA ...
+##  $ Consumption.Imports: chr  &quot;66503921&quot; &quot;13&quot; &quot;9&quot; NA ...
+##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># Change numbers stored as characters into numbers stored as numbers</span>
+total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kp">sapply</span><span class="p">(</span>
+    total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)],</span>
+    <span class="kp">as.numeric</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
+</pre></div>
+
+
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
+</pre></div>
+
+
+<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
+</pre></div>
+
+
+<div class="highlight"><pre><span class="c1"># dplyr solution</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+total <span class="o">&lt;-</span> total <span class="o">%&gt;%</span>
+    mutate_each<span class="p">(</span>funs<span class="p">(</span><span class="kp">as.numeric</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;ports&quot;</span><span class="p">))</span>
+str<span class="p">(</span>total<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
+##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
+##  $ Exports            : num  5467271 127 161 31 449 ...
+##  $ General.Imports    : num  66604064 13 9 NA 2 ...
+##  $ Consumption.Imports: num  66503921 13 9 NA 2 ...
+##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+</pre></div>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

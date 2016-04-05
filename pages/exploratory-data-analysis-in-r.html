@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Exploratory Data Analysis in&nbsp;R</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Exploratory Data Analysis in&nbsp;R</h1>
+    
+    <h2>First look at some&nbsp;data</h2>
+<div class="highlight"><pre>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/height_weight.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="kp">summary</span><span class="p">(</span>height_weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>##       male           height           weight     
+##  Min.   :0.000   Min.   :  1.75   Min.   : 39.0  
+##  1st Qu.:0.000   1st Qu.:167.75   1st Qu.: 57.0  
+##  Median :0.000   Median :173.50   Median : 65.0  
+##  Mean   :0.492   Mean   :172.16   Mean   : 66.5  
+##  3rd Qu.:1.000   3rd Qu.:180.25   3rd Qu.: 74.0  
+##  Max.   :1.000   Max.   :266.00   Max.   :120.0
+</pre></div>
+
+
+<div class="highlight"><pre>plot<span class="p">(</span>height_weight<span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk unnamed-chunk-2" src="../figure/unnamed-chunk-2-1.png" /> </p>
+<h2>Cleaning</h2>
+<div class="highlight"><pre>height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">]</span><span class="o">*</span><span class="m">100</span>
+height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span> <span class="o">&lt;-</span> height_weight<span class="o">$</span>height<span class="p">[</span>height_weight<span class="o">$</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">]</span><span class="m">-100</span>
+
+height_weight<span class="o">$</span>male <span class="o">&lt;-</span> <span class="kp">factor</span><span class="p">(</span>height_weight<span class="o">$</span>male<span class="p">,</span> labels<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="kp">summary</span><span class="p">(</span>height_weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>##      male        height        weight     
+##  female:65   Min.   :152   Min.   : 39.0  
+##  male  :63   1st Qu.:168   1st Qu.: 57.0  
+##              Median :174   Median : 65.0  
+##              Mean   :174   Mean   : 66.5  
+##              3rd Qu.:180   3rd Qu.: 74.0  
+##              Max.   :195   Max.   :120.0
+</pre></div>
+
+
+<h2>Package for data&nbsp;analysis</h2>
+<p>Base R functionality could be a little cumbersome. There are some packages which
+makes the working with data easier. One of the bests is the package <code>dplyr</code>
+developed by Hadley&nbsp;Wickham.</p>
+<div class="highlight"><pre><span class="c1"># install.packages(&quot;dplyr&quot;)  # issue this in the first time</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>  <span class="c1"># load package if you want to use it</span>
+</pre></div>
+
+
+<p>The logic of <code>dplyr</code> is built around the most frequent operations in data
+analysis. You choose certain columns and rows, make some calculations on this
+subset (sometimes group-wise), and returns the result. This is the same logic
+which is applied in <code>SQL</code> (if you do not know <code>SQL</code>, do not&nbsp;bother).</p>
+<p>This <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">vignette</a>
+is really helpful in learning the basic commands of <code>dplyr</code>.</p>
+<p>The same cleaning task could be accomplished as&nbsp;follows:</p>
+<div class="highlight"><pre>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;../Data/height_weight.csv&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre>## Error in file(file, &quot;rt&quot;): cannot open the connection
+</pre></div>
+
+
+<div class="highlight"><pre>height_weight <span class="o">&lt;-</span> mutate<span class="p">(</span>
+        height_weight<span class="p">,</span>
+        height <span class="o">=</span> <span class="kp">ifelse</span><span class="p">(</span>height <span class="o">&lt;</span> <span class="m">100</span><span class="p">,</span> height<span class="o">*</span><span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
+        height <span class="o">=</span> <span class="kp">ifelse</span><span class="p">(</span>height <span class="o">&gt;</span> <span class="m">250</span><span class="p">,</span> height <span class="o">-</span> <span class="m">100</span><span class="p">,</span> height<span class="p">),</span>
+        male <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">,</span> labels <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&quot;female&quot;</span><span class="p">,</span> <span class="s">&quot;male&quot;</span><span class="p">))</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<h2>Piping&nbsp;operator</h2>
+<p>The package <code>dplyr</code> loads a new operator <code>%&gt;%</code>. This could further simplifies
+our life. This works similarly to the piping operator <code>|</code> of unix-type systems
+(do not bother if you do not know what I am talking&nbsp;about).</p>
+<p>If you would like to chain together more function calls (operations), with the
+piping operator you can pass the result of on call as an argument to the next&nbsp;call.</p>
+<p>Let&#8217;s calculate the average height of males. The standard logic is to filter for
+males and then summarize the&nbsp;height.</p>
+<div class="highlight"><pre>summarize<span class="p">(</span>filter<span class="p">(</span>height_weight<span class="p">,</span> male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">),</span> <span class="kp">mean</span><span class="p">(</span>height<span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre>##   mean(height)
+## 1        180.7
+</pre></div>
+
+
+<p>With piping the same call could formulate to better follow the logic: first
+filter, than summarize the filtered&nbsp;result.</p>
+<div class="highlight"><pre>height_weight <span class="o">%&gt;%</span> filter<span class="p">(</span>male <span class="o">==</span> <span class="s">&quot;male&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span> summarize<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>height<span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre>##   mean(height)
+## 1        180.7
+</pre></div>
+
+
+<p>Formally, <code>f(x)</code> is the same as <code>x %&gt;% f()</code>. This could result in a much more
+readable&nbsp;code.</p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

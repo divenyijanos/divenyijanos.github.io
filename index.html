@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>János K. Divényi</title>
+        <link rel="stylesheet" href="./theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="./">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="./pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="./pages/research.html">research</a></li>
+                    <li><a href="./pages/teaching.html">teaching</a></li>
+                    <li><a href="./category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="./which-binary-classification-model-is-better.html">Which binary classification model is&nbsp;better?</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2015-05-27T00:00:00+02:00">
+                Published: Wed 27 May 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
+        </address>
+<p>In <a href="./category/blog.html">blog</a>.</p>
+
+</footer><!-- /.post-info --><p><a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic">Receiver Operating Characteristic curve</a> 
+is a great tool to visually illustrate the performance of a binary classifier. 
+It plots the true positive rate (<span class="math">\(TPR\)</span>) or the sensitivity against the false 
+positive rate (<span class="math">\(FPR\)</span>) or 1 - specificity. Usually, the algorithm gives you a
+probability (e.g. simple 
+<a href="http://en.wikipedia.org/wiki/Logistic_regression">logistic regresssion</a>),
+so for classification you need to choose a cutoff point. The <span class="caps">FPR</span>-<span class="caps">TPR</span> pairs for
+different values of the cutoff gives you the <span class="caps">ROC</span> curve. Non-informative
+algorithms lie on the 45-degree line, as they classify the same fraction of
+positives and negatives as positives, that is <span class="math">\(TPR = TP/P = FP/N = FPR\)</span>.</p>
+<p>But what if you want to compare two algorithms which give direct classification,
+i.e. you have only two points in the plot? How to decide whether algorithm (2)
+is better than algorithm&nbsp;(1)?</p>
+<p><img src="../images/roc.png" width="60%" /></p>
+<p>It is clear that algorithm (2) classifies more items as positive than algorithm
+(1) and that this results in both more true positives (higher sensitivity) and
+more false positives (lower specificity). Is this higher rate of positive
+classification informative? What would we get if we just got labels negatively
+classified by algorithm (1) and classified them randomly as positive? How would 
+we move from algorithm (1) on the&nbsp;graph?</p>
+<p>The original negative-labels are both true negatives and false negatives. A 
+random classifier would classify them as positives in the same share. Let&#8217;s say
+we are classifying an item as positive by probability <span class="math">\(\lambda\)</span>. Then, we are
+going to have <span class="math">\(\lambda*TN\)</span> new false positives and <span class="math">\(\lambda*FN\)</span> new true
+positives relative to algorithm (1). This results in the following measures for
+the <span class="caps">ROC</span>&nbsp;curve:</p>
+<div class="math">$$Sensitivity' = Sensitivity + \frac{\lambda*FN}{P} 
+1 - Specificity' = 1 - Specificity + \frac{\lambda*TN}{N}$$</div>
+<p>Thus, the slope of the movement is&nbsp;just</p>
+<div class="math">$$\frac{\lambda*FN / P}{\lambda*TN / N} = \frac{1 - TP / P}{1 - TN / N} =
+\frac{1 - Sensitivity}{Specificity}$$</div>
+<p>It depends on <span class="math">\(\lambda\)</span> where we end up along this line. Therefore, it seems
+that algorithm (2) not just randomly adds more positively-classified items but 
+also contains some information relative to algorithm&nbsp;(1).</p>
+<p><img src="../images/roc_random.png" width="60%" /></p>
+<p>We can arrive to the same conclusion by less calculation as well. A possible
+random classification is to classify each item as positive (<span class="math">\(\lambda = 1\)</span>). If
+we take all the negatively-labeled item and classify them &#8220;randomly&#8221; as
+positive, we end up having only positively classified items which leads to
+extreme values of specificity (0) and sensitivity (1). To connect the point with
+the (1, 1) point we should draw a line with slope <span class="math">\(\frac{1 -
+Sensitivity}{Specificity}\)</span>.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }, linebreaks: { automatic: false, width: 'container' }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./my-favorite-chart-this-year.html" rel="bookmark"
+                           title="Permalink to My Favorite Chart This Year">My Favorite Chart This&nbsp;Year</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-30T00:00:00+02:00">
+                Published: Mon 30 March 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
+        </address>
+<p>In <a href="./category/blog.html">blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p><img src="../images/chart.png" width="100%" /></p>
+                <a class="readmore" href="./my-favorite-chart-this-year.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./does-iv-always-identify-late.html" rel="bookmark"
+                           title="Permalink to Does IV always identify LATE?">Does <span class="caps">IV</span> always identify <span class="caps">LATE</span>?</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-03-02T00:00:00+01:00">
+                Published: Mon 02 March 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
+        </address>
+<p>In <a href="./category/blog.html">blog</a>.</p>
+
+</footer><!-- /.post-info -->                <!-- Latex macros for math -->
+
+<p><span class="math">\(\newcommand{\E}{\mathbb{E}}\)</span>
+<span class="math">\(\newcommand{\P}{\mathbb{P}}\)</span></p>
+<h1>Local average treatment effect (<span class="caps">LATE</span>)</h1>
+<p><a href="http://en.wikipedia.org/wiki/Instrumental_variable">Instrumental variables</a> are
+often used in causal analysis when randomized control trials are out of option.
+However, it is not always emphasized that <strong>the instrumental variable
+estimator</strong> &#8212; even if the instrument is valid and relevant &#8212;  does not ...</p></!-->
+                <a class="readmore" href="./does-iv-always-identify-late.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html" rel="bookmark"
+                           title="Permalink to Command Line Tricks: How to count lines with date before a certain date?">Command Line Tricks: How to count lines with date before a certain&nbsp;date?</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-02-27T00:00:00+01:00">
+                Published: Fri 27 February 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
+        </address>
+<p>In <a href="./category/blog.html">blog</a>.</p>
+
+</footer><!-- /.post-info -->                <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
+<div class="highlight"><pre><span></span>head -2 file-with-dates.csv
+title,url,tag,date
+<span class="s2">&quot;title of the article&quot;</span>,http://www.url-of-the-article.com,<span class="s2">&quot;tag1,etc&quot;</span>,2015-02-27
+</pre></div>
+
+
+<p>How could I calculate the number of articles posted before a certain date
+without having to load ...</p>
+                <a class="readmore" href="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

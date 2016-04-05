@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Homework&nbsp;2</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title">Homework&nbsp;2</h1>
+    
+    <p><em><span class="caps">SAME</span> <span class="caps">AS</span> <span class="caps">PRACTICE</span> <span class="caps">EXERCISES</span> <span class="caps">OF</span> <span class="caps">THE</span> <span class="caps">LAST</span> <span class="caps">CLASS</span></em></p>
+<p><em><span class="caps">TASK</span> 6 <span class="caps">IS</span> <span class="caps">UPDATED</span> - <span class="caps">THANKS</span> <span class="caps">TO</span> <span class="caps">ISTVAN</span> <span class="caps">FOR</span> <span class="caps">THE</span> <span class="caps">NOTICE</span></em></p>
+<p>Due <strong>7 October 24:00</strong>. Send the <code>hw2_&lt;your-last-name&gt;</code> file to&nbsp;divenyi.janos@phd.ceu.edu.</p>
+<h2>Task&nbsp;0</h2>
+<p>Download the <code>purchases.csv</code> from the data section. Load it into&nbsp;R.</p>
+<h2>Task&nbsp;1</h2>
+<p>Give the mean and the median of the individual&nbsp;purchases.</p>
+<div class="highlight"><pre>##   mean(sales) median(sales)
+## 1       92.42          55.9
+</pre></div>
+
+
+<h2>Task&nbsp;2</h2>
+<p>Tell R that your <code>purchase_date</code> variable is a date. You can do this by applying
+the <code>as.Date()</code> function to the original variable (similar to how we can use
+<code>as.character()</code>). Then you can get the median day of the&nbsp;purchases.</p>
+<div class="highlight"><pre>##   median(purchase_date)
+## 1            2012-11-22
+</pre></div>
+
+
+<h2>Task&nbsp;3</h2>
+<p>List the 5 biggest buyer along with their aggregate&nbsp;purchases.</p>
+<div class="highlight"><pre>## Source: local data frame [5 x 2]
+## 
+##   contact_id sales
+##        (int) (dbl)
+## 1   35244243 29906
+## 2   49141897 19804
+## 3   46092347 16821
+## 4   35117040 13026
+## 5   14316018 12459
+</pre></div>
+
+
+<h2>Task&nbsp;4</h2>
+<p>Plot the distributions of log sales amounts for the two years separately.
+For this you should have the year variable as&nbsp;factor.</p>
+<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png" /> </p>
+<h2>Task&nbsp;5</h2>
+<p>List the number of buyers in each month by year. (Hint: you might need <code>tidyr</code>
+for accomplishing&nbsp;this).</p>
+<div class="highlight"><pre>## Source: local data frame [12 x 3]
+## 
+##    month  2012  2013
+##    (int) (int) (int)
+## 1      1  2079  1559
+## 2      2  1651  1041
+## 3      3  1714  1273
+## 4      4  1648  1300
+## 5      5  1917  1309
+## 6      6  1873  1342
+## 7      7  1736  1235
+## 8      8  1738  1247
+## 9      9  1640  1162
+## 10    10  1781  1323
+## 11    11  2497  1624
+## 12    12  2415  1831
+</pre></div>
+
+
+<h2>Task&nbsp;6</h2>
+<p>What share of total sales in 2013 comes from the top 5 buyers in 2013? You may
+want to aggregate sales by contact first and then to use the <code>cumsum()</code> function
+to calculate cumulative&nbsp;sums.</p>
+<p>Hint: this table is an intermediate state you may want to&nbsp;achive.</p>
+<p>The correct answer you should get is (from the previous&nbsp;table)</p>
+<div class="highlight"><pre>## Source: local data frame [1 x 1]
+## 
+##   top5_share
+##        (dbl)
+## 1    0.02366
+</pre></div>
+
+
+<h2>Task&nbsp;7</h2>
+<p>Plot the aggregate daily sales (you should combine <code>dplyr</code> and <code>ggplot</code> statements).
+Note that you should have <code>purchase_date</code> as date instead of factor or character.
+Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
+<code>geom_smooth()</code> to control the smoothness of your&nbsp;line).</p>
+<p>Default:</p>
+<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /> </p>
+<p>With <code>span = 0.2</code>:</p>
+<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png" /> </p>
+<h2>Task&nbsp;8</h2>
+<p>Which month brings the most sales? Plot a bar graph with aggregate sales per
+month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
+of the x axis (the documentation helps to&nbsp;reproduce).</p>
+<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png" /> </p>
+<h2>Task&nbsp;9</h2>
+<p>Recreate the previous graph by drawing the columns separately for the years
+(map the year variable to column and see the examples in the documentation to
+achieve side-by-side&nbsp;bars).</p>
+<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png" /> </p>
+<h2>Task&nbsp;10</h2>
+<p>Plot a graph which gives you that to what share of all sales are the top x% of
+buyers responsible. So a point at <code>x = 0.5, y = 0.8</code> would tell 80% of all sales
+come from the top 50% of buyers. (Hint: use your intermediate dataframe from
+task&nbsp;6.)</p>
+<div class="highlight"><pre>middle <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>
+        id <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+        cumulative_sales_share <span class="o">=</span> cumulative_sales<span class="o">/</span>all_sales<span class="p">,</span>
+        cumulative_buyer_share <span class="o">=</span> <span class="kp">cumsum</span><span class="p">(</span>id<span class="p">)</span><span class="o">/</span>n<span class="p">()</span>
+    <span class="p">)</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>cumulative_buyer_share<span class="p">,</span> y<span class="o">=</span>cumulative_sales_share<span class="p">))</span> <span class="o">+</span>
+    geom_line<span class="p">(</span>size<span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk cumsum" src="../figure/cumsum-1.png" /> </p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
