@@ -24,124 +24,200 @@
     <h1 class="entry-title">Visualization in&nbsp;R</h1>
     
     <h2>Base-R&nbsp;graphs</h2>
-<div class="highlight"><pre><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/height_weight.csv&quot;</span><span class="p">)</span>
-height_weight <span class="o">&lt;-</span> filter<span class="p">(</span>height_weight<span class="p">,</span> <span class="m">100</span> <span class="o">&lt;</span> height<span class="p">,</span> height <span class="o">&lt;</span> <span class="m">250</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>height_weight <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/height_weight.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre>plot<span class="p">(</span>height_weight<span class="p">)</span>
+<div class="highlight"><pre><span></span>## Warning in file(file, &quot;rt&quot;): cannot open file &#39;/home/divenyijanos/Dropbox/
+## teaching/Programming_Tools/Fall2015/Data/height_weight.csv&#39;: No such file
+## or directory
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-3" src="../figure/unnamed-chunk-3-1.png" /> </p>
-<div class="highlight"><pre>plot<span class="p">(</span>height_weight<span class="o">$</span>height<span class="p">,</span> height_weight<span class="o">$</span>weight<span class="p">)</span>
+<div class="highlight"><pre><span></span>## Error in file(file, &quot;rt&quot;): cannot open the connection
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-4" src="../figure/unnamed-chunk-4-1.png" /> </p>
+<div class="highlight"><pre><span></span>height_weight <span class="o">&lt;-</span> filter<span class="p">(</span>height_weight<span class="p">,</span> <span class="m">100</span> <span class="o">&lt;</span> height<span class="p">,</span> height <span class="o">&lt;</span> <span class="m">250</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in filter_(.data, .dots = lazyeval::lazy_dots(...)): object &#39;height_weight&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>plot<span class="p">(</span>height_weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in plot(height_weight): object &#39;height_weight&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>plot<span class="p">(</span>height_weight<span class="o">$</span>height<span class="p">,</span> height_weight<span class="o">$</span>weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="cp">##</span><span class="c"> Error in plot(height_weight$height, height_weight$weight): object &#39;height_weight&#39; not found</span><span class="x"></span>
+</pre></div>
+
+
 <h2>Package&nbsp;ggplot2</h2>
 <p><code>ggplot2</code> is a package developed by Hadley Wickham (so part of the &#8220;hadleyverse&#8221;).
 It is powerful visualization tool for R which is built upon the logic of
 <a href="http://vita.had.co.nz/papers/layered-grammar.pdf">grammar of graphics</a>.</p>
 <p>Most of the basic plots could be created by the &#8220;quick-plot&#8221; command <code>qplot()</code>.</p>
-<div class="highlight"><pre><span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
+<div class="highlight"><pre><span></span><span class="c1"># install.packages(&quot;ggplot2&quot;)</span>
 <span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
 qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-5" src="../figure/unnamed-chunk-5-1.png" /> </p>
-<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
+<div class="highlight"><pre><span></span>## Error in ggplot(data, aesthetics, environment = env): object &#39;height_weight&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-5" src="../figure/unnamed-chunk-5-2.png" /> </p>
+<div class="highlight"><pre><span></span>qplot<span class="p">(</span>height<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="cp">##</span><span class="c"> Error in eval(aesthetics$x, data, env): object &#39;height_weight&#39; not found</span><span class="x"></span>
+</pre></div>
+
+
 <p>Quick-plot could be customized&nbsp;easily.</p>
-<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-6" src="../figure/unnamed-chunk-6-1.png" /> </p>
-<div class="highlight"><pre>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">,</span> facets <span class="o">=</span> <span class="o">~</span> male<span class="p">)</span>
+<div class="highlight"><pre><span></span>## Error in ggplot(data, aesthetics, environment = env): object &#39;height_weight&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-6" src="../figure/unnamed-chunk-6-2.png" /> </p>
+<div class="highlight"><pre><span></span>qplot<span class="p">(</span>height<span class="p">,</span> weight<span class="p">,</span> data <span class="o">=</span> height_weight<span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3</span><span class="p">,</span> facets <span class="o">=</span> <span class="o">~</span> male<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in ggplot(data, aesthetics, environment = env): object &#39;height_weight&#39; not found
+</pre></div>
+
+
 <p>For complicated graphics, it is better to use the standard <code>ggplot()</code> formulation,
 which makes the underlying logic more explicit. What is behind a plot? We map
 different collections of data to different characteristics of a plot and use
 different visual elements to show them. In the graph above, we map the data
 about heigths to the x axis of the plot, the weights to the y axis (aesthetics),
 and use points to make them appear&nbsp;(geometries).</p>
-<div class="highlight"><pre>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> geom_point<span class="p">()</span>
-g
+<div class="highlight"><pre><span></span>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> geom_point<span class="p">()</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-7" src="../figure/unnamed-chunk-7-1.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight)): object &#39;height_weight&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>g
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;g&#39; not found
+</pre></div>
+
+
 <p>We can customize the geometries by setting the&nbsp;options.</p>
-<div class="highlight"><pre>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span>
+<div class="highlight"><pre><span></span>g <span class="o">&lt;-</span> ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&quot;darkred&quot;</span><span class="p">)</span>
-g
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-8" src="../figure/unnamed-chunk-8-1.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight)): object &#39;height_weight&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>g
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;g&#39; not found
+</pre></div>
+
+
 <p>We can modify the general properties of the&nbsp;graph.</p>
-<div class="highlight"><pre>g <span class="o">+</span> xlab<span class="p">(</span><span class="s">&quot;Height (cm)&quot;</span><span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">)</span> <span class="o">+</span> ggtitle<span class="p">(</span><span class="s">&quot;Height vs weight&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>g <span class="o">+</span> xlab<span class="p">(</span><span class="s">&quot;Height (cm)&quot;</span><span class="p">)</span> <span class="o">+</span> ylab<span class="p">(</span><span class="s">&quot;Weight (kg)&quot;</span><span class="p">)</span> <span class="o">+</span> ggtitle<span class="p">(</span><span class="s">&quot;Height vs weight&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-9" src="../figure/unnamed-chunk-9-1.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;g&#39; not found
+</pre></div>
+
+
 <p>This formulation is great as it is really flexible. What if we would like to use
 different colors for males and females. This essentially requires the mapping
 of the male variable to the color of the&nbsp;points.</p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> male<span class="p">))</span> <span class="o">+</span>
+<div class="highlight"><pre><span></span>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> male<span class="p">))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-10" src="../figure/unnamed-chunk-10-1.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight, color = male)): object &#39;height_weight&#39; not found
+</pre></div>
+
+
 <p>Here, factors help a lot. They show that our variable is categorical and could
 take only two&nbsp;values.</p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span>
+<div class="highlight"><pre><span></span>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-11" src="../figure/unnamed-chunk-11-1.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight, color = factor(male))): object &#39;height_weight&#39; not found
+</pre></div>
+
+
 <p>What if we would like to add a fitted line to the points? We could just add a
 new layer to the&nbsp;plot.</p>
-<div class="highlight"><pre>g <span class="o">+</span> geom_smooth<span class="p">()</span>
+<div class="highlight"><pre><span></span>g <span class="o">+</span> geom_smooth<span class="p">()</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-12" src="../figure/unnamed-chunk-12-1.png" /> </p>
-<div class="highlight"><pre>g <span class="o">+</span> geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;g&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-12" src="../figure/unnamed-chunk-12-2.png" /> </p>
+<div class="highlight"><pre><span></span>g <span class="o">+</span> geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;g&#39; not found
+</pre></div>
+
+
 <p>By carefully controlling the aesthetics of different geometries, we can fit the
 line either to each points or separately by&nbsp;gender.</p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span>
+<div class="highlight"><pre><span></span>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
     geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-13" src="../figure/unnamed-chunk-13-1.png" /> </p>
-<div class="highlight"><pre>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight, color = factor(male))): object &#39;height_weight&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>ggplot<span class="p">(</span>data <span class="o">=</span> height_weight<span class="p">,</span> aes<span class="p">(</span>x <span class="o">=</span> height<span class="p">,</span> y <span class="o">=</span> weight<span class="p">))</span> <span class="o">+</span> 
     geom_point<span class="p">(</span>aes<span class="p">(</span>color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>male<span class="p">)),</span> size <span class="o">=</span> <span class="m">3</span><span class="p">)</span> <span class="o">+</span>
     geom_smooth<span class="p">(</span>method <span class="o">=</span> <span class="s">&quot;lm&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk unnamed-chunk-13" src="../figure/unnamed-chunk-13-2.png" /> </p>
+<div class="highlight"><pre><span></span>## Error in ggplot(data = height_weight, aes(x = height, y = weight)): object &#39;height_weight&#39; not found
+</pre></div>
+
+
 <p><a href="https://ramnathv.github.io/pycon2014-r/visualize/ggplot2.html">Here</a> is a
 really good tutorial of the <code>ggplot2</code> package and the grammar of graphics.
 It is also worth looking at the <a href="http://docs.ggplot2.org/current/">documentation</a>
@@ -151,7 +227,7 @@ which summarises all of the available options with lots of&nbsp;examples.</p>
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">This webpage is still under construction.</a></li>
                             <li><a href="">Please excuse any incoherence or roughness.</a></li>
                         </ul>
                 </div><!-- /.blogroll -->

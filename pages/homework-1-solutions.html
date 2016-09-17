@@ -29,7 +29,7 @@
 <p>Write a function which defines whether a number is prime. You can presume that
 your function will take an integer as argument. (Hint: the <code>%%</code> operator gives
 the remainder after division. So <code>5 %% 3 = 2</code> and <code>5 %% 5 = 0</code>.)</p>
-<div class="highlight"><pre>is_prime <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>is_prime <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
     is_prime <span class="o">=</span> <span class="kc">TRUE</span>
     <span class="kr">if</span> <span class="p">(</span>x <span class="o">&gt;</span> <span class="m">2</span><span class="p">)</span> <span class="p">{</span>
         <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">2</span><span class="o">:</span><span class="p">(</span>x<span class="m">-1</span><span class="p">))</span> <span class="p">{</span>
@@ -49,7 +49,7 @@ the remainder after division. So <code>5 %% 3 = 2</code> and <code>5 %% 5 = 0</c
 positive elements should be transformed to one. Call this function as <code>dummify</code>.
 For example, if <code>a &lt;- c(0, 34, 2)</code> then the <code>dummify(a)</code> should return  <code>c(0, 1,
 1)</code>. (You can assume that the function will only get vectors with non-negative&nbsp;elements.)</p>
-<div class="highlight"><pre>dummify <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre><span></span>dummify <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>x<span class="p">)</span> <span class="p">{</span>
     <span class="kp">as.numeric</span><span class="p">(</span>x <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
@@ -66,7 +66,7 @@ together following the steps&nbsp;below:</p>
 <li>Bind this file to the&nbsp;rest.</li>
 </ol>
 <p><em>Hint</em>: You can achive this with a for loop by looping over the&nbsp;years.</p>
-<div class="highlight"><pre>trade_files <span class="o">&lt;-</span> <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/trade/&quot;</span>
+<div class="highlight"><pre><span></span>trade_files <span class="o">&lt;-</span> <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/Programming_Tools/Fall2015/Data/trade/&quot;</span>
 <span class="kr">for</span> <span class="p">(</span>year <span class="kr">in</span> <span class="m">2003</span><span class="o">:</span><span class="m">2013</span><span class="p">)</span> <span class="p">{</span>
     <span class="kr">if</span> <span class="p">(</span>year <span class="o">==</span> <span class="m">2003</span><span class="p">)</span> <span class="p">{</span>
         total <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="kp">paste0</span><span class="p">(</span>trade_files<span class="p">,</span> year<span class="p">,</span> <span class="s">&quot;.csv&quot;</span><span class="p">))</span>
@@ -77,20 +77,25 @@ together following the steps&nbsp;below:</p>
 </pre></div>
 
 
-<div class="highlight"><pre>str<span class="p">(</span>total<span class="p">)</span>
+<div class="highlight"><pre><span></span>## Warning in file(file, &quot;rt&quot;): cannot open file &#39;/home/divenyijanos/Dropbox/
+## teaching/Programming_Tools/Fall2015/Data/trade/2003.csv&#39;: No such file or
+## directory
 </pre></div>
 
 
-<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
-##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
-##  $ Exports            : chr  &quot;5467271&quot; &quot;127&quot; &quot;161&quot; &quot;31&quot; ...
-##  $ General.Imports    : chr  &quot;66604064&quot; &quot;13&quot; &quot;9&quot; NA ...
-##  $ Consumption.Imports: chr  &quot;66503921&quot; &quot;13&quot; &quot;9&quot; NA ...
-##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+<div class="highlight"><pre><span></span>## Error in file(file, &quot;rt&quot;): cannot open the connection
 </pre></div>
 
 
-<div class="highlight"><pre><span class="c1"># Change numbers stored as characters into numbers stored as numbers</span>
+<div class="highlight"><pre><span></span>str<span class="p">(</span>total<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in str(total): object &#39;total&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Change numbers stored as characters into numbers stored as numbers</span>
 total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kp">sapply</span><span class="p">(</span>
     total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><span class="s">&quot;Exports&quot;</span><span class="p">,</span> <span class="s">&quot;General.Imports&quot;</span><span class="p">,</span> <span class="s">&quot;Consumption.Imports&quot;</span><span class="p">)],</span>
     <span class="kp">as.numeric</span>
@@ -98,39 +103,33 @@ total<span class="p">[</span><span class="kt">c</span><span class="p">(</span><s
 </pre></div>
 
 
-<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
+<div class="highlight"><pre><span></span>## Error in lapply(X = X, FUN = FUN, ...): object &#39;total&#39; not found
 </pre></div>
 
 
-<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
-</pre></div>
-
-
-<div class="highlight"><pre>## Warning in lapply(X = X, FUN = FUN, ...): NAs introduced by coercion
-</pre></div>
-
-
-<div class="highlight"><pre><span class="c1"># dplyr solution</span>
+<div class="highlight"><pre><span></span><span class="c1"># dplyr solution</span>
 <span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 total <span class="o">&lt;-</span> total <span class="o">%&gt;%</span>
     mutate_each<span class="p">(</span>funs<span class="p">(</span><span class="kp">as.numeric</span><span class="p">),</span> matches<span class="p">(</span><span class="s">&quot;ports&quot;</span><span class="p">))</span>
-str<span class="p">(</span>total<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre>## &#39;data.frame&#39;:    2347 obs. of  5 variables:
-##  $ Country.Name       : Factor w/ 237 levels &quot; Afghanistan&quot;,..: 203 1 2 3 4 5 6 7 8 9 ...
-##  $ Exports            : num  5467271 127 161 31 449 ...
-##  $ General.Imports    : num  66604064 13 9 NA 2 ...
-##  $ Consumption.Imports: num  66503921 13 9 NA 2 ...
-##  $ year               : int  2003 2003 2003 2003 2003 2003 2003 2003 2003 2003 ...
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;total&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>str<span class="p">(</span>total<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in str(total): object &#39;total&#39; not found
 </pre></div>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">This webpage is still under construction.</a></li>
                             <li><a href="">Please excuse any incoherence or roughness.</a></li>
                         </ul>
                 </div><!-- /.blogroll -->

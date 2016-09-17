@@ -25,9 +25,20 @@
     
     <h2>Task&nbsp;0</h2>
 <p>Load <code>dplyr</code> and the <code>flights</code> data into&nbsp;R.</p>
-<div class="highlight"><pre><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span>
-data<span class="p">(</span>flights<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>data<span class="p">(</span>flights<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Warning in data(flights): data set &#39;flights&#39; not found
 </pre></div>
 
 
@@ -37,7 +48,7 @@ in the <code>flights</code> section.</p>
 <p>Get the plane tail number (<code>tailnum</code>) of the three planes which arrived with the largest
 overall delay (arrival and departure as well) relative to the distance. Try to
 accomplish this with one&nbsp;chain.</p>
-<div class="highlight"><pre>flights <span class="o">%&gt;%</span>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     mutate<span class="p">(</span>
         delay <span class="o">=</span> dep_delay <span class="o">+</span> arr_delay<span class="p">,</span>
         relative_delay <span class="o">=</span> delay <span class="o">/</span> distance
@@ -48,19 +59,13 @@ accomplish this with one&nbsp;chain.</p>
 </pre></div>
 
 
-<div class="highlight"><pre>## Source: local data frame [3 x 2]
-## 
-##   tailnum relative_delay
-##     (chr)          (dbl)
-## 1  N942MQ          9.261
-## 2  N950UW          6.885
-## 3  N8672A          6.872
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 
 
 <h2>Task&nbsp;2</h2>
 <p>From which airport fly the most planes to&nbsp;Boston?</p>
-<div class="highlight"><pre>flights <span class="o">%&gt;%</span>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     filter<span class="p">(</span>dest <span class="o">==</span> <span class="s">&quot;BOS&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
     summarise<span class="p">(</span>n<span class="o">=</span>n<span class="p">())</span> <span class="o">%&gt;%</span>
@@ -68,13 +73,7 @@ accomplish this with one&nbsp;chain.</p>
 </pre></div>
 
 
-<div class="highlight"><pre>## Source: local data frame [3 x 2]
-## 
-##   origin     n
-##    (chr) (int)
-## 1    JFK  5898
-## 2    EWR  5327
-## 3    LGA  4283
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -82,24 +81,18 @@ accomplish this with one&nbsp;chain.</p>
 <p>Which of the airports is associated with the largest departure delays on average?
 (Note: be careful with missing values, it is better to exclude them when
 calculating an average). Is this ordering the same for each&nbsp;month?</p>
-<div class="highlight"><pre>flights <span class="o">%&gt;%</span>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
     summarise<span class="p">(</span>delay <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>delay<span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre>## Source: local data frame [3 x 2]
-## 
-##   origin delay
-##    (chr) (dbl)
-## 1    EWR 15.11
-## 2    JFK 12.11
-## 3    LGA 10.35
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 
 
-<div class="highlight"><pre>flights <span class="o">%&gt;%</span>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>origin<span class="p">,</span> month<span class="p">)</span> <span class="o">%&gt;%</span>
     summarise<span class="p">(</span>delay <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -110,30 +103,14 @@ calculating an average). Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<div class="highlight"><pre>## Source: local data frame [12 x 2]
-## Groups: month [12]
-## 
-##    month origin
-##    (int)  (chr)
-## 1      1    EWR
-## 2      2    EWR
-## 3      3    EWR
-## 4      4    EWR
-## 5      5    EWR
-## 6      6    EWR
-## 7      7    JFK
-## 8      8    EWR
-## 9      9    EWR
-## 10    10    EWR
-## 11    11    EWR
-## 12    12    EWR
+<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
                         <h2>blogroll</h2>
                         <ul>
-                            <li><a href="">This webpage is still under construction</a></li>
+                            <li><a href="">This webpage is still under construction.</a></li>
                             <li><a href="">Please excuse any incoherence or roughness.</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
