@@ -27,28 +27,13 @@
 <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
 data<span class="p">(</span>flights<span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Warning in data(flights): data set &#39;flights&#39; not found
 </pre></div>
 
 
 <p>Filter out large&nbsp;delays:</p>
 <div class="highlight"><pre><span></span>flights <span class="o">&lt;-</span> flights <span class="o">%&gt;%</span> filter<span class="p">(</span>dep_delay <span class="o">&lt;</span> <span class="m">240</span><span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -59,7 +44,10 @@ data<span class="p">(</span>flights<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 2
+##   dep_delay arr_delay
+##       &lt;dbl&gt;     &lt;dbl&gt;
+## 1  11.21618        NA
 </pre></div>
 
 
@@ -69,7 +57,10 @@ flights <span class="o">%&gt;%</span> select<span class="p">(</span>dep_delay<sp
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 2
+##   dep_delay arr_delay
+##       &lt;dbl&gt;     &lt;dbl&gt;
+## 1  11.21618  5.479534
 </pre></div>
 
 
@@ -79,7 +70,10 @@ flights <span class="o">%&gt;%</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 2
+##   dep_delay arr_delay
+##       &lt;dbl&gt;     &lt;dbl&gt;
+## 1  11.21618  5.479534
 </pre></div>
 
 
@@ -92,10 +86,7 @@ to use only the <code>gather()</code> and the <code>spread()</code> function.</p
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
-</pre></div>
-
-
+<p><img alt="plot of chunk density-dep-delay" src="../figure/density-dep-delay-1.png" /></p>
 <p>If we would like to plot more variables on the same plot, it is best to first
 collect them into one with <code>gather()</code> and then map the type into a new dimension
 of the graph (say, color). Here we plot the distribution of the arrival and 
@@ -105,10 +96,11 @@ departure delay on the same&nbsp;plot.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## Warning: Removed 1160 rows containing non-finite values (stat_density).
 </pre></div>
 
 
+<p><img alt="plot of chunk overlaid-density" src="../figure/overlaid-density-1.png" /></p>
 <p>The package could be used for creating nice summary tables as well. See an
 illustration below, where we first gather the variables we would like to use,
 and apply several summary functions after grouping them by their types.
@@ -123,7 +115,13 @@ intermediate&nbsp;results).</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 4 &lt;U+00D7&gt; 6
+##     measure        mean median   min   max        sd
+##       &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1  air_time  150.718955    129    20   695  93.71625
+## 2 arr_delay    5.479534     -5   -86   350  39.00446
+## 3 dep_delay   11.216184     -2   -43   239  33.82669
+## 4  distance 1048.776583    888    80  4983 736.09479
 </pre></div>
 
 
@@ -139,10 +137,6 @@ in this&nbsp;example.</p>
         geom_histogram<span class="p">()</span>
     <span class="c1"># ggsave(paste(var, &quot;_hist.png&quot;))  # you can save them within the loop</span>
 <span class="p">}</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
 </pre></div>
 </section>
         <section id="extras" class="body">

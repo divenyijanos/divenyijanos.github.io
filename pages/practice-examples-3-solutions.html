@@ -27,18 +27,7 @@
 <p>Load <code>dplyr</code> and the <code>flights</code> data into&nbsp;R.</p>
 <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>data<span class="p">(</span>flights<span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Warning in data(flights): data set &#39;flights&#39; not found
+data<span class="p">(</span>flights<span class="p">)</span>
 </pre></div>
 
 
@@ -59,7 +48,12 @@ accomplish this with one&nbsp;chain.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
+##   tailnum relative_delay
+##     &lt;chr&gt;          &lt;dbl&gt;
+## 1  N942MQ       9.260870
+## 2  N950UW       6.885417
+## 3  N8672A       6.872340
 </pre></div>
 
 
@@ -73,7 +67,12 @@ accomplish this with one&nbsp;chain.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
+##   origin     n
+##    &lt;chr&gt; &lt;int&gt;
+## 1    JFK  5898
+## 2    EWR  5327
+## 3    LGA  4283
 </pre></div>
 
 
@@ -88,7 +87,12 @@ calculating an average). Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
+##   origin    delay
+##    &lt;chr&gt;    &lt;dbl&gt;
+## 1    EWR 15.10795
+## 2    JFK 12.11216
+## 3    LGA 10.34688
 </pre></div>
 
 
@@ -103,7 +107,23 @@ calculating an average). Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;flights&#39; not found
+<div class="highlight"><pre><span></span>## Source: local data frame [12 x 2]
+## Groups: month [12]
+## 
+##    month origin
+##    &lt;int&gt;  &lt;chr&gt;
+## 1      1    EWR
+## 2      2    EWR
+## 3      3    EWR
+## 4      4    EWR
+## 5      5    EWR
+## 6      6    EWR
+## 7      7    JFK
+## 8      8    EWR
+## 9      9    EWR
+## 10    10    EWR
+## 11    11    EWR
+## 12    12    EWR
 </pre></div>
 </section>
         <section id="extras" class="body">
