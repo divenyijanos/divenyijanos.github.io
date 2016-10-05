@@ -37,7 +37,37 @@ in the <code>flights</code> section.</p>
 <p>You can find a great tutorial about <code>dplyr</code> <a href="https://cran.rstudio.com/web/packages/dplyr/vignettes/introduction.html">here</a>.
 I highly recommend&nbsp;it.</p>
 <h2>Task&nbsp;1</h2>
-<p>Where did the plane with the largest departure delay fly? (Hint: <span class="caps">HNL</span> stands for&nbsp;Honolulu.)</p>
+<p>What was the average departure delay of the&nbsp;flights?</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 1
+##   `mean(dep_delay, na.rm = TRUE)`
+##                             &lt;dbl&gt;
+## 1                        12.63907
+</pre></div>
+
+
+<h2>Task&nbsp;2</h2>
+<p>What was the average departure delay of the flights landing in Anchorage (largest
+city in&nbsp;Alaska)?</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    filter<span class="p">(</span>dest <span class="o">==</span> <span class="s">&#39;ANC&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 1
+##   `mean(dep_delay, na.rm = TRUE)`
+##                             &lt;dbl&gt;
+## 1                          12.875
+</pre></div>
+
+
+<h2>Task&nbsp;3</h2>
+<p>Where did the plane with the largest departure delay&nbsp;fly?</p>
 <div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     filter<span class="p">(</span>dep_delay <span class="o">==</span> <span class="kp">max</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
     select<span class="p">(</span>dest<span class="p">)</span>
@@ -51,7 +81,58 @@ I highly recommend&nbsp;it.</p>
 </pre></div>
 
 
-<h2>Task&nbsp;2</h2>
+<h2>Task&nbsp;4</h2>
+<p>What is the average departure delay by carrier? Which carrier delays the most? 
+Which does the&nbsp;least?</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    group_by<span class="p">(</span>carrier<span class="p">)</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>avg_delay <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>dep_delay<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span> <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span><span class="o">-</span>avg_delay<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 16 &lt;U+00D7&gt; 2
+##    carrier avg_delay
+##      &lt;chr&gt;     &lt;dbl&gt;
+## 1       F9 20.215543
+## 2       EV 19.955390
+## 3       YV 18.996330
+## 4       FL 18.726075
+## 5       WN 17.711744
+## 6       9E 16.725769
+## 7       B6 13.022522
+## 8       VX 12.869421
+## 9       OO 12.586207
+## 10      UA 12.106073
+## 11      MQ 10.552041
+## 12      DL  9.264505
+## 13      AA  8.586016
+## 14      AS  5.804775
+## 15      HA  4.900585
+## 16      US  3.782418
+</pre></div>
+
+
+<h2>Task&nbsp;5</h2>
+<p>From which airport fly the most planes to&nbsp;Boston?</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    filter<span class="p">(</span>dest <span class="o">==</span> <span class="s">&quot;BOS&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    group_by<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>n<span class="o">=</span>n<span class="p">())</span> <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span><span class="o">-</span>n<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
+##   origin     n
+##    &lt;chr&gt; &lt;int&gt;
+## 1    JFK  5898
+## 2    EWR  5327
+## 3    LGA  4283
+</pre></div>
+
+
+<h2>Task&nbsp;6</h2>
 <p>Give the destinations of the flights with the largest arrival delays by&nbsp;month.</p>
 <div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -85,7 +166,7 @@ I highly recommend&nbsp;it.</p>
 </pre></div>
 
 
-<h2>Task&nbsp;3</h2>
+<h2>Task&nbsp;7</h2>
 <p>Get the destinations of the three planes which arrived with the largest
 arrival delay relative to the&nbsp;distance.</p>
 <div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
@@ -93,40 +174,21 @@ arrival delay relative to the&nbsp;distance.</p>
         relative_delay <span class="o">=</span> arr_delay <span class="o">/</span> distance
     <span class="p">)</span> <span class="o">%&gt;%</span>
     arrange<span class="p">(</span>desc<span class="p">(</span>relative_delay<span class="p">))</span> <span class="o">%&gt;%</span>
-    select<span class="p">(</span>dest<span class="p">,</span> relative_delay<span class="p">)</span> <span class="o">%&gt;%</span>
+    select<span class="p">(</span>tailnum<span class="p">,</span> relative_delay<span class="p">)</span> <span class="o">%&gt;%</span>
     <span class="kp">head</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
 </pre></div>
 
 
 <div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
-##    dest relative_delay
-##   &lt;chr&gt;          &lt;dbl&gt;
-## 1   BWI       4.625000
-## 2   PHL       3.457447
-## 3   PHL       3.375000
+##   tailnum relative_delay
+##     &lt;chr&gt;          &lt;dbl&gt;
+## 1  N942MQ       4.625000
+## 2  N8913A       3.457447
+## 3  N950UW       3.375000
 </pre></div>
 
 
-<h2>Task&nbsp;4</h2>
-<p>From which airport fly the most planes to&nbsp;Boston?</p>
-<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
-    filter<span class="p">(</span>dest <span class="o">==</span> <span class="s">&quot;BOS&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
-    group_by<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>n<span class="o">=</span>n<span class="p">())</span> <span class="o">%&gt;%</span>
-    arrange<span class="p">(</span><span class="o">-</span>n<span class="p">)</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
-##   origin     n
-##    &lt;chr&gt; &lt;int&gt;
-## 1    JFK  5898
-## 2    EWR  5327
-## 3    LGA  4283
-</pre></div>
-
-
-<h2>Task&nbsp;5</h2>
+<h2>Task&nbsp;8</h2>
 <p>Which of the airports is associated with the largest departure delays on average?
 Is this ordering the same for each&nbsp;month?</p>
 <div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
@@ -176,7 +238,7 @@ Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<h1>Task&nbsp;+1</h1>
+<h2>Task&nbsp;+1</h2>
 <p>Watch <a href="https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen">this video</a>
 and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
 </section>
@@ -208,5 +270,15 @@ and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
                 <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
         </footer><!-- /#contentinfo -->
 
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-85196661-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
 </body>
 </html>
