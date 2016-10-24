@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title><span class="caps">DA</span> Homework&nbsp;4</title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title"><span class="caps">DA</span> Homework&nbsp;4</h1>
+    
+    <h2>Task&nbsp;1</h2>
+<p>Download the <code>civil-rights-act.csv</code> from the Data section (it might make sense
+to look at the description file as well). Using the data answer the questions
+below (run&nbsp;regressions).</p>
+<ul>
+<li>
+<p>Which of the two parties (democrats and republicans) were more
+supportive for the Civil Rights Act? First, look at a scatter plot. It might
+help to experiment with <code>jitter</code> to see the points better. (<em>Hint:</em> look at
+<a href="http://docs.ggplot2.org/current/geom_jitter.html">this</a>.)</p>
+</li>
+<li>
+<p>Run a regression of the dummy of voting on the dummy of
+party (note that <code>R</code> is automatically going to use a character variable in a
+regression as a dummy.). What are the shares of the two parties who voted for
+the&nbsp;act?</p>
+</li>
+<li>
+<p>Which states (northern or southern) were more supportive for the act?
+What are the shares of the representatives in the two groups of states who
+voted for the&nbsp;act?</p>
+</li>
+<li>
+<p>When controlling for the state which party were more supportive for
+the act? How does it compare to what you found in task b)? How could you
+explain the&nbsp;difference?</p>
+</li>
+</ul>
+<h2>Task&nbsp;2</h2>
+<p>Use the <code>easyshare_sample.csv</code> for this task. This is a sample of the easyshare
+project (you can read more about this <a href="http://www.share-project.org/">here</a>).
+The Survey of Health, Ageing and Retirement in Europe is a multidisciplinary
+panel survey targeting individuals above 50 years. Hungary participated once,
+in the 4th wave. The data is about the Hungarian sample with only a few
+variables: <code>lm_status</code> is originally called as <code>ep005_</code>, <code>mbirth</code> as <code>dn002_mod</code>.
+You can read about the variables <a href="http://www.share-project.org/fileadmin/pdf_documentation/easySHARE_Release_2.0.0.pdf">here</a>.
+The recall variables contain scores from a simple memory test: 10 simple words
+are listed to the participants of the survey which they should repeat once
+immediately (<code>recall_1</code>) and once with some delay (<code>recall_2</code>). The sum of these
+two numbers (ranging from 0 to 20) form a great measure for the memory of the&nbsp;elderly.</p>
+<ul>
+<li>
+<p>Know your data. Look at summaries, strange values, and try to clean them.
+(<em>Hint:</em> negative values usually mean missing values, turn them into <code>NA</code>-s.)</p>
+</li>
+<li>
+<p>Create a new dummy variable which takes one for those who do not work (for whom
+<code>lm_status</code> not equal to 2). Create a new variable which is the total word&nbsp;recall.</p>
+</li>
+<li>
+<p>Look at whether the memory of those who are not working are worse than those
+who do. Run a regression which answers this question and interpret the&nbsp;coefficients.</p>
+</li>
+<li>
+<p>Is there any other variable you may want to include the regression to get
+closer to the answer of the question whether working preserves ones memory?
+Include it in the regression and interpret your&nbsp;results.</p>
+</li>
+</ul>
+<h2>Task&nbsp;3</h2>
+<p>Collect the data you would like to use for your term project. Make a plot, or run a regression using that data, and interpret your&nbsp;results.</p>
+<h2>Task&nbsp;+1</h2>
+<p>Watch <a href="https://www.youtube.com/watch?v=QPKKQnijnsM">this video</a>
+and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction.</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-85196661-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

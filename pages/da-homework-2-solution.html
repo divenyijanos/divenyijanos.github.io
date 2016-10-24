@@ -81,6 +81,21 @@ city in&nbsp;Alaska)?</p>
 </pre></div>
 
 
+<p>Another solution using <code>arrange()</code>:</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span><span class="o">-</span>dep_delay<span class="p">)</span> <span class="o">%&gt;%</span>
+    select<span class="p">(</span>dest<span class="p">)</span> <span class="o">%&gt;%</span>
+    <span class="kp">head</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 1
+##    dest
+##   &lt;chr&gt;
+## 1   HNL
+</pre></div>
+
+
 <h2>Task&nbsp;4</h2>
 <p>What is the average departure delay by carrier? Which carrier delays the most? 
 Which does the&nbsp;least?</p>
@@ -132,6 +147,23 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
+<p>Another solution using <code>count()</code>:</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    filter<span class="p">(</span>dest <span class="o">==</span> <span class="s">&quot;BOS&quot;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+    count<span class="p">(</span>origin<span class="p">)</span> <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span><span class="o">-</span>n<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## # A tibble: 3 &lt;U+00D7&gt; 2
+##   origin     n
+##    &lt;chr&gt; &lt;int&gt;
+## 1    JFK  5898
+## 2    EWR  5327
+## 3    LGA  4283
+</pre></div>
+
+
 <h2>Task&nbsp;6</h2>
 <p>Give the destinations of the flights with the largest arrival delays by&nbsp;month.</p>
 <div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
@@ -163,6 +195,35 @@ Which does the&nbsp;least?</p>
 ## 10    10   ATL
 ## 11    11   ATL
 ## 12    12   MIA
+</pre></div>
+
+
+<p>Another solution using <code>top_n()</code>:</p>
+<div class="highlight"><pre><span></span>flights <span class="o">%&gt;%</span>
+    group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
+    top_n<span class="p">(</span><span class="m">1</span><span class="p">,</span> arr_delay<span class="p">)</span> <span class="o">%&gt;%</span>
+    arrange<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
+    select<span class="p">(</span>month<span class="p">,</span> dest<span class="p">,</span> arr_delay<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Source: local data frame [12 x 3]
+## Groups: month [12]
+## 
+##    month  dest arr_delay
+##    &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
+## 1      1   HNL      1272
+## 2      2   DEN       834
+## 3      3   MSP       915
+## 4      4   TPA       931
+## 5      5   ORD       875
+## 6      6   CMH      1127
+## 7      7   CVG       989
+## 8      8   CLT       490
+## 9      9   SFO      1007
+## 10    10   ATL       688
+## 11    11   ATL       796
+## 12    12   MIA       878
 </pre></div>
 
 
