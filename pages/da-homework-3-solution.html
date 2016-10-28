@@ -28,21 +28,18 @@
 purchases from an online store.
 Load the data into R and check whether the type of your variables are correct
 (e.g. <code>purchase_date</code> should be of type&nbsp;&#8220;Date&#8221;).</p>
-<div class="highlight"><pre><span></span>purchases <span class="o">&lt;-</span> read_csv<span class="p">(</span>
-    <span class="s">&quot;/home/divenyijanos/Dropbox/teaching/BME_adat/data/purchases.csv&quot;</span>
-    <span class="p">)</span>
+<div class="highlight"><pre><span></span>purchases <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&quot;/Users/jdivenyi/teaching/BME_adat/201617/data/purchases.csv&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error: &#39;/home/divenyijanos/Dropbox/teaching/BME_adat/data/purchases.csv&#39; does not exist.
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>purchases <span class="o">&lt;-</span> purchases <span class="o">%&gt;%</span> mutate<span class="p">(</span>purchase_date <span class="o">=</span> <span class="kp">as.Date</span><span class="p">(</span>purchase_date<span class="p">))</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
+<div class="highlight"><pre><span></span>## Parsed with column specification:
+## cols(
+##   contact_id = col_integer(),
+##   purchase_date = col_date(format = &quot;&quot;),
+##   sales = col_double(),
+##   year = col_integer(),
+##   month = col_integer()
+## )
 </pre></div>
 
 
@@ -53,10 +50,11 @@ Load the data into R and check whether the type of your variables are correct
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
+<div class="highlight"><pre><span></span>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 </pre></div>
 
 
+<p><img alt="plot of chunk hist" src="../figure/hist-1.png" /></p>
 <h2>Task&nbsp;2</h2>
 <p>Plot the distributions of log sales amounts for the two years separately.
 Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/">documentation</a> of
@@ -68,10 +66,7 @@ Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
-</pre></div>
-
-
+<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png" /></p>
 <h2>Task&nbsp;3</h2>
 <p>Plot the aggregate daily sales.
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
@@ -86,10 +81,7 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
-</pre></div>
-
-
+<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /></p>
 <p>With <code>span = 0.2</code>:</p>
 <div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -100,10 +92,7 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
-</pre></div>
-
-
+<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png" /></p>
 <h2>Task&nbsp;4</h2>
 <p>Which month brings the most sales? Plot a bar graph with aggregate sales per
 month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
@@ -111,16 +100,13 @@ of the x axis (the documentation helps to&nbsp;reproduce).</p>
 <div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
     mutate<span class="p">(</span>month <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>month<span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> sales<span class="p">))</span> <span class="o">+</span>
+    summarise<span class="p">(</span>aggregate_sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> aggregate_sales<span class="p">))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
-</pre></div>
-
-
+<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png" /></p>
 <h2>Task&nbsp;5</h2>
 <p>Recreate the previous graph by drawing the columns separately for the years
 (map the year variable to the fill of the bars and see the examples in the
@@ -128,17 +114,31 @@ documentation to achieve side-by-side&nbsp;bars).</p>
 <div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
     mutate<span class="p">(</span>year <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>year<span class="p">,</span> month<span class="p">)</span> <span class="o">%&gt;%</span>
-    summarise<span class="p">(</span>sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">))</span> <span class="o">%&gt;%</span>
-    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> sales<span class="p">,</span> fill <span class="o">=</span> year<span class="p">))</span> <span class="o">+</span>
+    summarise<span class="p">(</span>aggregate_sales <span class="o">=</span> <span class="kp">sum</span><span class="p">(</span>sales<span class="p">),</span> sd <span class="o">=</span> sd<span class="p">(</span>sales<span class="p">),</span> n <span class="o">=</span> n<span class="p">())</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> month<span class="p">,</span> y <span class="o">=</span> aggregate_sales<span class="p">,</span> fill <span class="o">=</span> year<span class="p">))</span> <span class="o">+</span>
     geom_bar<span class="p">(</span>stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">,</span> position <span class="o">=</span> <span class="s">&quot;dodge&quot;</span><span class="p">)</span> <span class="o">+</span>
     scale_x_continuous<span class="p">(</span>breaks <span class="o">=</span> <span class="kp">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">12</span><span class="p">))</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in eval(expr, envir, enclos): object &#39;purchases&#39; not found
+<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png" /></p>
+<h2>Task&nbsp;6</h2>
+<p>We have seen that the aggregate sales are lower in 2013 than in 2012. Which year
+has higher average sales amount? Plot a bar graph with average sales per year and
+add error bars with two times the standard deviation (do not forget to adjust by the number of observations).
+You can add error bars by using the <code>geom_errorbar()</code> function of <code>ggplot2</code>. 
+(I use the &#8220;lightblue&#8221; color to fill the bars in order to make the error bars more&nbsp;visible.)</p>
+<div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>year <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>year<span class="p">))</span> <span class="o">%&gt;%</span>
+    group_by<span class="p">(</span>year<span class="p">)</span> <span class="o">%&gt;%</span>
+    summarise<span class="p">(</span>avg_sales <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>sales<span class="p">),</span> sd <span class="o">=</span> sd<span class="p">(</span>sales<span class="p">),</span> n <span class="o">=</span> n<span class="p">())</span> <span class="o">%&gt;%</span>
+    ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> year<span class="p">,</span> y <span class="o">=</span> avg_sales<span class="p">))</span> <span class="o">+</span>
+    geom_bar<span class="p">(</span>stat <span class="o">=</span> <span class="s">&quot;identity&quot;</span><span class="p">,</span> fill <span class="o">=</span> <span class="s">&#39;lightblue&#39;</span><span class="p">)</span> <span class="o">+</span>
+    geom_errorbar<span class="p">(</span>aes<span class="p">(</span>ymin <span class="o">=</span> avg_sales <span class="o">-</span> <span class="m">2</span><span class="o">*</span>sd<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">),</span> ymax <span class="o">=</span> avg_sales <span class="o">+</span> <span class="m">2</span><span class="o">*</span>sd<span class="o">/</span><span class="kp">sqrt</span><span class="p">(</span>n<span class="p">)))</span> 
 </pre></div>
 
 
+<p><img alt="plot of chunk bar_year_error" src="../figure/bar_year_error-1.png" /></p>
 <h2>Task&nbsp;+1</h2>
 <p>Watch <a href="http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization?language=en">this video</a>
 and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
