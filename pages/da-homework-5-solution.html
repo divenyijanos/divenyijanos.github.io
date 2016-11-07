@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title><span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title"><span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></h1>
+    
+    <h2>Task&nbsp;1</h2>
+<p>Download the <code>sample-cohort.csv</code> from the Data section. It contains sample data from the 
+National Assessment of Basic Competencies. All of you (who finished high school in Hungary)
+had to fulfill this survey in your 6th, 8th and 10th grade. This sample is about
+the cohort who started their 6th grade in 2010 (when I graduated from <span class="caps">BME</span>), without
+the students in 8-class schools.
+The sample contains 8 variables: the id, the type of the school in 8th grade (either primary school or 6-class school, called &#8220;Elite6&#8221;), the math and reading scores from both the 6th and 8th grade, and the education level of the student&#8217;s&nbsp;parents.</p>
+<ul>
+<li>How many students went to 6-class schools in the sample? What&nbsp;share?</li>
+</ul>
+<!-- Less than 10 percent of the sample cohort went to 6-class school. We call this type
+as elite school because of selectivity.
+ -->
+
+<ul>
+<li>Plot the distribution of math or reading scores in 8th grade by school types.
+Which school&#8217;s students perform&nbsp;better?</li>
+</ul>
+<!-- Students in 6-class schools perform considerably better, than primary school students. This again seems to promote the "Elite" naming. -->
+
+<ul>
+<li>Run a regression of 8th grade math score on school types. Interpret the&nbsp;coefficients.</li>
+</ul>
+<!-- Students in 6-class schools have on average score of 1745, 151.6 higher than primary schhol students. This difference is statistically significant. -->
+
+<ul>
+<li>Do you think it shows that elite schools are better? How could you get closer to answer this question? Try to run regressions and interpret what you&nbsp;get.</li>
+</ul>
+<!-- By gradually including new control variables, the "effect" of elite school decreases. When we compare the performance of two students who had the same math score in 6th grade (when both went to primary school), the one who is now a student of an elite school is expected to perform better only by 23 points. Also controlling for the 6th grade reading score, the difference changes sign: primary school student perform better on average than an elite school student with the same 6th grade scores. Controlling for parental education makes this difference even bigger.
+
+We can conclude that it we get no evidence that elite schools are better. They mainly just select better students, that is what explains ther higher performance. As we try to compare similar students there is no difference in their performance, or if any, it is in favor for primary schools. -->
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction.</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-85196661-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>

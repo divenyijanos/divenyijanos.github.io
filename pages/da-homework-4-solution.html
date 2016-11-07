@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title><span class="caps">DA</span> Homework 4 - <span class="caps">SOLUTION</span></title>
+        <link rel="stylesheet" href="../theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="../">János K. Divényi </a></h1>
+                <nav><ul>
+                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
+                    <li><a href="../pages/research.html">research</a></li>
+                    <li><a href="../pages/teaching.html">teaching</a></li>
+                    <li><a href="../category/blog.html">blog</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+    <h1 class="entry-title"><span class="caps">DA</span> Homework 4 - <span class="caps">SOLUTION</span></h1>
+    
+    <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>readr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
+<span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
+</pre></div>
+
+
+<h2>Task&nbsp;1</h2>
+<p>Download the <code>civil-rights-act.csv</code> from the Data section (it might make sense
+to look at the description file as well). Using the data answer the questions
+below (run&nbsp;regressions).</p>
+<div class="highlight"><pre><span></span>act <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#39;~/teaching/BME_adat/201617/data/civil-rights-act.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Parsed with column specification:
+## cols(
+##   party = col_character(),
+##   state = col_character(),
+##   vote = col_integer()
+## )
+</pre></div>
+
+
+<ul>
+<li>Which of the two parties (democrats and republicans) were more
+supportive for the Civil Rights Act? First, look at a scatter plot. It might
+help to experiment with <code>jitter</code> to see the points better. (<em>Hint:</em> look at
+<a href="http://docs.ggplot2.org/current/geom_jitter.html">this</a>.)</li>
+</ul>
+<div class="highlight"><pre><span></span>act <span class="o">%&gt;%</span> ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> party<span class="p">,</span> y <span class="o">=</span> vote<span class="p">))</span> <span class="o">+</span> geom_point<span class="p">()</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk da-homework-4-solution-3" src="../figure/da-homework-4-solution-3-1.png" /></p>
+<div class="highlight"><pre><span></span>act <span class="o">%&gt;%</span> ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> party<span class="p">,</span> y <span class="o">=</span> vote<span class="p">))</span> <span class="o">+</span> geom_jitter<span class="p">()</span>
+</pre></div>
+
+
+<p><img alt="plot of chunk da-homework-4-solution-4" src="../figure/da-homework-4-solution-4-1.png" /></p>
+<ul>
+<li>Run a regression of the dummy of voting on the dummy of
+party (note that <code>R</code> is automatically going to use a character variable in a
+regression as a dummy.). What are the shares of the two parties who voted for
+the&nbsp;act?</li>
+</ul>
+<div class="highlight"><pre><span></span>lm<span class="p">(</span>data <span class="o">=</span> act<span class="p">,</span> vote <span class="o">~</span> party<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = vote ~ party, data = act)
+## 
+## Coefficients:
+##     (Intercept)  partyRepublican  
+##          0.6129           0.1894
+</pre></div>
+
+
+<p>61.3% of Democrats, and 80.2% (61.3+18.9) of
+Republicans voted for the&nbsp;act.</p>
+<ul>
+<li>Which states (northern or southern) were more supportive for the act?
+What are the shares of the representatives in the two groups of states who
+voted for the&nbsp;act?</li>
+</ul>
+<div class="highlight"><pre><span></span>lm<span class="p">(</span>data <span class="o">=</span> act<span class="p">,</span> vote <span class="o">~</span> state<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = vote ~ state, data = act)
+## 
+## Coefficients:
+## (Intercept)   stateSouth  
+##      0.8956      -0.8283
+</pre></div>
+
+
+<p>Northern states were more supportive for the act: almost 90% of
+the representatives voted for the act, whereas only 7.8% did
+from the southern&nbsp;states.</p>
+<ul>
+<li>When controlling for the state which party were more supportive for
+the act? How does it compare to what you found in task b)? How could you
+explain the&nbsp;difference?</li>
+</ul>
+<div class="highlight"><pre><span></span>lm<span class="p">(</span>data <span class="o">=</span> act<span class="p">,</span> vote <span class="o">~</span> party <span class="o">+</span> state<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = vote ~ party + state, data = act)
+## 
+## Coefficients:
+##     (Intercept)  partyRepublican       stateSouth  
+##         0.94076         -0.08814         -0.86497
+</pre></div>
+
+
+<p>If we control for state, Republicans are <em>less</em> supportive for
+the act. This is quite the opposite than what we found in task
+b).
+This could be explained by compositional effect (similar to
+what we found with Berkeley and discrimination).
+Southern states are less supportive for the
+act, and they are also more Democrat, whereas northern states
+are more Republican. When not
+controlling for state, we get that Republicans vote for the
+act. However, if we compare Republicans and Democrates from the
+<em>same</em> state, we see that they are less likely to vote for&nbsp;it.</p>
+<div class="highlight"><pre><span></span>act <span class="o">%&gt;%</span>
+    group_by<span class="p">(</span>state<span class="p">)</span> <span class="o">%&gt;%</span>
+    count<span class="p">(</span>party<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Source: local data frame [4 x 3]
+## Groups: state [?]
+## 
+##   state      party     n
+##   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt;
+## 1 North   Democrat   154
+## 2 North Republican   162
+## 3 South   Democrat    94
+## 4 South Republican    10
+</pre></div>
+
+
+<h2>Task&nbsp;2</h2>
+<p>Use the <code>easyshare_sample.csv</code> for this task. This is a sample of the easyshare
+project (you can read more about this <a href="http://www.share-project.org/">here</a>).
+The Survey of Health, Ageing and Retirement in Europe is a multidisciplinary
+panel survey targeting individuals above 50 years. Hungary participated once,
+in the 4th wave. The data is about the Hungarian sample with only a few
+variables: <code>lm_status</code> is originally called as <code>ep005_</code>, <code>mbirth</code> as <code>dn002_mod</code>.
+You can read about the variables <a href="http://www.share-project.org/fileadmin/pdf_documentation/easySHARE_Release_2.0.0.pdf">here</a>.
+The recall variables contain scores from a simple memory test: 10 simple words
+are listed to the participants of the survey which they should repeat once
+immediately (<code>recall_1</code>) and once with some delay (<code>recall_2</code>). The sum of these
+two numbers (ranging from 0 to 20) form a great measure for the memory of the&nbsp;elderly.</p>
+<ul>
+<li>Know your data. Look at summaries, strange values, and try to clean them.
+(<em>Hint:</em> negative values usually mean missing values, turn them into <code>NA</code>-s.)</li>
+</ul>
+<div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> read_csv<span class="p">(</span><span class="s">&#39;~/teaching/BME_adat/201617/data/easyshare_sample.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Parsed with column specification:
+## cols(
+##   age = col_double(),
+##   lm_status = col_integer(),
+##   recall_1 = col_integer(),
+##   recall_2 = col_integer(),
+##   eduyears = col_integer(),
+##   mbirth = col_integer()
+## )
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kp">summary</span><span class="p">(</span>easyshare<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1">##       age           lm_status          recall_1          recall_2      </span>
+<span class="c1">##  Min.   :-15.00   Min.   :-15.000   Min.   :-15.000   Min.   :-15.000  </span>
+<span class="c1">##  1st Qu.: 57.20   1st Qu.:  1.000   1st Qu.:  4.000   1st Qu.:  2.000  </span>
+<span class="c1">##  Median : 63.00   Median :  1.000   Median :  5.000   Median :  4.000  </span>
+<span class="c1">##  Mean   : 64.59   Mean   :  2.593   Mean   :  4.763   Mean   :  3.251  </span>
+<span class="c1">##  3rd Qu.: 71.30   3rd Qu.:  2.000   3rd Qu.:  6.000   3rd Qu.:  5.000  </span>
+<span class="c1">##  Max.   :100.70   Max.   : 97.000   Max.   : 10.000   Max.   : 10.000  </span>
+<span class="c1">##     eduyears          mbirth       </span>
+<span class="c1">##  Min.   :-15.00   Min.   :-15.000  </span>
+<span class="c1">##  1st Qu.:  8.00   1st Qu.:  3.000  </span>
+<span class="c1">##  Median : 11.00   Median :  6.000  </span>
+<span class="c1">##  Mean   : 10.52   Mean   :  6.273  </span>
+<span class="c1">##  3rd Qu.: 12.00   3rd Qu.:  9.000  </span>
+<span class="c1">##  Max.   : 25.00   Max.   : 12.000</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> easyshare <span class="o">%&gt;%</span>
+    mutate_each<span class="p">(</span>funs<span class="p">(</span><span class="kp">ifelse</span><span class="p">(</span><span class="m">.</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">,</span> <span class="kc">NA</span><span class="p">,</span> <span class="m">.</span><span class="p">)))</span>
+<span class="kp">summary</span><span class="p">(</span>easyshare<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>##       age           lm_status         recall_1         recall_2    
+##  Min.   : 29.10   Min.   : 1.000   Min.   : 0.000   Min.   : 0.00  
+##  1st Qu.: 57.25   1st Qu.: 1.000   1st Qu.: 4.000   1st Qu.: 2.00  
+##  Median : 63.00   Median : 1.000   Median : 5.000   Median : 4.00  
+##  Mean   : 64.61   Mean   : 2.789   Mean   : 5.163   Mean   : 3.62  
+##  3rd Qu.: 71.30   3rd Qu.: 2.000   3rd Qu.: 6.000   3rd Qu.: 5.00  
+##  Max.   :100.70   Max.   :97.000   Max.   :10.000   Max.   :10.00  
+##  NA&#39;s   :1        NA&#39;s   :34       NA&#39;s   :61       NA&#39;s   :61     
+##     eduyears         mbirth      
+##  Min.   : 0.00   Min.   : 1.000  
+##  1st Qu.: 8.00   1st Qu.: 3.000  
+##  Median :11.00   Median : 6.000  
+##  Mean   :10.58   Mean   : 6.308  
+##  3rd Qu.:12.00   3rd Qu.: 9.000  
+##  Max.   :25.00   Max.   :12.000  
+##  NA&#39;s   :7       NA&#39;s   :5
+</pre></div>
+
+
+<ul>
+<li>Create a new dummy variable which takes one for those who do not work (for whom
+<code>lm_status</code> not equal to 2). Create a new variable which is the total word&nbsp;recall.</li>
+</ul>
+<div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> easyshare <span class="o">%&gt;%</span>
+    mutate<span class="p">(</span>
+        notworking <span class="o">=</span> <span class="kp">as.numeric</span><span class="p">(</span>lm_status <span class="o">!=</span> <span class="m">2</span><span class="p">),</span>
+        twr <span class="o">=</span> recall_1 <span class="o">+</span> recall_2
+    <span class="p">)</span>
+</pre></div>
+
+
+<ul>
+<li>Look at whether the memory of those who are not working are worse than those
+who do. Run a regression which answers this question and interpret the&nbsp;coefficients.</li>
+</ul>
+<div class="highlight"><pre><span></span>lm<span class="p">(</span>twr <span class="o">~</span> notworking<span class="p">,</span> easyshare<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = twr ~ notworking, data = easyshare)
+## 
+## Coefficients:
+## (Intercept)   notworking  
+##      10.844       -2.582
+</pre></div>
+
+
+<p>Comparing two elderly, those who do not work recall on average 2.6 words less than those who&nbsp;do.</p>
+<ul>
+<li>Is there any other variable you may want to include the regression to get
+closer to the answer of the question whether working preserves ones memory?
+Include it in the regression and interpret your&nbsp;results.</li>
+</ul>
+<p>Elderly who do not work are usually older, and might be less educated (educated people typically work longer). Older and less educated people might have worse memory anyway, independently of whether they actually work. Let&#8217;s control for these variables as&nbsp;well.</p>
+<div class="highlight"><pre><span></span>lm<span class="p">(</span>twr <span class="o">~</span> notworking <span class="o">+</span> age <span class="o">+</span> eduyears<span class="p">,</span> easyshare<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## 
+## Call:
+## lm(formula = twr ~ notworking + age + eduyears, data = easyshare)
+## 
+## Coefficients:
+## (Intercept)   notworking          age     eduyears  
+##     12.6673      -0.5479      -0.1157       0.3803
+</pre></div>
+
+
+<p>Comparing two elderly with the same age and education, one who works and someone else who do not, the latter recalls on average a half word less. This difference is much smaller than what we found in the previous&nbsp;exercise.</p>
+<h2>Task&nbsp;3</h2>
+<p>Collect the data you would like to use for your term project. Make a plot, or run a regression using that data, and interpret your&nbsp;results.</p>
+<h2>Task&nbsp;+1</h2>
+<p>Watch <a href="https://www.youtube.com/watch?v=QPKKQnijnsM">this video</a>
+and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="">This webpage is still under construction.</a></li>
+                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
+                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
+                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
+                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-85196661-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = 'https://ssl.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+</body>
+</html>
