@@ -24,67 +24,36 @@
     <h1 class="entry-title"><span class="caps">DA</span> Homework&nbsp;5</h1>
     
     <h2>Task&nbsp;1</h2>
-<p>Download the <code>civil-rights-act.csv</code> from the Data section (it might make sense
-to look at the description file as well). Using the data answer the questions
-below (run&nbsp;regressions).</p>
+<p>Download the <code>sample-cohort.csv</code> from the Data section. It contains sample data from the 
+National Assessment of Basic Competencies. All of you (who finished high school in Hungary)
+had to fulfill this survey in your 6th, 8th and 10th grade. This sample is about
+the cohort who started their 6th grade in 2010 (when I graduated from <span class="caps">BME</span>), without
+the students in 8-class schools.
+The sample contains 8 variables: the id, the type of the school in 8th grade (either primary school or 6-class school, called &#8220;Elite6&#8221;), the math and reading scores from both the 6th and 8th grade, and the education level of the student&#8217;s&nbsp;parents.</p>
 <ul>
-<li>
-<p>Which of the two parties (democrats and republicans) were more
-supportive for the Civil Rights Act? First, look at a scatter plot. It might
-help to experiment with <code>jitter</code> to see the points better. (<em>Hint:</em> look at
-<a href="http://docs.ggplot2.org/current/geom_jitter.html">this</a>.)</p>
-</li>
-<li>
-<p>Run a regression of the dummy of voting on the dummy of
-party (note that <code>R</code> is automatically going to use a character variable in a
-regression as a dummy.). What are the shares of the two parties who voted for
-the&nbsp;act?</p>
-</li>
-<li>
-<p>Which states (northern or southern) were more supportive for the act?
-What are the shares of the representatives in the two groups of states who
-voted for the&nbsp;act?</p>
-</li>
-<li>
-<p>When controlling for the state which party were more supportive for
-the act? How does it compare to what you found in task b)? How could you
-explain the&nbsp;difference?</p>
-</li>
+<li>How many students went to 6-class schools in the sample? What&nbsp;share?</li>
 </ul>
-<h2>Task&nbsp;2</h2>
-<p>Use the <code>easyshare_sample.csv</code> for this task. This is a sample of the easyshare
-project (you can read more about this <a href="http://www.share-project.org/">here</a>).
-The Survey of Health, Ageing and Retirement in Europe is a multidisciplinary
-panel survey targeting individuals above 50 years. Hungary participated once,
-in the 4th wave. The data is about the Hungarian sample with only a few
-variables: <code>lm_status</code> is originally called as <code>ep005_</code>, <code>mbirth</code> as <code>dn002_mod</code>.
-You can read about the variables <a href="http://www.share-project.org/fileadmin/pdf_documentation/easySHARE_Release_2.0.0.pdf">here</a>.
-The recall variables contain scores from a simple memory test: 10 simple words
-are listed to the participants of the survey which they should repeat once
-immediately (<code>recall_1</code>) and once with some delay (<code>recall_2</code>). The sum of these
-two numbers (ranging from 0 to 20) form a great measure for the memory of the&nbsp;elderly.</p>
+<!-- Less than 10 percent of the sample cohort went to 6-class school. We call this type
+as elite school because of selectivity.
+ -->
+
 <ul>
-<li>
-<p>Know your data. Look at summaries, strange values, and try to clean them.
-(<em>Hint:</em> negative values usually mean missing values, turn them into <code>NA</code>-s.)</p>
-</li>
-<li>
-<p>Create a new dummy variable which takes one for those who do not work (for whom
-<code>lm_status</code> not equal to 2). Create a new variable which is the total word&nbsp;recall.</p>
-</li>
-<li>
-<p>Look at whether the memory of those who are not working are worse than those
-who do. Run a regression which answers this question and interpret the&nbsp;coefficients.</p>
-</li>
-<li>
-<p>Is there any other variable you may want to include the regression to get
-closer to the answer of the question whether working preserves ones memory?
-Include it in the regression and interpret your&nbsp;results.</p>
-</li>
+<li>Plot the distribution of math or reading scores in 8th grade by school types.
+Which school&#8217;s students perform&nbsp;better?</li>
 </ul>
-<h2>Task&nbsp;+1</h2>
-<p>Watch <a href="https://www.youtube.com/watch?v=QPKKQnijnsM">this video</a>
-and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
+<!-- Students in 6-class schools perform considerably better, than primary school students. This again seems to promote the "Elite" naming. -->
+
+<ul>
+<li>Run a regression of 8th grade math score on school types. Interpret the&nbsp;coefficients.</li>
+</ul>
+<!-- Students in 6-class schools have on average score of 1745, 151.6 higher than primary schhol students. This difference is statistically significant. -->
+
+<ul>
+<li>Do you think it shows that elite schools are better? How could you get closer to answer this question? Try to run regressions and interpret what you&nbsp;get.</li>
+</ul>
+<!-- By gradually including new control variables, the "effect" of elite school decreases. When we compare the performance of two students who had the same math score in 6th grade (when both went to primary school), the one who is now a student of an elite school is expected to perform better only by 23 points. Also controlling for the 6th grade reading score, the difference changes sign: primary school student perform better on average than an elite school student with the same 6th grade scores. Controlling for parental education makes this difference even bigger.
+
+We can conclude that it we get no evidence that elite schools are better. They mainly just select better students, that is what explains ther higher performance. As we try to compare similar students there is no difference in their performance, or if any, it is in favor for primary schools. -->
 </section>
         <section id="extras" class="body">
                 <div class="blogroll">
