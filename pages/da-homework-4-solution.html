@@ -207,8 +207,7 @@ two numbers (ranging from 0 to 20) form a great measure for the memory of the&nb
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> easyshare <span class="o">%&gt;%</span>
-    mutate_each<span class="p">(</span>funs<span class="p">(</span><span class="kp">ifelse</span><span class="p">(</span><span class="m">.</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">,</span> <span class="kc">NA</span><span class="p">,</span> <span class="m">.</span><span class="p">)))</span>
+<div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> easyshare <span class="o">%&gt;%</span> mutate_all<span class="p">(</span>funs<span class="p">(</span><span class="kp">ifelse</span><span class="p">(</span><span class="m">.</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">,</span> <span class="kc">NA</span><span class="p">,</span> <span class="m">.</span><span class="p">)))</span>
 <span class="kp">summary</span><span class="p">(</span>easyshare<span class="p">)</span>
 </pre></div>
 
