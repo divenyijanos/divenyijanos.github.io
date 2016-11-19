@@ -81,6 +81,10 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+</pre></div>
+
+
 <p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /></p>
 <p>With <code>span = 0.2</code>:</p>
 <div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
@@ -89,6 +93,10 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
     ggplot<span class="p">(</span>aes<span class="p">(</span>x<span class="o">=</span>purchase_date<span class="p">,</span> y<span class="o">=</span>sales<span class="p">))</span> <span class="o">+</span>
         geom_line<span class="p">()</span> <span class="o">+</span>
         geom_smooth<span class="p">(</span>span <span class="o">=</span> <span class="m">0.2</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
 </pre></div>
 
 
