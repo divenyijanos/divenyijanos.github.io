@@ -1,34 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title><span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="../static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="author" content="Janos K. Divenyi" />
+    <meta name="description" content="" />
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Janos K. Divenyi"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content=".."/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; <span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href="..">Janos K. Divenyi</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">János K. Divényi </a></h1>
-                <nav><ul>
-                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
-                    <li><a href="../pages/research.html">research</a></li>
-                    <li><a href="../pages/teaching.html">teaching</a></li>
-                    <li><a href="../category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-    <h1 class="entry-title"><span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></h1>
-    
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="../pages/research.html#research">research</a></li>
+          <li><a href="../pages/teaching.html#teaching">teaching</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="da-homework-5-solution"><span class="caps">DA</span> Homework 5 - <span class="caps">SOLUTION</span></h1>
+  </header>
+  <div>
     <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>readr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>stargazer<span class="p">)</span>
-<span class="kn">source</span><span class="p">(</span><span class="s">&#39;~/teaching/BME_adat/201617/code/da_helper_functions.R&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in library(stargazer): there is no package called &#39;stargazer&#39;
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kn">source</span><span class="p">(</span><span class="s">&#39;~/teaching/BME_adat/201617/code/da_helper_functions.R&#39;</span><span class="p">)</span>
 </pre></div>
 
 
@@ -57,73 +118,6 @@ The sample contains 8 variables: the id, the type of the school in 8th grade (ei
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-|=========                                                                      |  11%           
-|==========                                                                     |  12%    1 MB
-|===========                                                                    |  14%    1 MB
-|============                                                                   |  15%    1 MB
-|=============                                                                  |  17%    1 MB
-|==============                                                                 |  18%    1 MB
-|================                                                               |  20%    1 MB
-|=================                                                              |  21%    1 MB
-|==================                                                             |  23%    1 MB
-|===================                                                            |  24%    2 MB
-|====================                                                           |  25%    2 MB
-|=====================                                                          |  27%    2 MB
-|=======================                                                        |  28%    2 MB
-|========================                                                       |  30%    2 MB
-|=========================                                                      |  31%    2 MB
-|==========================                                                     |  33%    2 MB
-|===========================                                                    |  34%    2 MB
-|============================                                                   |  36%    3 MB
-|=============================                                                  |  37%    3 MB
-|===============================                                                |  38%    3 MB
-|================================                                               |  40%    3 MB
-|=================================                                              |  41%    3 MB
-|==================================                                             |  43%    3 MB
-|===================================                                            |  44%    3 MB
-|====================================                                           |  46%    3 MB
-|======================================                                         |  47%    4 MB
-|=======================================                                        |  49%    4 MB
-|========================================                                       |  50%    4 MB
-|=========================================                                      |  51%    4 MB
-|==========================================                                     |  53%    4 MB
-|===========================================                                    |  54%    4 MB
-|=============================================                                  |  56%    4 MB
-|==============================================                                 |  57%    4 MB
-|===============================================                                |  59%    5 MB
-|================================================                               |  60%    5 MB
-|=================================================                              |  62%    5 MB
-|==================================================                             |  63%    5 MB
-|===================================================                            |  64%    5 MB
-|=====================================================                          |  66%    5 MB
-|======================================================                         |  67%    5 MB
-|=======================================================                        |  69%    5 MB
-|========================================================                       |  70%    5 MB
-|=========================================================                      |  72%    6 MB
-|==========================================================                     |  73%    6 MB
-|============================================================                   |  75%    6 MB
-|=============================================================                  |  76%    6 MB
-|==============================================================                 |  77%    6 MB
-|===============================================================                |  79%    6 MB
-|================================================================               |  80%    6 MB
-|=================================================================              |  82%    6 MB
-|===================================================================            |  83%    7 MB
-|====================================================================           |  85%    7 MB
-|=====================================================================          |  86%    7 MB
-|======================================================================         |  88%    7 MB
-|=======================================================================        |  89%    7 MB
-|========================================================================       |  90%    7 MB
-|=========================================================================      |  92%    7 MB
-|===========================================================================    |  93%    7 MB
-|============================================================================   |  95%    8 MB
-|=============================================================================  |  96%    8 MB
-|============================================================================== |  98%    8 MB
-|===============================================================================|  99%    8 MB
-|================================================================================| 100%    8 MB
-</pre></div>
-
-
 <ul>
 <li>How many students went to 6-class schools in the sample? What&nbsp;share?</li>
 </ul>
@@ -133,7 +127,7 @@ The sample contains 8 variables: the id, the type of the school in 8th grade (ei
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 2 &lt;U+00D7&gt; 3
+<div class="highlight"><pre><span></span>## # A tibble: 2 x 3
 ##   school8     n      share
 ##     &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;
 ## 1  Elite6  5217 0.06029262
@@ -186,40 +180,12 @@ summary_r<span class="p">(</span>lm1<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Attaching package: &#39;car&#39;
+<div class="highlight"><pre><span></span>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called &#39;car&#39;
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## The following object is masked from &#39;package:dplyr&#39;:
-## 
-##     recode
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = math8 ~ school8, data = cohort)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -682.21 -131.42    7.02  138.04  681.79 
-## 
-## Coefficients:
-##                Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)    1745.306      2.424  719.90   &lt;2e-16 ***
-## school8Primary -151.600      2.532  -59.88   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 197.9 on 79935 degrees of freedom
-##   (6591 observations deleted due to missingness)
-## Multiple R-squared:  0.03332,    Adjusted R-squared:  0.03331 
-## F-statistic:  3586 on 1 and 79935 DF,  p-value: &lt; 2.2e-16
-## 
-## Number of observations: 79937 
-## 
-## Note: Heteroscedasticity-consistent standard errors (adjustment HC1)
+<div class="highlight"><pre><span></span>## Error in calculate_robust_se(model): Required car package is missing.
 </pre></div>
 
 
@@ -234,82 +200,53 @@ stargazer_r<span class="p">(</span><span class="kt">list</span><span class="p">(
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="err">##</span> 
-<span class="err">##</span> <span class="o">========================================================</span>
-<span class="err">##</span>                           <span class="nt">Dependent</span> <span class="nt">variable</span><span class="o">:</span>           
-<span class="err">##</span>                <span class="nt">-----------------------------------------</span>
-<span class="err">##</span>                                  <span class="nt">math8</span>                  
-<span class="err">##</span>                  <span class="o">(</span><span class="nt">1</span><span class="o">)</span>       <span class="o">(</span><span class="nt">2</span><span class="o">)</span>        <span class="o">(</span><span class="nt">3</span><span class="o">)</span>        <span class="o">(</span><span class="nt">4</span><span class="o">)</span>    
-<span class="err">##</span> <span class="nt">--------------------------------------------------------</span>
-<span class="err">##</span> <span class="nt">school8Primary</span>  <span class="nt">-151</span><span class="nc">.6</span>    <span class="nt">-23</span><span class="nc">.1</span>       <span class="nt">3</span><span class="nc">.8</span>        <span class="nt">10</span><span class="nc">.4</span>   
-<span class="err">##</span>                <span class="o">(</span><span class="nt">2</span><span class="nc">.5</span><span class="o">)***</span>  <span class="o">(</span><span class="nt">1</span><span class="nc">.7</span><span class="o">)***</span>   <span class="o">(</span><span class="nt">1</span><span class="nc">.6</span><span class="o">)**</span>    <span class="o">(</span><span class="nt">1</span><span class="nc">.7</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">math6</span>                      <span class="nt">0</span><span class="nc">.8</span>        <span class="nt">0</span><span class="nc">.4</span>        <span class="nt">0</span><span class="nc">.4</span>    
-<span class="err">##</span>                         <span class="o">(</span><span class="nt">0</span><span class="nc">.003</span><span class="o">)***</span> <span class="o">(</span><span class="nt">0</span><span class="nc">.003</span><span class="o">)***</span> <span class="o">(</span><span class="nt">0</span><span class="nc">.004</span><span class="o">)***</span>
-<span class="err">##</span> <span class="nt">reading8</span>                              <span class="nt">0</span><span class="nc">.5</span>        <span class="nt">0</span><span class="nc">.4</span>    
-<span class="err">##</span>                                    <span class="o">(</span><span class="nt">0</span><span class="nc">.003</span><span class="o">)***</span> <span class="o">(</span><span class="nt">0</span><span class="nc">.004</span><span class="o">)***</span>
-<span class="err">##</span> <span class="nt">med8High</span>                                         <span class="nt">25</span><span class="nc">.5</span>   
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">1</span><span class="nc">.9</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">med8Secondary</span>                                    <span class="nt">17</span><span class="nc">.4</span>   
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">1</span><span class="nc">.7</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">med8Vocational</span>                                   <span class="nt">8</span><span class="nc">.3</span>    
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">1</span><span class="nc">.6</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">fed8High</span>                                         <span class="nt">18</span><span class="nc">.4</span>   
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">2</span><span class="nc">.1</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">fed8Secondary</span>                                    <span class="nt">11</span><span class="nc">.8</span>   
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">1</span><span class="nc">.9</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">fed8Vocational</span>                                   <span class="nt">6</span><span class="nc">.3</span>    
-<span class="err">##</span>                                                <span class="o">(</span><span class="nt">1</span><span class="nc">.7</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">Constant</span>       <span class="nt">1</span><span class="o">,</span><span class="nt">745</span><span class="nc">.3</span>    <span class="nt">497</span><span class="nc">.4</span>      <span class="nt">219</span><span class="nc">.0</span>      <span class="nt">247</span><span class="nc">.2</span>   
-<span class="err">##</span>                <span class="o">(</span><span class="nt">2</span><span class="nc">.4</span><span class="o">)***</span>  <span class="o">(</span><span class="nt">4</span><span class="nc">.7</span><span class="o">)***</span>   <span class="o">(</span><span class="nt">4</span><span class="nc">.4</span><span class="o">)***</span>   <span class="o">(</span><span class="nt">4</span><span class="nc">.9</span><span class="o">)***</span> 
-<span class="err">##</span> <span class="nt">--------------------------------------------------------</span>
-<span class="err">##</span> <span class="nt">Observations</span>    <span class="nt">79</span><span class="o">,</span><span class="nt">937</span>    <span class="nt">77</span><span class="o">,</span><span class="nt">203</span>     <span class="nt">77</span><span class="o">,</span><span class="nt">196</span>     <span class="nt">63</span><span class="o">,</span><span class="nt">043</span>  
-<span class="err">##</span> <span class="nt">R2</span>               <span class="nt">0</span><span class="nc">.03</span>      <span class="nt">0</span><span class="nc">.5</span>        <span class="nt">0</span><span class="nc">.7</span>        <span class="nt">0</span><span class="nc">.7</span>    
-<span class="err">##</span> <span class="o">========================================================</span>
-<span class="err">##</span> <span class="nt">Note</span><span class="o">:</span>                        <span class="o">*</span><span class="nt">p</span><span class="o">&lt;</span><span class="nt">0</span><span class="nc">.1</span><span class="o">;</span> <span class="o">**</span><span class="nt">p</span><span class="o">&lt;</span><span class="nt">0</span><span class="nc">.05</span><span class="o">;</span> <span class="o">***</span><span class="nt">p</span><span class="o">&lt;</span><span class="nt">0</span><span class="nc">.01</span>
-<span class="err">##</span>                    <span class="nt">Robust</span> <span class="nt">standard</span> <span class="nt">errors</span> <span class="nt">in</span> <span class="nt">parentheses</span>
+<div class="highlight"><pre><span></span>## Loading required package: stargazer
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
+## logical.return = TRUE, : there is no package called &#39;stargazer&#39;
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in stargazer_r(list(lm1, lm2, lm3, lm4), digits = 1): Required stargazer package is missing.
 </pre></div>
 
 
 <p>By gradually including new control variables, the &#8220;effect&#8221; of elite school decreases. When we compare the performance of two students who had the same math score in 6th grade (when both went to primary school), the one who is now a student of an elite school is expected to perform better only by 23 points. Also controlling for the 6th grade reading score, the difference changes sign: primary school student perform better on average than an elite school student with the same 6th grade scores. Controlling for parental education makes this difference even&nbsp;bigger.</p>
 <p>We can conclude that it we get no evidence that elite schools are better. They mainly just select better students, that is what explains ther higher performance. As we try to compare similar students there is no difference in their performance, or if any, it is in favor for primary&nbsp;schools.</p>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="">This webpage is still under construction.</a></li>
-                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+  </div>
+</article>
 
-                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
-                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
-                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
-                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-85196661-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : "..",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
 </body>
 </html>

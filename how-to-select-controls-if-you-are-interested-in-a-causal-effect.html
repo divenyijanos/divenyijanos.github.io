@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Janos K. Divenyi" />
+<meta name="description" content="TODO: SIMPLER INTRODUCTION, TLDR If you are interested in the effect of some variable on another (aka treatment effect or uplift), you should ensure conditional independence. Unless you have a randomized experiment (aka AB testing) you should include relevant controls. Let’s suppose you want to learn about the effect ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:title" content="How to select controls if you are interested in a causal effect?"/>
+<meta property="og:description" content="TODO: SIMPLER INTRODUCTION, TLDR If you are interested in the effect of some variable on another (aka treatment effect or uplift), you should ensure conditional independence. Unless you have a randomized experiment (aka AB testing) you should include relevant controls. Let’s suppose you want to learn about the effect ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./how-to-select-controls-if-you-are-interested-in-a-causal-effect.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2017-07-03 00:00:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/janos-k-divenyi.html">
+<meta property="article:section" content="blog"/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; How to select controls if you are interested in a causal effect?</title>
+
+</head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href=".">Janos K. Divenyi</a></h1>
+
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="./pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="./pages/research.html#research">research</a></li>
+          <li><a href="./pages/teaching.html#teaching">teaching</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="how-to-select-controls-if-you-are-interested-in-a-causal-effect">How to select controls if you are interested in a causal&nbsp;effect?</h1>
+    <p>
+          Posted on Mon 03 July 2017 in <a href="./category/blog.html">blog</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p><span class="caps">TODO</span>: <span class="caps">SIMPLER</span> <span class="caps">INTRODUCTION</span>, <span class="caps">TLDR</span></p>
+<p>If you are interested in the effect of some variable on another (<em>aka</em> treatment effect or uplift), you should ensure <a href="https://en.wikipedia.org/wiki/Conditional_independence">conditional independence</a>. Unless you have a <a href="https://en.wikipedia.org/wiki/Randomized_experiment">randomized experiment</a> (<em>aka</em> <a href="https://en.wikipedia.org/wiki/A/B_testing"><span class="caps">AB</span> testing</a>) you should include relevant&nbsp;controls. </p>
+<p>Let&#8217;s suppose you want to learn about the effect of <a href="http://pricetheory.uchicago.edu/levitt/Papers/DonohueLevittTheImpactOfLegalized2001.pdf">legalized abortion on crime</a>. The differences in abortion rates between states in the <span class="caps">U.S.</span> offer great variation to study the question. However, states also differ along other dimensions. For example, per capita income might predict the crime rate, and it also may be related to the abortion rate. Thus, income is a natural candidate to control for, when trying to estimate the true effect of abortion on crime. However, this decision is not that easy. When considering to include a control, you face a trade-off: failing to control for income may introduce omitted variable bias, whereas including it as an irrelevant control may make your estimate&nbsp;noisy.</p>
+<p>In this post, we investigate the problem of variable selection by running simulations in R. The idea came from the Big Data Econometrics summer course held by <a href="http://www.mit.edu/~vchern/">Victor Chernozhukov</a> and <a href="https://www.chicagobooth.edu/faculty/directory/h/christian-b-hansen">Chris Hansen</a> and happily participated by&nbsp;us. </p>
+<p>The key message is that the standard practice of how to decide about controls, running a t-test on the potential control, is very dangerous. More specifically, it leads to biased estimates, too optimistic standard errors, and thus severe size distortion. Instead, also taking into account the correlation between the treatment and the control variables fixes the problems. However, the more sophisticated variable selection method sacrifices&nbsp;power.</p>
+<p>Let&#8217;s consider the following&nbsp;model:</p>
+<div class="math">$$
+\begin{aligned}
+Y &amp; = \alpha D + \beta X + \varepsilon,\\
+D &amp; = \gamma X + \nu,
+\end{aligned}
+$$</div>
+<p>where <span class="math">\(Y\)</span> denotes the outcome, <span class="math">\(D\)</span> is the treatment, and <span class="math">\(X\)</span> is a control variable. The parameter of interest is <span class="math">\(\alpha\)</span>. To keep things simple, let&#8217;s assume that the error terms <span class="math">\(\varepsilon\)</span> and <span class="math">\(\nu\)</span> are uncorrelated and follow a joint normal distribution. We consider a sample size of 100, and assume that the treatment and control variable are highly correlated (<span class="math">\(\gamma = 0.8\)</span>). </p>
+<p>The question we are interested in is whether we would like to include the control <span class="math">\(X\)</span> in the regression when estimating the effect. We simulate data and estimate both the <strong>long</strong> (control included) and the <strong>short</strong> (control omitted)&nbsp;regression.</p>
+<p>The standard practice to overcome the variable selection problem, called <em>post-single-selection</em>, is to first estimate the long regression, then perform a t-test on the coefficient of the included control, and then estimate the model that corresponds to the conclusion of the&nbsp;t-test.</p>
+<p>A more nuanced approach is to complement post-single-selection with an <em>&#8220;eyeball&#8221; test</em>: if the estimates of the short- and long regressions are sufficiently close to each other, then we conclude that the correlation between the treatment and control is small, and prefer the short&nbsp;model. </p>
+<p><a href="https://academic.oup.com/restud/article-lookup/doi/10.1093/restud/rdt044">Belloni et. al (2014)</a> - hereafter <span class="caps">BCH</span> -  propose a more conservative selection approach, called <em>post-double-selection</em>. Post-double-selection consists of three steps. First, test if the control variable explains the treatment variable. Second, estimate the long regression, and test if the control variable&#8217;s coefficient is significantly different from zero. Third, keep the control variable in the model, if either of the previous steps yielded significant coefficient estimate. Intuitively, we exclude the control variable from the model only if the correlation between the control and the treatment is zero and the control does not have a direct impact on the outcome. <span class="caps">BCH</span> show that double selection results in an unbiased estimate of the treatment&nbsp;effect.</p>
+<p><span class="caps">TODO</span>: <span class="caps">WRITE</span> <span class="caps">ABOUT</span> <span class="caps">SIMULATION</span></p>
+<p>The figure below compares the distribution of the <strong>parameter estimates</strong> of the long model, an unbiased estimate for <span class="math">\(\alpha\)</span>, and the post-selection estimates for different selection methods. The post-single-selection estimator is biased, as also shown by <span class="caps">BCH</span>. The intuition is that the multicollinearity between <span class="math">\(D\)</span> and <span class="math">\(X\)</span> makes the estimates imprecise, hence we fail to reject the null that the control does not have a direct effect on the outcome. Thus, post-single-selection favors the short model, which entails omitted variable&nbsp;bias.</p>
+<p>Single selection complemented with the eyeball test (using a cutoff of 0.05) highly improves the results, but still yields biased estimates. The post-double-selection estimator is unbiased (c.f. <span class="caps">BCH</span> Figure 1). <img alt="coefficients" src="figure/coefficients.png" width="100%" /></p>
+<p><span class="caps">TODO</span>: <span class="caps">EXPLAIN</span> <span class="caps">GRAPH</span> <span class="caps">BETTER</span></p>
+<p>Below you can see the <strong>standard errors</strong> of the long model and the post-selection standard errors across simulations for each selection method. Post-single-selection, with or without eyeballing, favors the short model too often, corresponding to overly optimistic standard errors of the main estimate. In contrast, post-double-selection yields correct standard errors. <img alt="" src="figure/standard-errors.png" width="100%" /></p>
+<p>Given the biased estimates and unrealistic standard errors of the post-single-selection estimates, we investigate the size of the test on our parameter of interest. With the standard significance level of 5 percent, we would expect to reject the zero null hypothesis in 5 percent of the cases even if there is no effect. The figure below displays the error in the rejection probability (<span class="caps">ERP</span>, difference between the actual rejection rate and the theoretical 5 percent) for each selection method, as a function of the tolerance level of the eyeball-test. Since post-single-selection and post-double-selection do not depend on the tolerance-level, their <span class="caps">ERP</span> is constant. The figure illustrates that post-double-selection has the right size, whereas the <span class="caps">ERP</span> is above 16 percent for post-single selection, indicating that post-single-selection over-rejects (around four times). Post-single-selection complemented with the eyeball test provides a smooth transition between post-single- and post-double-selection. Importantly, if the eyeball test is not conservative enough, it also can lead to serious over-rejection. <img alt="" src="figure/erp.png" width="100%" /></p>
+<p>Until now, we assumed that the true effect is zero. However, in reality, we do not know that. It is an equally important question to see whether we are able to find the effect if it is there. We simulate new data with a positive treatment effect where the control is irrelevant (<span class="math">\(\alpha = 0.2, \beta = 0\)</span>). On this data we can study the power of the variable selection methods. The power curves below reiterate that post-double-selection gets the size of the test right, but, more importantly, it also shows that we lose power relative to post-single-selection. <img alt="" src="figure/power.png" width="100%" /></p>
+<p>To summarize the trade-off between the size and the power of the variable selection methods, let&#8217;s compare <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives">true and false positive rates</a> in a <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><span class="caps">ROC</span></a>-type graph. Combining the simulated data from both states of the world we can analyze whether our methods find the effect if it is there (true positive) or wrongly find an effect if it is not there (false positive). The graph illustrates that post-single-selection yields too many false positives but more true positives as well. Post-double-selection is the most conservative and finds the effect the least frequently. <img alt="" src="figure/roc.png" width="100%" /></p>
+<p>To sum up, post-double-selection can cure the problems (biasedness, over-rejection) of the standard practices for variable selection, but sacrifices power in exchange for&nbsp;that.</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (false) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    var location_protocol = (false) ? 'https' : document.location.protocol;
+    if (location_protocol !== 'http' && location_protocol !== 'https') location_protocol = 'https:';
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = location_protocol + '//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
+
+
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'divenyijanos';
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : ".",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
+</body>
+</html>

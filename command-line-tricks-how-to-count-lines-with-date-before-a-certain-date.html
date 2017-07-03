@@ -1,45 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Command Line Tricks: How to count lines with date before a certain date?</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Janos K. Divenyi" />
+<meta name="description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date "title of the article",http://www.url-of-the-article.com,"tag1,etc",2015-02-27 How could I calculate the number of articles posted before a certain date without having to load ..." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:title" content="Command Line Tricks: How to count lines with date before a certain date?"/>
+<meta property="og:description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date "title of the article",http://www.url-of-the-article.com,"tag1,etc",2015-02-27 How could I calculate the number of articles posted before a certain date without having to load ..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-02-27 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/janos-k-divenyi.html">
+<meta property="article:section" content="blog"/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; Command Line Tricks: How to count lines with date before a certain date?</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href=".">Janos K. Divenyi</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="./">János K. Divényi </a></h1>
-                <nav><ul>
-                    <li><a href="./pages/about-me.html">about&nbsp;me</a></li>
-                    <li><a href="./pages/research.html">research</a></li>
-                    <li><a href="./pages/teaching.html">teaching</a></li>
-                    <li class="active"><a href="./category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html" rel="bookmark"
-           title="Permalink to Command Line Tricks: How to count lines with date before a certain date?">Command Line Tricks: How to count lines with date before a certain&nbsp;date?</a></h1>
-    </header>
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="./pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="./pages/research.html#research">research</a></li>
+          <li><a href="./pages/teaching.html#teaching">teaching</a></li>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-02-27T00:00:00+01:00">
-                Published: Fri 27 February 2015
-        </abbr>
+        </ul>
+      </nav>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
-        </address>
-<p>In <a href="./category/blog.html">blog</a>.</p>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
 
-</footer><!-- /.post-info -->      <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="command-line-tricks-how-to-count-lines-with-date-before-a-certain-date">Command Line Tricks: How to count lines with date before a certain&nbsp;date?</h1>
+    <p>
+          Posted on Fri 27 February 2015 in <a href="./category/blog.html">blog</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
 <div class="highlight"><pre><span></span>head -2 file-with-dates.csv
 title,url,tag,date
 <span class="s2">&quot;title of the article&quot;</span>,http://www.url-of-the-article.com,<span class="s2">&quot;tag1,etc&quot;</span>,2015-02-27
@@ -56,47 +106,59 @@ number of lines in  the data I can also get the share of the articles before the
 <div class="highlight"><pre><span></span><span class="o">(</span>cat file-with-dates.csv<span class="p">;</span> <span class="nb">echo</span> certainDate<span class="o">)</span> <span class="p">|</span> sort <span class="p">|</span> grep -n <span class="s1">&#39;certainDate&#39;</span>
 wc file-with-dates.csv -l
 </pre></div>
-    </div><!-- /.entry-content -->
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="">This webpage is still under construction.</a></li>
-                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
 
-                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
-                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
-                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
-                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-85196661-1']);
-    _gaq.push(['_trackPageview']);
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'divenyijanos';
     (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-    </script>
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : ".",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
 </body>
 </html>

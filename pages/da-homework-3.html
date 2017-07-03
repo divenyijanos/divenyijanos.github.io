@@ -1,28 +1,82 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title><span class="caps">DA</span> Homework&nbsp;3</title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="../static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="author" content="Janos K. Divenyi" />
+    <meta name="description" content="" />
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Janos K. Divenyi"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content=".."/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; <span class="caps">DA</span> Homework&nbsp;3</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href="..">Janos K. Divenyi</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">János K. Divényi </a></h1>
-                <nav><ul>
-                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
-                    <li><a href="../pages/research.html">research</a></li>
-                    <li><a href="../pages/teaching.html">teaching</a></li>
-                    <li><a href="../category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-    <h1 class="entry-title"><span class="caps">DA</span> Homework&nbsp;3</h1>
-    
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="../pages/research.html#research">research</a></li>
+          <li><a href="../pages/teaching.html#teaching">teaching</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="da-homework-3"><span class="caps">DA</span> Homework&nbsp;3</h1>
+  </header>
+  <div>
     <h2>Task&nbsp;0</h2>
 <p>Download the <code>purchases.csv</code> from the data section. This sample data contains
 purchases from an online store.
@@ -56,13 +110,13 @@ Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
 <code>geom_smooth()</code> to control the smoothness of your&nbsp;line).</p>
 <p>Default:</p>
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
 <p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /></p>
 <p>With <code>span = 0.2</code>:</p>
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
@@ -87,44 +141,38 @@ You can add error bars by using the <code>geom_errorbar()</code> function of <co
 <h2>Task&nbsp;+1</h2>
 <p>Watch <a href="http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization?language=en">this video</a>
 and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="">This webpage is still under construction.</a></li>
-                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+  </div>
+</article>
 
-                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
-                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
-                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
-                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-85196661-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : "..",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
 </body>
 </html>

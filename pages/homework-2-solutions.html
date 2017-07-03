@@ -1,28 +1,82 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Homework 2 &#8212; <span class="caps">SOLUTIONS</span></title>
-        <link rel="stylesheet" href="../theme/css/main.css" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="../theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="../theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="../static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <meta name="author" content="Janos K. Divenyi" />
+    <meta name="description" content="" />
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:type" content="blog"/>
+<meta property="og:title" content="Janos K. Divenyi"/>
+<meta property="og:description" content=""/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content=".."/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; Homework 2 &#8212; <span class="caps">SOLUTIONS</span></title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href="..">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href="..">Janos K. Divenyi</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="../">János K. Divényi </a></h1>
-                <nav><ul>
-                    <li><a href="../pages/about-me.html">about&nbsp;me</a></li>
-                    <li><a href="../pages/research.html">research</a></li>
-                    <li><a href="../pages/teaching.html">teaching</a></li>
-                    <li><a href="../category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-    <h1 class="entry-title">Homework 2 &#8212; <span class="caps">SOLUTIONS</span></h1>
-    
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="../pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="../pages/research.html#research">research</a></li>
+          <li><a href="../pages/teaching.html#teaching">teaching</a></li>
+
+        </ul>
+      </nav>
+
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
+
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="homework-2-solutions">Homework 2 &#8212; <span class="caps">SOLUTIONS</span></h1>
+  </header>
+  <div>
     <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>tidyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>ggplot2<span class="p">)</span>
@@ -57,7 +111,7 @@
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 2
+<div class="highlight"><pre><span></span>## # A tibble: 1 x 2
 ##   `mean(sales)` `median(sales)`
 ##           &lt;dbl&gt;           &lt;dbl&gt;
 ## 1      92.42237            55.9
@@ -74,7 +128,7 @@ purchases <span class="o">%&gt;%</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 1
+<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
 ##   `median(purchase_date)`
 ##                    &lt;date&gt;
 ## 1              2012-11-22
@@ -91,7 +145,7 @@ purchases <span class="o">%&gt;%</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 5 &lt;U+00D7&gt; 2
+<div class="highlight"><pre><span></span>## # A tibble: 5 x 2
 ##   contact_id    sales
 ##        &lt;int&gt;    &lt;dbl&gt;
 ## 1   35244243 29906.27
@@ -122,18 +176,18 @@ for accomplishing&nbsp;this).</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 12 &lt;U+00D7&gt; 3
+<div class="highlight"><pre><span></span>## # A tibble: 12 x 3
 ##    month `2012` `2013`
-## *  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-## 1      1   2079   1559
-## 2      2   1651   1041
-## 3      3   1714   1273
-## 4      4   1648   1300
-## 5      5   1917   1309
-## 6      6   1873   1342
-## 7      7   1736   1235
-## 8      8   1738   1247
-## 9      9   1640   1162
+##  * &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
+##  1     1   2079   1559
+##  2     2   1651   1041
+##  3     3   1714   1273
+##  4     4   1648   1300
+##  5     5   1917   1309
+##  6     6   1873   1342
+##  7     7   1736   1235
+##  8     8   1738   1247
+##  9     9   1640   1162
 ## 10    10   1781   1323
 ## 11    11   2497   1624
 ## 12    12   2415   1831
@@ -162,7 +216,7 @@ to calculate cumulative&nbsp;sums.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 &lt;U+00D7&gt; 1
+<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
 ##   top5_share
 ##        &lt;dbl&gt;
 ## 1 0.02366103
@@ -184,7 +238,7 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
@@ -199,7 +253,7 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
@@ -249,44 +303,38 @@ task&nbsp;6.)</p>
 
 
 <p><img alt="plot of chunk cumsum" src="../figure/cumsum-1.png" /></p>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="">This webpage is still under construction.</a></li>
-                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
+  </div>
+</article>
 
-                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
-                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
-                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
-                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
 
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-85196661-1']);
-    _gaq.push(['_trackPageview']);
-    (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-    </script>
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : "..",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
 </body>
 </html>

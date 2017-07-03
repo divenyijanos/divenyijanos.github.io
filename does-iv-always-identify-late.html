@@ -1,49 +1,99 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>Does IV always identify LATE?</title>
-        <link rel="stylesheet" href="./theme/css/main.css" />
+  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
 
-        <!--[if IE]>
-            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
+
+  <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+
+    <link href="./static/custom.css" rel="stylesheet">
+
+
+
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="" />
+
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333333">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333333">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<meta name="author" content="Janos K. Divenyi" />
+<meta name="description" content="Instrumental variables are often used in causal analysis when randomized control trials are out of option. However, it is not always emphasized that the instrumental variable estimator — even if the instrument is valid and relevant — does not necessarily identify the average treatment effect (ATE) or the average treatment effect on the treated (ATET); most often, it only identifies the local average treatment effect (LATE): the average treatment effect on the complier subpopulation (see Angrist&Imbens, 1994)." />
+<meta name="keywords" content="">
+<meta property="og:site_name" content="Janos K. Divenyi"/>
+<meta property="og:title" content="Does IV always identify LATE?"/>
+<meta property="og:description" content="Instrumental variables are often used in causal analysis when randomized control trials are out of option. However, it is not always emphasized that the instrumental variable estimator — even if the instrument is valid and relevant — does not necessarily identify the average treatment effect (ATE) or the average treatment effect on the treated (ATET); most often, it only identifies the local average treatment effect (LATE): the average treatment effect on the complier subpopulation (see Angrist&Imbens, 1994)."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="./does-iv-always-identify-late.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2015-03-02 00:00:00+01:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="./author/janos-k-divenyi.html">
+<meta property="article:section" content="blog"/>
+<meta property="og:image" content="../images/divenyi_circle_small.png">
+
+  <title>Janos K. Divenyi &ndash; Does IV always identify LATE?</title>
+
 </head>
+<body>
+  <aside>
+    <div>
+      <a href=".">
+        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+      </a>
+      <h1><a href=".">Janos K. Divenyi</a></h1>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="./">János K. Divényi </a></h1>
-                <nav><ul>
-                    <li><a href="./pages/about-me.html">about&nbsp;me</a></li>
-                    <li><a href="./pages/research.html">research</a></li>
-                    <li><a href="./pages/teaching.html">teaching</a></li>
-                    <li class="active"><a href="./category/blog.html">blog</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-<section id="content" class="body">
-  <article>
-    <header>
-      <h1 class="entry-title">
-        <a href="./does-iv-always-identify-late.html" rel="bookmark"
-           title="Permalink to Does IV always identify LATE?">Does <span class="caps">IV</span> always identify <span class="caps">LATE</span>?</a></h1>
-    </header>
+<p>Data Scientist</p>
+      <nav>
+        <ul class="list">
+          <li><a href="./pages/about-me.html#about-me">about&nbsp;me</a></li>
+          <li><a href="./pages/research.html#research">research</a></li>
+          <li><a href="./pages/teaching.html#teaching">teaching</a></li>
 
-    <div class="entry-content">
-<footer class="post-info">
-        <abbr class="published" title="2015-03-02T00:00:00+01:00">
-                Published: Mon 02 March 2015
-        </abbr>
+        </ul>
+      </nav>
 
-        <address class="vcard author">
-                By                         <a class="url fn" href="./author/janos-k-divenyi.html">János K. Divényi</a>
-        </address>
-<p>In <a href="./category/blog.html">blog</a>.</p>
+      <ul class="social">
+        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
+        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
+        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+      </ul>
+    </div>
 
-</footer><!-- /.post-info -->      <!-- Latex macros for math -->
+
+  </aside>
+  <main>
+
+
+<article class="single">
+  <header>
+    <h1 id="does-iv-always-identify-late">Does <span class="caps">IV</span> always identify <span class="caps">LATE</span>?</h1>
+    <p>
+          Posted on Mon 02 March 2015 in <a href="./category/blog.html">blog</a>
+
+
+    </p>
+  </header>
+
+
+  <div>
+    <!-- Latex macros for math -->
 
 <p><span class="math">\(\newcommand{\E}{\mathbb{E}}\)</span>
 <span class="math">\(\newcommand{\P}{\mathbb{P}}\)</span></p>
-<h1>Local average treatment effect (<span class="caps">LATE</span>)</h1>
+<h2>Local average treatment effect (<span class="caps">LATE</span>)</h2>
 <p><a href="http://en.wikipedia.org/wiki/Instrumental_variable">Instrumental variables</a> are
 often used in causal analysis when randomized control trials are out of option.
 However, it is not always emphasized that <strong>the instrumental variable
@@ -76,7 +126,7 @@ complier  subpopulation is the same as the effect for the whole population. But
 most often we cannot be sure that this assumption holds. If there is nothing 
 which can rule out a <strong>heterogeneous treatment effect</strong>, <span class="caps">LATE</span> usually differs
 from <span class="caps">ATE</span>.</p>
-<h1>Statistical&nbsp;intuition</h1>
+<h2>Statistical&nbsp;intuition</h2>
 <p>What is the <strong>statistical intuition</strong> behind this result? In causal analysis we
 generally compare outcomes of certain groups who differ in terms of the extent
 they get a treatment. Taking the previous example we would like to  compare the
@@ -124,7 +174,7 @@ college are more likely to go to a college. Let us maintain this assumption.
 Then the <span class="caps">IV</span> estimator identifies <span class="caps">LATE</span>: the returns to schooling on the complier
 population. That is the effect on those who went to college because they were 
 living close to a college (and would not have gone to college had they not lived&nbsp;close).</p>
-<h1>Program evaluation&nbsp;language</h1>
+<h2>Program evaluation&nbsp;language</h2>
 <p>Thinking about causal effects is easier when we use the <strong>potential outcome 
 framework</strong> by <a href="http://en.wikipedia.org/wiki/Donald_Rubin">Donald Rubin</a>. It 
 builds on the idea that the outcome of each individual depends on her treatment
@@ -255,47 +305,59 @@ One should only scale by the difference of the take up rates to get <span class=
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
-    </div><!-- /.entry-content -->
+  </div>
+  <div class="tag-cloud">
+    <p>
+    </p>
+  </div>
 
-  </article>
-</section>
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>blogroll</h2>
-                        <ul>
-                            <li><a href="">This webpage is still under construction.</a></li>
-                            <li><a href="">Please excuse any incoherence or roughness.</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
 
-                            <li><a href="https://github.com/divenyijanos">GitHub</a></li>
-                            <li><a href="http://hu.linkedin.com/in/janosdivenyi">LinkedIn</a></li>
-                            <li><a href="http://stackoverflow.com/users/3409615/janosdivenyi">Stack Overflow</a></li>
-                            <li><a href="https://twitter.com/divenyijanos">Twitter</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
 
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
 
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
-    <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-85196661-1']);
-    _gaq.push(['_trackPageview']);
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'divenyijanos';
     (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = 'https://ssl.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-    </script>
+</script>
+<noscript>
+        Please enable JavaScript to view comments.
+
+</noscript>
+</article>
+
+    <footer>
+<p>&copy; Janos K. Divenyi </p>
+<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
+</p>    </footer>
+  </main>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+
+<script type="application/ld+json">
+{
+  "@context" : "http://schema.org",
+  "@type" : "Blog",
+  "name": " Janos K. Divenyi ",
+  "url" : ".",
+  "image": "../images/divenyi_circle_small.png",
+  "description": ""
+}
+</script>
 </body>
 </html>
