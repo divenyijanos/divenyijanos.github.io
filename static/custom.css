@@ -1,3 +1,7 @@
+main {
+    max-width: 1024px;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Yanone Kaffeesatz';
 }
@@ -5,3 +9,4 @@ h1, h2, h3, h4, h5, h6 {
 p {
     font-family: 'Trebuchet MS';
 }
+
