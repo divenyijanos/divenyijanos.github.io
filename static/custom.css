@@ -1,11 +1,11 @@
-@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin)
+/*@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz&subset=latin)*/
 
 main {
     max-width: 1024px;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Yanone Kaffesatz';
+    font-family: 'YanoneKaffeesatzRegular';
 }
 
 p {
