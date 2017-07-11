@@ -31,11 +31,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <meta name="author" content="Janos K. Divenyi" />
-<meta name="description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well. However, this more sophisticated variable selection method sacrifices power." />
+<meta name="description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well (so called double-selection)." />
 <meta name="keywords" content="">
 <meta property="og:site_name" content="Divenyi"/>
 <meta property="og:title" content="How to select controls if you are interested in a causal effect?"/>
-<meta property="og:description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well. However, this more sophisticated variable selection method sacrifices power."/>
+<meta property="og:description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well (so called double-selection)."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="./how-to-select-controls-if-you-are-interested-in-a-causal-effect.html"/>
 <meta property="og:type" content="article"/>
@@ -86,7 +86,7 @@
           Posted on Thu 06 July 2017 in <a href="./category/blog.html">blog</a>
 
 
-        &#8226; 6 min read
+        &#8226; 7 min read
     </p>
   </header>
 
@@ -116,6 +116,10 @@ $$</div>
 <p>Until now, we assumed that the true effect is zero. However, in reality, we do not know that. It is an equally important question to see whether we are able to find the effect if it is there. We simulate new data with a positive treatment effect where the control is irrelevant (<span class="math">\(\alpha = 0.2, \beta = 0\)</span>). On this data we can study the power of the variable selection methods. The power curves below reiterate that post-double-selection gets the size of the test right, but, more importantly, it also shows that we lose power relative to post-single-selection. <img alt="" src="figure/power.png" width="100%" /></p>
 <p>To summarize the trade-off between the size and the power of the variable selection methods, let&#8217;s compare <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives">true and false positive rates</a> in a <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><span class="caps">ROC</span></a>-type graph. Combining the simulated data from both states of the world we can analyze whether our methods find the effect when it is there (true positive) or wrongly find an effect when it is not there (false positive). The graph illustrates that post-single-selection yields too many false positives but more true positives as well. Post-double-selection is the most conservative and finds the effect the least frequently. <img alt="" src="figure/roc.png" width="100%" /></p>
 <p>To sum up, post-double-selection can cure the problems (bias, over-rejection) of standard variable selection practices, but sacrifices power in exchange for&nbsp;that.</p>
+<hr />
+<p><strong><span class="caps">UPDATE</span></strong>. Chris drew our attention to a flaw of our power comparison; we did not control for the difference in the effective sizes of the tests. There is an inherent trade-off between size and power: if you increase your significance level, you are going to reject more often (less false positives) but that applies for true hypotheses as well (less true positives). As the effective size of the test for post-single-selection is larger than 5% (see the <span class="caps">ERP</span> graph), it implies a stronger power in itself. We mixed up this inherent trade-off between size and power with the trade-off of which method to&nbsp;use.</p>
+<p>The graph below replicates the <span class="caps">ROC</span>-type graph of the post with varying significance levels. Here, we can compare the power of the methods for the same effective sizes (fixed level of false positive rate). The post-single-selection clearly under-performs post-double-selection: for every rate of false positives, it finds less true positives. Post-single-selection with eyeball testing fares about the same as double-selection, especially in the relevant ranges (false positive rate under 10 percent).<img alt="" src="figure/roc_size_adjusted.png" width="100%" /></p>
+<p>This finding changes our previous conclusion. Post-double selection is definitely an improvement upon standard variable selection practices: it cures the problems of bias and over-rejection without sacrificing&nbsp;power.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
         indent = "0em",
