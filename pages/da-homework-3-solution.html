@@ -30,7 +30,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-    <meta name="author" content="Janos K. Divenyi" />
+    <meta name="author" content="János K. Divényi" />
     <meta name="description" content="" />
 <meta property="og:site_name" content="Divenyi"/>
 <meta property="og:type" content="blog"/>
@@ -47,15 +47,16 @@
   <aside>
     <div>
       <a href="..">
-        <img src="../images/divenyi_circle_small.png" alt="Janos K. Divenyi" title="Janos K. Divenyi">
+        <img src="../images/divenyi_circle_small.png" alt="János K. Divényi" title="János K. Divényi">
       </a>
-      <h1><a href="..">Janos K. Divenyi</a></h1>
+      <h1><a href="..">János K. Divényi</a></h1>
 
 <p>data scientist</p>
       <nav>
         <ul class="list">
           <li><a href="../pages/about-me.html#about-me">about&nbsp;me</a></li>
           <li><a href="../pages/research.html#research">research</a></li>
+          <li><a href="../pages/talks.html#talks">talks</a></li>
           <li><a href="../pages/teaching.html#teaching">teaching</a></li>
 
         </ul>
@@ -110,7 +111,7 @@ Load the data into R and check whether the type of your variables are correct
 </pre></div>
 
 
-<p><img alt="plot of chunk hist" src="../figure/hist-1.png" /></p>
+<p><img alt="plot of chunk hist" src="../figure/hist-1.png"></p>
 <h2>Task&nbsp;2</h2>
 <p>Plot the distributions of log sales amounts for the two years separately.
 Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/">documentation</a> of
@@ -122,7 +123,7 @@ Check <code>geom_density</code> in the <a href="http://docs.ggplot2.org/current/
 </pre></div>
 
 
-<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png" /></p>
+<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png"></p>
 <h2>Task&nbsp;3</h2>
 <p>Plot the aggregate daily sales.
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
@@ -137,11 +138,11 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
-<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png" /></p>
+<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png"></p>
 <p>With <code>span = 0.2</code>:</p>
 <div class="highlight"><pre><span></span>purchases <span class="o">%&gt;%</span>
     group_by<span class="p">(</span>purchase_date<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -152,11 +153,11 @@ Add a smoothed line to the plot (you can experiment with the <code>span</code> o
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39;
+<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
 </pre></div>
 
 
-<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png" /></p>
+<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png"></p>
 <h2>Task&nbsp;4</h2>
 <p>Which month brings the most sales? Plot a bar graph with aggregate sales per
 month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
@@ -170,7 +171,7 @@ of the x axis (the documentation helps to&nbsp;reproduce).</p>
 </pre></div>
 
 
-<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png" /></p>
+<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png"></p>
 <h2>Task&nbsp;5</h2>
 <p>Recreate the previous graph by drawing the columns separately for the years
 (map the year variable to the fill of the bars and see the examples in the
@@ -185,7 +186,7 @@ documentation to achieve side-by-side&nbsp;bars).</p>
 </pre></div>
 
 
-<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png" /></p>
+<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png"></p>
 <h2>Task&nbsp;6</h2>
 <p>We have seen that the aggregate sales are lower in 2013 than in 2012. Which year
 has higher average sales amount? Plot a bar graph with average sales per year and
@@ -202,7 +203,7 @@ You can add error bars by using the <code>geom_errorbar()</code> function of <co
 </pre></div>
 
 
-<p><img alt="plot of chunk bar_year_error" src="../figure/bar_year_error-1.png" /></p>
+<p><img alt="plot of chunk bar_year_error" src="../figure/bar_year_error-1.png"></p>
 <h2>Task&nbsp;+1</h2>
 <p>Watch <a href="http://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization?language=en">this video</a>
 and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
@@ -210,7 +211,7 @@ and collect 3 positive (or negative) points about the&nbsp;presentation.</p>
 </article>
 
     <footer>
-<p>&copy; Janos K. Divenyi </p>
+<p>&copy; János K. Divényi </p>
 <p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
 </p>    </footer>
   </main>
