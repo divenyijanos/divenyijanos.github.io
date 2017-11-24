@@ -94,12 +94,7 @@ below (run&nbsp;regressions).</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Parsed with column specification:
-## cols(
-##   party = col_character(),
-##   state = col_character(),
-##   vote = col_integer()
-## )
+<div class="highlight"><pre><span></span>## Error: &#39;~/teaching/BME_adat/201617/data/civil-rights-act.csv&#39; does not exist.
 </pre></div>
 
 
@@ -113,12 +108,18 @@ help to experiment with <code>jitter</code> to see the points better. (<em>Hint:
 </pre></div>
 
 
-<p><img alt="plot of chunk da-homework-4-solution-3" src="../figure/da-homework-4-solution-3-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;act&#39; not found
+</pre></div>
+
+
 <div class="highlight"><pre><span></span>act <span class="o">%&gt;%</span> ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> party<span class="p">,</span> y <span class="o">=</span> vote<span class="p">))</span> <span class="o">+</span> geom_jitter<span class="p">()</span>
 </pre></div>
 
 
-<p><img alt="plot of chunk da-homework-4-solution-4" src="../figure/da-homework-4-solution-4-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;act&#39; not found
+</pre></div>
+
+
 <ul>
 <li>Run a regression of the dummy of voting on the dummy of
 party (note that <code>R</code> is automatically going to use a character variable in a
@@ -129,13 +130,7 @@ the&nbsp;act?</li>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = vote ~ party, data = act)
-## 
-## Coefficients:
-##     (Intercept)  partyRepublican  
-##          0.6129           0.1894
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;act&#39; not found
 </pre></div>
 
 
@@ -150,13 +145,7 @@ voted for the&nbsp;act?</li>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = vote ~ state, data = act)
-## 
-## Coefficients:
-## (Intercept)   stateSouth  
-##      0.8956      -0.8283
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;act&#39; not found
 </pre></div>
 
 
@@ -172,13 +161,7 @@ explain the&nbsp;difference?</li>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = vote ~ party + state, data = act)
-## 
-## Coefficients:
-##     (Intercept)  partyRepublican       stateSouth  
-##         0.94076         -0.08814         -0.86497
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;act&#39; not found
 </pre></div>
 
 
@@ -199,14 +182,7 @@ act. However, if we compare Republicans and Democrates from the
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 4 x 3
-## # Groups:   state [2]
-##   state      party     n
-##   &lt;chr&gt;      &lt;chr&gt; &lt;int&gt;
-## 1 North   Democrat   154
-## 2 North Republican   162
-## 3 South   Democrat    94
-## 4 South Republican    10
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;act&#39; not found
 </pre></div>
 
 
@@ -230,15 +206,7 @@ two numbers (ranging from 0 to 20) form a great measure for the memory of the&nb
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Parsed with column specification:
-## cols(
-##   age = col_double(),
-##   lm_status = col_integer(),
-##   recall_1 = col_integer(),
-##   recall_2 = col_integer(),
-##   eduyears = col_integer(),
-##   mbirth = col_integer()
-## )
+<div class="highlight"><pre><span></span>## Error: &#39;~/teaching/BME_adat/201617/data/easyshare_sample.csv&#39; does not exist.
 </pre></div>
 
 
@@ -246,44 +214,23 @@ two numbers (ranging from 0 to 20) form a great measure for the memory of the&nb
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1">##       age           lm_status          recall_1          recall_2      </span>
-<span class="c1">##  Min.   :-15.00   Min.   :-15.000   Min.   :-15.000   Min.   :-15.000  </span>
-<span class="c1">##  1st Qu.: 57.20   1st Qu.:  1.000   1st Qu.:  4.000   1st Qu.:  2.000  </span>
-<span class="c1">##  Median : 63.00   Median :  1.000   Median :  5.000   Median :  4.000  </span>
-<span class="c1">##  Mean   : 64.59   Mean   :  2.593   Mean   :  4.763   Mean   :  3.251  </span>
-<span class="c1">##  3rd Qu.: 71.30   3rd Qu.:  2.000   3rd Qu.:  6.000   3rd Qu.:  5.000  </span>
-<span class="c1">##  Max.   :100.70   Max.   : 97.000   Max.   : 10.000   Max.   : 10.000  </span>
-<span class="c1">##     eduyears          mbirth       </span>
-<span class="c1">##  Min.   :-15.00   Min.   :-15.000  </span>
-<span class="c1">##  1st Qu.:  8.00   1st Qu.:  3.000  </span>
-<span class="c1">##  Median : 11.00   Median :  6.000  </span>
-<span class="c1">##  Mean   : 10.52   Mean   :  6.273  </span>
-<span class="c1">##  3rd Qu.: 12.00   3rd Qu.:  9.000  </span>
-<span class="c1">##  Max.   : 25.00   Max.   : 12.000</span>
+<div class="highlight"><pre><span></span>## Error in summary(easyshare): object &#39;easyshare&#39; not found
 </pre></div>
 
 
 <div class="highlight"><pre><span></span>easyshare <span class="o">&lt;-</span> easyshare <span class="o">%&gt;%</span> mutate_all<span class="p">(</span>funs<span class="p">(</span><span class="kp">ifelse</span><span class="p">(</span><span class="m">.</span> <span class="o">&lt;</span> <span class="m">0</span><span class="p">,</span> <span class="kc">NA</span><span class="p">,</span> <span class="m">.</span><span class="p">)))</span>
-<span class="kp">summary</span><span class="p">(</span>easyshare<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>##       age           lm_status         recall_1         recall_2    
-##  Min.   : 29.10   Min.   : 1.000   Min.   : 0.000   Min.   : 0.00  
-##  1st Qu.: 57.25   1st Qu.: 1.000   1st Qu.: 4.000   1st Qu.: 2.00  
-##  Median : 63.00   Median : 1.000   Median : 5.000   Median : 4.00  
-##  Mean   : 64.61   Mean   : 2.789   Mean   : 5.163   Mean   : 3.62  
-##  3rd Qu.: 71.30   3rd Qu.: 2.000   3rd Qu.: 6.000   3rd Qu.: 5.00  
-##  Max.   :100.70   Max.   :97.000   Max.   :10.000   Max.   :10.00  
-##  NA&#39;s   :1        NA&#39;s   :34       NA&#39;s   :61       NA&#39;s   :61     
-##     eduyears         mbirth      
-##  Min.   : 0.00   Min.   : 1.000  
-##  1st Qu.: 8.00   1st Qu.: 3.000  
-##  Median :11.00   Median : 6.000  
-##  Mean   :10.58   Mean   : 6.308  
-##  3rd Qu.:12.00   3rd Qu.: 9.000  
-##  Max.   :25.00   Max.   :12.000  
-##  NA&#39;s   :7       NA&#39;s   :5
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;easyshare&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="kp">summary</span><span class="p">(</span>easyshare<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in summary(easyshare): object &#39;easyshare&#39; not found
 </pre></div>
 
 
@@ -299,6 +246,10 @@ two numbers (ranging from 0 to 20) form a great measure for the memory of the&nb
 </pre></div>
 
 
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;easyshare&#39; not found
+</pre></div>
+
+
 <ul>
 <li>Look at whether the memory of those who are not working are worse than those
 who do. Run a regression which answers this question and interpret the&nbsp;coefficients.</li>
@@ -307,13 +258,7 @@ who do. Run a regression which answers this question and interpret the&nbsp;coef
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = twr ~ notworking, data = easyshare)
-## 
-## Coefficients:
-## (Intercept)   notworking  
-##      10.844       -2.582
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;easyshare&#39; not found
 </pre></div>
 
 
@@ -328,13 +273,7 @@ Include it in the regression and interpret your&nbsp;results.</li>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## 
-## Call:
-## lm(formula = twr ~ notworking + age + eduyears, data = easyshare)
-## 
-## Coefficients:
-## (Intercept)   notworking          age     eduyears  
-##     12.6673      -0.5479      -0.1157       0.3803
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;easyshare&#39; not found
 </pre></div>
 
 

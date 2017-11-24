@@ -96,6 +96,16 @@
 </pre></div>
 
 
+<div class="highlight"><pre><span></span>## Warning in file(filename, &quot;r&quot;, encoding = encoding): cannot open file &#39;/
+## Users/jdivenyi/teaching/BME_adat/201617/code/da_helper_functions.R&#39;: No
+## such file or directory
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in file(filename, &quot;r&quot;, encoding = encoding): cannot open the connection
+</pre></div>
+
+
 <h2>Task&nbsp;1</h2>
 <p>Download the <code>sample-cohort.csv</code> from the Data section. It contains sample data from the 
 National Assessment of Basic Competencies. All of you (who finished high school in Hungary)
@@ -107,17 +117,7 @@ The sample contains 8 variables: the id, the type of the school in 8th grade (ei
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Parsed with column specification:
-## cols(
-##   id = col_double(),
-##   school8 = col_character(),
-##   math8 = col_double(),
-##   reading8 = col_double(),
-##   math6 = col_double(),
-##   reading6 = col_double(),
-##   fed8 = col_character(),
-##   med8 = col_character()
-## )
+<div class="highlight"><pre><span></span>## Error: &#39;~/teaching/BME_adat/201617/data/sample_cohort_2010.csv&#39; does not exist.
 </pre></div>
 
 
@@ -130,11 +130,7 @@ The sample contains 8 variables: the id, the type of the school in 8th grade (ei
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 2 x 3
-##   school8     n      share
-##     &lt;chr&gt; &lt;int&gt;      &lt;dbl&gt;
-## 1  Elite6  5217 0.06029262
-## 2 Primary 81311 0.93970738
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;cohort&#39; not found
 </pre></div>
 
 
@@ -150,11 +146,10 @@ Which school&#8217;s students perform&nbsp;better?</li>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Warning: Removed 6591 rows containing non-finite values (stat_density).
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;cohort&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk da-homework-5-solution-4" src="../figure/da-homework-5-solution-4-1.png"></p>
 <div class="highlight"><pre><span></span><span class="c1"># More complex plot</span>
 cohort <span class="o">%&gt;%</span>
     select<span class="p">(</span>school8<span class="p">,</span> math8<span class="p">,</span> reading8<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -165,30 +160,27 @@ cohort <span class="o">%&gt;%</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Warning: Removed 13133 rows containing non-finite values (stat_density).
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;cohort&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk da-homework-5-solution-5" src="../figure/da-homework-5-solution-5-1.png"></p>
 <p>Students in 6-class schools perform considerably better, than primary school students. This again seems to promote the &#8220;Elite&#8221;&nbsp;naming.</p>
 <ul>
 <li>Run a regression of 8th grade math score on school types. Interpret the&nbsp;coefficients.</li>
 </ul>
 <div class="highlight"><pre><span></span>lm1 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8<span class="p">,</span> cohort<span class="p">)</span>
-summary_r<span class="p">(</span>lm1<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Loading required package: car
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;cohort&#39; not found
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-## logical.return = TRUE, : there is no package called &#39;car&#39;
+<div class="highlight"><pre><span></span>summary_r<span class="p">(</span>lm1<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in calculate_robust_se(model): Required car package is missing.
+<div class="highlight"><pre><span></span>## Error in summary_r(lm1): could not find function &quot;summary_r&quot;
 </pre></div>
 
 
@@ -197,22 +189,34 @@ summary_r<span class="p">(</span>lm1<span class="p">)</span>
 <li>Do you think it shows that elite schools are better? How could you get closer to answer this question? Try to run regressions and interpret what you&nbsp;get.</li>
 </ul>
 <div class="highlight"><pre><span></span>lm2 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8 <span class="o">+</span> math6<span class="p">,</span> cohort<span class="p">)</span>
-lm3 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8 <span class="o">+</span> math6 <span class="o">+</span> reading8<span class="p">,</span> cohort<span class="p">)</span>
-lm4 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8 <span class="o">+</span> math6 <span class="o">+</span> reading8 <span class="o">+</span> med8 <span class="o">+</span> fed8<span class="p">,</span> cohort<span class="p">)</span>
-stargazer_r<span class="p">(</span><span class="kt">list</span><span class="p">(</span>lm1<span class="p">,</span> lm2<span class="p">,</span> lm3<span class="p">,</span> lm4<span class="p">),</span> digits <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Loading required package: stargazer
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;cohort&#39; not found
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE,
-## logical.return = TRUE, : there is no package called &#39;stargazer&#39;
+<div class="highlight"><pre><span></span>lm3 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8 <span class="o">+</span> math6 <span class="o">+</span> reading8<span class="p">,</span> cohort<span class="p">)</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Error in stargazer_r(list(lm1, lm2, lm3, lm4), digits = 1): Required stargazer package is missing.
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;cohort&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>lm4 <span class="o">&lt;-</span> lm<span class="p">(</span>math8 <span class="o">~</span> school8 <span class="o">+</span> math6 <span class="o">+</span> reading8 <span class="o">+</span> med8 <span class="o">+</span> fed8<span class="p">,</span> cohort<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in is.data.frame(data): object &#39;cohort&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>stargazer_r<span class="p">(</span><span class="kt">list</span><span class="p">(</span>lm1<span class="p">,</span> lm2<span class="p">,</span> lm3<span class="p">,</span> lm4<span class="p">),</span> digits <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in stargazer_r(list(lm1, lm2, lm3, lm4), digits = 1): could not find function &quot;stargazer_r&quot;
 </pre></div>
 
 

@@ -85,7 +85,18 @@
 package&nbsp;first).</p>
 <div class="highlight"><pre><span></span><span class="kn">library</span><span class="p">(</span>dplyr<span class="p">)</span>
 <span class="kn">library</span><span class="p">(</span>nycflights13<span class="p">)</span>
-data<span class="p">(</span>flights<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in library(nycflights13): there is no package called &#39;nycflights13&#39;
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>data<span class="p">(</span>flights<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Warning in data(flights): data set &#39;flights&#39; not found
 </pre></div>
 
 
@@ -100,10 +111,7 @@ I highly recommend&nbsp;it.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##   `mean(dep_delay, na.rm = TRUE)`
-##                             &lt;dbl&gt;
-## 1                        12.63907
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -116,10 +124,7 @@ city in&nbsp;Alaska)?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##   `mean(dep_delay, na.rm = TRUE)`
-##                             &lt;dbl&gt;
-## 1                          12.875
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -131,10 +136,7 @@ city in&nbsp;Alaska)?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##    dest
-##   &lt;chr&gt;
-## 1   HNL
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -146,10 +148,7 @@ city in&nbsp;Alaska)?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##    dest
-##   &lt;chr&gt;
-## 1   HNL
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -163,25 +162,7 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 16 x 2
-##    carrier avg_delay
-##      &lt;chr&gt;     &lt;dbl&gt;
-##  1      F9 20.215543
-##  2      EV 19.955390
-##  3      YV 18.996330
-##  4      FL 18.726075
-##  5      WN 17.711744
-##  6      9E 16.725769
-##  7      B6 13.022522
-##  8      VX 12.869421
-##  9      OO 12.586207
-## 10      UA 12.106073
-## 11      MQ 10.552041
-## 12      DL  9.264505
-## 13      AA  8.586016
-## 14      AS  5.804775
-## 15      HA  4.900585
-## 16      US  3.782418
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -195,12 +176,7 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 3 x 2
-##   origin     n
-##    &lt;chr&gt; &lt;int&gt;
-## 1    JFK  5898
-## 2    EWR  5327
-## 3    LGA  4283
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -212,12 +188,7 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 3 x 2
-##   origin     n
-##    &lt;chr&gt; &lt;int&gt;
-## 1    JFK  5898
-## 2    EWR  5327
-## 3    LGA  4283
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -231,26 +202,7 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## Adding missing grouping variables: `month`
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>## # A tibble: 12 x 2
-## # Groups:   month [12]
-##    month  dest
-##    &lt;int&gt; &lt;chr&gt;
-##  1     1   HNL
-##  2     2   DEN
-##  3     3   MSP
-##  4     4   TPA
-##  5     5   ORD
-##  6     6   CMH
-##  7     7   CVG
-##  8     8   CLT
-##  9     9   SFO
-## 10    10   ATL
-## 11    11   ATL
-## 12    12   MIA
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -263,22 +215,7 @@ Which does the&nbsp;least?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 12 x 3
-## # Groups:   month [12]
-##    month  dest arr_delay
-##    &lt;int&gt; &lt;chr&gt;     &lt;dbl&gt;
-##  1     1   HNL      1272
-##  2     2   DEN       834
-##  3     3   MSP       915
-##  4     4   TPA       931
-##  5     5   ORD       875
-##  6     6   CMH      1127
-##  7     7   CVG       989
-##  8     8   CLT       490
-##  9     9   SFO      1007
-## 10    10   ATL       688
-## 11    11   ATL       796
-## 12    12   MIA       878
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -295,12 +232,7 @@ arrival delay relative to the&nbsp;distance.</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 3 x 2
-##   tailnum relative_delay
-##     &lt;chr&gt;          &lt;dbl&gt;
-## 1  N942MQ       4.625000
-## 2  N8913A       3.457447
-## 3  N950UW       3.375000
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -314,12 +246,7 @@ Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 3 x 2
-##   origin    delay
-##    &lt;chr&gt;    &lt;dbl&gt;
-## 1    EWR 15.10795
-## 2    JFK 12.11216
-## 3    LGA 10.34688
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 
@@ -334,22 +261,7 @@ Is this ordering the same for each&nbsp;month?</p>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>## # A tibble: 12 x 2
-## # Groups:   month [12]
-##    month origin
-##    &lt;int&gt;  &lt;chr&gt;
-##  1     1    EWR
-##  2     2    EWR
-##  3     3    EWR
-##  4     4    EWR
-##  5     5    EWR
-##  6     6    EWR
-##  7     7    JFK
-##  8     8    EWR
-##  9     9    EWR
-## 10    10    EWR
-## 11    11    EWR
-## 12    12    EWR
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;flights&#39; not found
 </pre></div>
 
 

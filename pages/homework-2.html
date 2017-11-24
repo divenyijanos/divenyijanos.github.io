@@ -97,10 +97,7 @@
 
 <h2>Task&nbsp;1</h2>
 <p>Give the mean and the median of the individual&nbsp;purchases.</p>
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 2
-##   `mean(sales)` `median(sales)`
-##           &lt;dbl&gt;           &lt;dbl&gt;
-## 1      92.42237            55.9
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
@@ -108,48 +105,31 @@
 <p>Tell R that your <code>purchase_date</code> variable is a date. You can do this by applying
 the <code>as.Date()</code> function to the original variable (similar to how we can use
 <code>as.character()</code>). Then you can get the median day of the&nbsp;purchases.</p>
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##   `median(purchase_date)`
-##                    &lt;date&gt;
-## 1              2012-11-22
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
 <h2>Task&nbsp;3</h2>
 <p>List the 5 biggest buyer along with their aggregate&nbsp;purchases.</p>
-<div class="highlight"><pre><span></span>## # A tibble: 5 x 2
-##   contact_id    sales
-##        &lt;int&gt;    &lt;dbl&gt;
-## 1   35244243 29906.27
-## 2   49141897 19803.57
-## 3   46092347 16821.38
-## 4   35117040 13026.16
-## 5   14316018 12458.95
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
 <h2>Task&nbsp;4</h2>
 <p>Plot the distributions of log sales amounts for the two years separately.
 For this you should have the year variable as&nbsp;factor.</p>
-<p><img alt="plot of chunk distr_year" src="../figure/distr_year-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
+</pre></div>
+
+
 <h2>Task&nbsp;5</h2>
 <p>List the number of buyers in each month by year. (Hint: you might need <code>tidyr</code>
 for accomplishing&nbsp;this).</p>
-<div class="highlight"><pre><span></span>## # A tibble: 12 x 3
-##    month `2012` `2013`
-##  * &lt;int&gt;  &lt;int&gt;  &lt;int&gt;
-##  1     1   2079   1559
-##  2     2   1651   1041
-##  3     3   1714   1273
-##  4     4   1648   1300
-##  5     5   1917   1309
-##  6     6   1873   1342
-##  7     7   1736   1235
-##  8     8   1738   1247
-##  9     9   1640   1162
-## 10    10   1781   1323
-## 11    11   2497   1624
-## 12    12   2415   1831
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
@@ -158,11 +138,12 @@ for accomplishing&nbsp;this).</p>
 want to aggregate sales by contact first and then to use the <code>cumsum()</code> function
 to calculate cumulative&nbsp;sums.</p>
 <p>Hint: this table is an intermediate state you may want to&nbsp;achive.</p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
+</pre></div>
+
+
 <p>The correct answer you should get is (from the previous&nbsp;table)</p>
-<div class="highlight"><pre><span></span>## # A tibble: 1 x 1
-##   top5_share
-##        &lt;dbl&gt;
-## 1 0.02366103
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;middle&#39; not found
 </pre></div>
 
 
@@ -172,27 +153,31 @@ Note that you should have <code>purchase_date</code> as date instead of factor o
 Add a smoothed line to the plot (you can experiment with the <code>span</code> option of
 <code>geom_smooth()</code> to control the smoothness of your&nbsp;line).</p>
 <p>Default:</p>
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk smooth" src="../figure/smooth-1.png"></p>
 <p>With <code>span = 0.2</code>:</p>
-<div class="highlight"><pre><span></span>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
 </pre></div>
 
 
-<p><img alt="plot of chunk smooth02" src="../figure/smooth02-1.png"></p>
 <h2>Task&nbsp;8</h2>
 <p>Which month brings the most sales? Plot a bar graph with aggregate sales per
 month. Look at the documentation of <code>geom_bar()</code> to solve this. Note the labels
 of the x axis (the documentation helps to&nbsp;reproduce).</p>
-<p><img alt="plot of chunk bar_month" src="../figure/bar_month-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
+</pre></div>
+
+
 <h2>Task&nbsp;9</h2>
 <p>Recreate the previous graph by drawing the columns separately for the years
 (map the year variable to column and see the examples in the documentation to
 achieve side-by-side&nbsp;bars).</p>
-<p><img alt="plot of chunk bar_month_year" src="../figure/bar_month_year-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;purchases&#39; not found
+</pre></div>
+
+
 <h2>Task&nbsp;10</h2>
 <p>Plot a graph which gives you that to what share of all sales are the top x% of
 buyers responsible. So a point at <code>x = 0.5, y = 0.8</code> would tell 80% of all sales
@@ -209,7 +194,8 @@ task&nbsp;6.)</p>
 </pre></div>
 
 
-<p><img alt="plot of chunk cumsum" src="../figure/cumsum-1.png"></p>
+<div class="highlight"><pre><span></span>## Error in eval(lhs, parent, parent): object &#39;middle&#39; not found
+</pre></div>
   </div>
 </article>
 
