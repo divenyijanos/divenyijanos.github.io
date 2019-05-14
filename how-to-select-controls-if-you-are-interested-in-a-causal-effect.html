@@ -2,12 +2,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="" />
+
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
 
   <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
-  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/fontawesome.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/brands.css">
+  <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/solid.css">
 
     <link href="./static/custom.css" rel="stylesheet">
 
@@ -16,12 +24,17 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="robots" content="" />
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+  ga('create', 'UA-85196661-1', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
     <!-- Chrome, Firefox OS and Opera -->
     <meta name="theme-color" content="#333333">
     <!-- Windows Phone -->
@@ -29,10 +42,13 @@
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Microsoft EDGE -->
+    <meta name="msapplication-TileColor" content="#333333">
 
 <meta name="author" content="János K. Divényi" />
 <meta name="description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well (so called double-selection)." />
 <meta name="keywords" content="">
+
 <meta property="og:site_name" content="Divenyi"/>
 <meta property="og:title" content="How to select controls if you are interested in a causal effect?"/>
 <meta property="og:description" content="The standard practice of deciding about controls — running a t-test on the potential control — is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well (so called double-selection)."/>
@@ -68,10 +84,26 @@
       </nav>
 
       <ul class="social">
-        <li><a class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank"><i class="fa fa-linkedin"></i></a></li>
-        <li><a class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank"><i class="fa fa-twitter"></i></a></li>
-        <li><a class="sc-github" href="https://github.com/divenyijanos" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank"><i class="fa fa-stack-overflow"></i></a></li>
+          <li>
+            <a  class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank">
+            <i class="fab fa-linkedin">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank">
+            <i class="fab fa-twitter">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-github" href="https://github.com/divenyijanos" target="_blank">
+            <i class="fab fa-github">
+            </i>
+          </a></li>
+          <li>
+            <a  class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank">
+            <i class="fab fa-stack-overflow">
+            </i>
+          </a></li>
       </ul>
     </div>
 
@@ -82,10 +114,10 @@
 
 <article class="single">
   <header>
+      
     <h1 id="how-to-select-controls-if-you-are-interested-in-a-causal-effect">How to select controls if you are interested in a causal&nbsp;effect?</h1>
     <p>
-          Posted on Thu 06 July 2017 in <a href="./category/blog.html">blog</a>
-
+      Posted on Thu 06 July 2017 in <a href="./category/blog.html">blog</a>
 
         &#8226; 7 min read
     </p>
@@ -95,7 +127,7 @@
   <div>
     <p><em>This is a joint post with my friend, <a href="https://www.linkedin.com/in/sovagos/">Sandor Sovago</a>. His passion was essential for ending the long hiatus on this&nbsp;blog.</em></p>
 <p>Let&#8217;s suppose you want to learn about the effect of <a href="http://pricetheory.uchicago.edu/levitt/Papers/DonohueLevittTheImpactOfLegalized2001.pdf">legalized abortion on crime</a>. The differences in abortion rates between states in the <span class="caps">U.S.</span> offer great variation to study the question. However, states also differ along other dimensions. For example, per capita income might predict the crime rate, and it may also be related to the abortion rate. Thus, income is a natural candidate to control for when trying to estimate the true effect of abortion on crime. However, it is easier said than done. When considering to include a control, you face a trade-off: failing to control for income may bias your estimate (<a href="https://en.wikipedia.org/wiki/Omitted-variable_bias">omitted variable bias</a>), whereas including it as an irrelevant control may make it&nbsp;noisy.</p>
-<p>In this post, we investigate the problem of variable selection by running simulations in R (see the code on <a href="https://github.com/divenyijanos/variable-selection-simulation">GitHub</a>). The idea came from the Big Data Econometrics summer course held by <a href="http://www.mit.edu/~vchern/">Victor Chernozhukov</a> and <a href="https://www.chicagobooth.edu/faculty/directory/h/christian-b-hansen">Chris Hansen</a> which we had the privilege to participate&nbsp;in. </p>
+<p>In this post, we investigate the problem of variable selection by running simulations in R (see the code on <a href="https://github.com/divenyijanos/variable-selection-simulation">GitHub</a>). The idea came from the Big Data Econometrics summer course held by <a href="http://www.mit.edu/~vchern/">Victor Chernozhukov</a> and <a href="https://www.chicagobooth.edu/faculty/directory/h/christian-b-hansen">Chris Hansen</a> which we had the privilege to participate&nbsp;in.</p>
 <p>The key message is that the standard practice of deciding about controls &#8212; running a t-test on the potential control &#8212; is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well. However, this more sophisticated variable selection method sacrifices&nbsp;power.</p>
 <p>Let&#8217;s consider the following&nbsp;model:</p>
 <div class="math">$$
@@ -107,19 +139,19 @@ $$</div>
 <p>where <span class="math">\(Y\)</span> denotes the outcome (crime rate), <span class="math">\(D\)</span> is the treatment (abortion rate), and <span class="math">\(X\)</span> is a control variable (per capita income). The parameter of interest is <span class="math">\(\alpha\)</span>. To keep things simple, let&#8217;s assume that the error terms <span class="math">\(\varepsilon\)</span> and <span class="math">\(\nu\)</span> are uncorrelated and follow a joint normal distribution. We consider a sample size of 100, and assume that the treatment and control variable are highly correlated (<span class="math">\(\gamma = 0.8\)</span>). <em>(The choice for the sample size might be strange for talking about &#8220;big&#8221; data. We can also think of this problem as having a very high dimensional space of potential control variables. We mimic the high dimensional big data case by considering a simple case with small&nbsp;data.)</em></p>
 <p>The question we are interested in is whether we would like to include the control <span class="math">\(X\)</span> in the regression when estimating the effect. We simulate data and estimate both the <strong>long</strong> (control included) and the <strong>short</strong> (control omitted)&nbsp;regressions.</p>
 <p>The standard practice of overcoming the variable selection problem, called <em>post-single-selection</em>, is to first estimate the long regression, then perform a t-test on the coefficient of the included control, and then estimate the model that corresponds to the conclusion of the&nbsp;t-test.</p>
-<p>A more nuanced approach is to complement post-single-selection with an <em>&#8220;eyeball&#8221; test</em>: if the estimates of the short and long regressions are sufficiently close to each other, then we conclude that the correlation between the treatment and control is small, and prefer the short&nbsp;model. </p>
+<p>A more nuanced approach is to complement post-single-selection with an <em>&#8220;eyeball&#8221; test</em>: if the estimates of the short and long regressions are sufficiently close to each other, then we conclude that the correlation between the treatment and control is small, and prefer the short&nbsp;model.</p>
 <p><a href="https://academic.oup.com/restud/article-lookup/doi/10.1093/restud/rdt044">Belloni et. al (2014)</a> - hereafter <span class="caps">BCH</span> -  propose a more conservative selection approach, called <em>post-double-selection</em>. Post-double-selection consists of three steps. First, test if the control variable explains the treatment variable. Second, estimate the long regression, and test if the control variable&#8217;s coefficient is significantly different from zero. Third, keep the control variable in the model, if either of the previous steps yielded a significant coefficient estimate. Intuitively, we exclude the control variable from the model only if the correlation between the control and the treatment is zero and the control does not have a direct impact on the outcome. <span class="caps">BCH</span> show that double selection results in an unbiased estimate of the treatment&nbsp;effect.</p>
 <p>To illustrate <span class="caps">BCH</span>&#8217;s findings, we simulate the model 10,000 times. We assume that the effect that we are interested in is zero (<span class="math">\(\alpha = 0\)</span>) but the control variable has a small effect (<span class="math">\(\beta = 0.2\)</span>).  We estimate the long and the short model as well, and perform variable selection using post-single selection, with and without eyeballing, and&nbsp;post-double-selection.</p>
 <p>The figure below compares the distribution of the <strong>parameter estimates</strong> of the long model, an unbiased estimate for <span class="math">\(\alpha\)</span>, and the post-selection estimates for different selection methods. The post-single-selection estimator is biased, as also shown by <span class="caps">BCH</span>. The intuition is that the multicollinearity between <span class="math">\(D\)</span> and <span class="math">\(X\)</span> makes the estimates imprecise, hence we fail to reject the null that the control does not have a direct effect on the outcome. Thus, post-single-selection favors the short model, which entails omitted variable&nbsp;bias.</p>
 <p>Single selection complemented with the eyeball test (using a cutoff of 0.05) highly improves the results, but still yields biased estimates. The post-double-selection estimator is unbiased. <img alt="coefficients" src="figure/coefficients.png" width="100%"></p>
-<p>Below you can see the <strong>standard errors</strong> of the correct long model compared to the post-selection standard errors for each selection method across simulations. Post-single-selection, with or without eyeballing, favors the short model too often, corresponding to overly optimistic standard errors of the main estimate. In contrast, post-double-selection yields correct standard errors. <img alt="" src="figure/standard-errors.png" width="100%"></p>
-<p>Given the biased estimates and unrealistic standard errors of the post-single-selection estimates, we investigate the size of the test on our parameter of interest. With the standard significance level of 5 percent, we would expect to reject the zero null hypothesis in 5 percent of the cases even if there is no effect. The figure below displays the error in the rejection probability (<span class="caps">ERP</span>, difference between the actual rejection rate and the theoretical 5 percent) for each selection method, as a function of the tolerance level of the eyeball-test. Since post-single-selection and post-double-selection do not depend on the tolerance-level, their <span class="caps">ERP</span> is constant. The figure illustrates that post-double-selection has the right size, whereas the <span class="caps">ERP</span> is above 16 percent for post-single selection, indicating that post-single-selection over-rejects (around four times). Post-single-selection complemented with the eyeball test provides a smooth transition between post-single- and post-double-selection. Importantly, if the eyeball test is not conservative enough, it can also lead to serious over-rejection. <img alt="" src="figure/erp.png" width="100%"></p>
-<p>Until now, we assumed that the true effect is zero. However, in reality, we do not know that. It is an equally important question to see whether we are able to find the effect if it is there. We simulate new data with a positive treatment effect where the control is irrelevant (<span class="math">\(\alpha = 0.2, \beta = 0\)</span>). On this data we can study the power of the variable selection methods. The power curves below reiterate that post-double-selection gets the size of the test right, but, more importantly, it also shows that we lose power relative to post-single-selection. <img alt="" src="figure/power.png" width="100%"></p>
-<p>To summarize the trade-off between the size and the power of the variable selection methods, let&#8217;s compare <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives">true and false positive rates</a> in a <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><span class="caps">ROC</span></a>-type graph. Combining the simulated data from both states of the world we can analyze whether our methods find the effect when it is there (true positive) or wrongly find an effect when it is not there (false positive). The graph illustrates that post-single-selection yields too many false positives but more true positives as well. Post-double-selection is the most conservative and finds the effect the least frequently. <img alt="" src="figure/roc.png" width="100%"></p>
+<p>Below you can see the <strong>standard errors</strong> of the correct long model compared to the post-selection standard errors for each selection method across simulations. Post-single-selection, with or without eyeballing, favors the short model too often, corresponding to overly optimistic standard errors of the main estimate. In contrast, post-double-selection yields correct standard errors. <img alt="standard-errors" src="figure/standard-errors.png" width="100%"></p>
+<p>Given the biased estimates and unrealistic standard errors of the post-single-selection estimates, we investigate the size of the test on our parameter of interest. With the standard significance level of 5 percent, we would expect to reject the zero null hypothesis in 5 percent of the cases even if there is no effect. The figure below displays the error in the rejection probability (<span class="caps">ERP</span>, difference between the actual rejection rate and the theoretical 5 percent) for each selection method, as a function of the tolerance level of the eyeball-test. Since post-single-selection and post-double-selection do not depend on the tolerance-level, their <span class="caps">ERP</span> is constant. The figure illustrates that post-double-selection has the right size, whereas the <span class="caps">ERP</span> is above 16 percent for post-single selection, indicating that post-single-selection over-rejects (around four times). Post-single-selection complemented with the eyeball test provides a smooth transition between post-single- and post-double-selection. Importantly, if the eyeball test is not conservative enough, it can also lead to serious over-rejection. <img alt="error-in-rejection-probability" src="figure/erp.png" width="100%"></p>
+<p>Until now, we assumed that the true effect is zero. However, in reality, we do not know that. It is an equally important question to see whether we are able to find the effect if it is there. We simulate new data with a positive treatment effect where the control is irrelevant (<span class="math">\(\alpha = 0.2, \beta = 0\)</span>). On this data we can study the power of the variable selection methods. The power curves below reiterate that post-double-selection gets the size of the test right, but, more importantly, it also shows that we lose power relative to post-single-selection. <img alt="power" src="figure/power.png" width="100%"></p>
+<p>To summarize the trade-off between the size and the power of the variable selection methods, let&#8217;s compare <a href="https://en.wikipedia.org/wiki/False_positives_and_false_negatives">true and false positive rates</a> in a <a href="https://en.wikipedia.org/wiki/Receiver_operating_characteristic"><span class="caps">ROC</span></a>-type graph. Combining the simulated data from both states of the world we can analyze whether our methods find the effect when it is there (true positive) or wrongly find an effect when it is not there (false positive). The graph illustrates that post-single-selection yields too many false positives but more true positives as well. Post-double-selection is the most conservative and finds the effect the least frequently. <img alt="roc" src="figure/roc.png" width="100%"></p>
 <p>To sum up, post-double-selection can cure the problems (bias, over-rejection) of standard variable selection practices, but sacrifices power in exchange for&nbsp;that.</p>
 <hr>
 <p><strong><span class="caps">UPDATE</span></strong>. Chris drew our attention to a flaw of our power comparison; we did not control for the difference in the effective sizes of the tests. There is an inherent trade-off between size and power: if you increase your significance level, you are going to reject more often (less false positives) but that applies for true hypotheses as well (less true positives). As the effective size of the test for post-single-selection is larger than 5% (see the <span class="caps">ERP</span> graph), it implies a stronger power in itself. We mixed up this inherent trade-off between size and power with the trade-off of which method to&nbsp;use.</p>
-<p>The graph below replicates the <span class="caps">ROC</span>-type graph of the post with varying significance levels. Here, we can compare the power of the methods for the same effective sizes (fixed level of false positive rate). The post-single-selection clearly under-performs post-double-selection: for every rate of false positives, it finds less true positives. Post-single-selection with eyeball testing fares about the same as double-selection, especially in the relevant ranges (false positive rate under 10 percent).<img alt="" src="figure/roc_size_adjusted.png" width="100%"></p>
+<p>The graph below replicates the <span class="caps">ROC</span>-type graph of the post with varying significance levels. Here, we can compare the power of the methods for the same effective sizes (fixed level of false positive rate). The post-single-selection clearly under-performs post-double-selection: for every rate of false positives, it finds less true positives. Post-single-selection with eyeball testing fares about the same as double-selection, especially in the relevant ranges (false positive rate under 10 percent).<img alt="roc-size-adjusted" src="figure/roc_size_adjusted.png" width="100%"></p>
 <p>This finding changes our previous conclusion. Post-double selection is definitely an improvement upon standard variable selection practices: it cures the problems of bias and over-rejection without sacrificing&nbsp;power.</p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var align = "center",
@@ -135,11 +167,14 @@ $$</div>
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
         "MathJax.Hub.Config({" +
         "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'none' } }," +
         "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
         "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
         "    displayAlign: '"+ align +"'," +
@@ -153,6 +188,7 @@ $$</div>
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
+        "        fonts: [['STIX', 'TeX']]," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -173,6 +209,8 @@ $$</div>
                 "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
             "});" +
         "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 </script>
@@ -185,6 +223,8 @@ $$</div>
 
 
 
+
+<!-- Disqus -->
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'divenyijanos';
@@ -195,28 +235,16 @@ $$</div>
     })();
 </script>
 <noscript>
-        Please enable JavaScript to view comments.
-
+    Please enable JavaScript to view comments.
 </noscript>
+<!-- End Disqus -->
 </article>
 
     <footer>
-<p>&copy; János K. Divényi </p>
-<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
-</p>    </footer>
+<p>&copy;  </p>
+<p>Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
   </main>
 
-<!-- Google Analytics -->
-<script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-85196661-1', 'auto');
-  ga('send', 'pageview');
-</script>
-<!-- End Google Analytics -->
 
 
 
@@ -230,5 +258,6 @@ $$</div>
   "description": ""
 }
 </script>
+
 </body>
 </html>
