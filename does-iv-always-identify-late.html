@@ -8,11 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="" />
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="./theme/pygments/github.min.css">
+
+
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/solid.css">
@@ -49,6 +53,7 @@
 <meta name="description" content="Instrumental variables are often used in causal analysis when randomized control trials are out of option. However, it is not always emphasized that the instrumental variable estimator — even if the instrument is valid and relevant — does not necessarily identify the average treatment effect (ATE) or the average treatment effect on the treated (ATET); most often, it only identifies the local average treatment effect (LATE): the average treatment effect on the complier subpopulation (see Angrist&amp;Imbens, 1994)." />
 <meta name="keywords" content="">
 
+
 <meta property="og:site_name" content="Divenyi"/>
 <meta property="og:title" content="Does IV always identify LATE?"/>
 <meta property="og:description" content="Instrumental variables are often used in causal analysis when randomized control trials are out of option. However, it is not always emphasized that the instrumental variable estimator — even if the instrument is valid and relevant — does not necessarily identify the average treatment effect (ATE) or the average treatment effect on the treated (ATET); most often, it only identifies the local average treatment effect (LATE): the average treatment effect on the complier subpopulation (see Angrist&amp;Imbens, 1994)."/>
@@ -64,21 +69,47 @@
   <title>Divenyi &ndash; Does IV always identify LATE?</title>
 
 </head>
-<body>
+<body class="light-theme">
   <aside>
     <div>
       <a href=".">
         <img src="../images/divenyi_circle_small.png" alt="János K. Divényi" title="János K. Divényi">
       </a>
-      <h1><a href=".">János K. Divényi</a></h1>
+
+      <h1>
+        <a href=".">János K. Divényi</a>
+      </h1>
 
 <p>data scientist | PhD in economics</p>
+
       <nav>
         <ul class="list">
-          <li><a href="./pages/about-me.html#about-me">about&nbsp;me</a></li>
-          <li><a href="./pages/research.html#research">research</a></li>
-          <li><a href="./pages/talks.html#talks">talks</a></li>
-          <li><a href="./pages/teaching.html#teaching">teaching</a></li>
+
+
+              <li>
+                <a target="_self"
+                   href="./pages/about-me.html#about-me">
+                  about&nbsp;me
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/research.html#research">
+                  research
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/talks.html#talks">
+                  talks
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/teaching.html#teaching">
+                  teaching
+                </a>
+              </li>
 
         </ul>
       </nav>
@@ -86,27 +117,26 @@
       <ul class="social">
           <li>
             <a  class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank">
-            <i class="fab fa-linkedin">
-            </i>
-          </a></li>
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank">
-            <i class="fab fa-twitter">
-            </i>
-          </a></li>
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-github" href="https://github.com/divenyijanos" target="_blank">
-            <i class="fab fa-github">
-            </i>
-          </a></li>
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank">
-            <i class="fab fa-stack-overflow">
-            </i>
-          </a></li>
+              <i class="fab fa-stack-overflow"></i>
+            </a>
+          </li>
       </ul>
     </div>
-
 
   </aside>
   <main>
@@ -126,7 +156,6 @@
 
   <div>
     <!-- Latex macros for math -->
-
 <p><span class="math">\(\newcommand{\E}{\mathbb{E}}\)</span>
 <span class="math">\(\newcommand{\P}{\mathbb{P}}\)</span></p>
 <h2>Local average treatment effect (<span class="caps">LATE</span>)</h2>
@@ -306,7 +335,8 @@ One should only scale by the difference of the take up rates to get <span class=
         "        preview: 'TeX'," +
         "    }, " +
         "    'HTML-CSS': { " +
-        "        fonts: [['STIX', 'TeX']]," +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
         "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }," +
         "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
         "    }, " +
@@ -360,7 +390,9 @@ One should only scale by the difference of the take up rates to get <span class=
 
     <footer>
 <p>&copy;  </p>
-<p>Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p>    </footer>
   </main>
 
 
@@ -376,6 +408,7 @@ One should only scale by the difference of the take up rates to get <span class=
   "description": ""
 }
 </script>
+
 
 </body>
 </html>

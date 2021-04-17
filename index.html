@@ -8,11 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="" />
 
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="./theme/stylesheet/style.min.css">
 
-  <link rel="stylesheet" type="text/css" href="./theme/pygments/github.min.css">
+
+    <link id="pygments-light-theme" rel="stylesheet" type="text/css"
+          href="./theme/pygments/github.min.css">
+
+
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/fontawesome.css">
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/brands.css">
   <link rel="stylesheet" type="text/css" href="./theme/font-awesome/css/solid.css">
@@ -58,21 +62,47 @@
   <title>Divenyi</title>
 
 </head>
-<body>
+<body class="light-theme">
   <aside>
     <div>
       <a href=".">
         <img src="../images/divenyi_circle_small.png" alt="János K. Divényi" title="János K. Divényi">
       </a>
-      <h1><a href=".">János K. Divényi</a></h1>
+
+      <h1>
+        <a href=".">János K. Divényi</a>
+      </h1>
 
 <p>data scientist | PhD in economics</p>
+
       <nav>
         <ul class="list">
-          <li><a href="./pages/about-me.html#about-me">about&nbsp;me</a></li>
-          <li><a href="./pages/research.html#research">research</a></li>
-          <li><a href="./pages/talks.html#talks">talks</a></li>
-          <li><a href="./pages/teaching.html#teaching">teaching</a></li>
+
+
+              <li>
+                <a target="_self"
+                   href="./pages/about-me.html#about-me">
+                  about&nbsp;me
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/research.html#research">
+                  research
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/talks.html#talks">
+                  talks
+                </a>
+              </li>
+              <li>
+                <a target="_self"
+                   href="./pages/teaching.html#teaching">
+                  teaching
+                </a>
+              </li>
 
         </ul>
       </nav>
@@ -80,27 +110,26 @@
       <ul class="social">
           <li>
             <a  class="sc-linkedin" href="http://hu.linkedin.com/in/janosdivenyi" target="_blank">
-            <i class="fab fa-linkedin">
-            </i>
-          </a></li>
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-twitter" href="https://twitter.com/divenyijanos" target="_blank">
-            <i class="fab fa-twitter">
-            </i>
-          </a></li>
+              <i class="fab fa-twitter"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-github" href="https://github.com/divenyijanos" target="_blank">
-            <i class="fab fa-github">
-            </i>
-          </a></li>
+              <i class="fab fa-github"></i>
+            </a>
+          </li>
           <li>
             <a  class="sc-stack-overflow" href="https://stackoverflow.com/users/3409615/janosdivenyi" target="_blank">
-            <i class="fab fa-stack-overflow">
-            </i>
-          </a></li>
+              <i class="fab fa-stack-overflow"></i>
+            </a>
+          </li>
       </ul>
     </div>
-
 
   </aside>
   <main>
@@ -121,7 +150,10 @@
   <div>
       <p>My story is about multi-armed bandits and why data collected with bandits lead to underestimated means. If you work with online data (webshops, ads, mobile apps, etc.), using multi-armed bandit algorithms can speed up your testing process. However, measuring the outcomes of the different versions is not that straight-forward. <a href="https://blog.craftlab.hu/bandits-can-trick-you-about-your-effect-e7ae01a943a8">This post</a> is published at <a href="https://blog.craftlab.hu/">Emarsys Craftlab</a>, you can read it&nbsp;there.</p>
         <br>
-        <a class="btn" href="./bandits-can-trick-you-about-your-outcomes.html#bandits-can-trick-you-about-your-outcomes">Continue reading</a>
+        <a class="btn"
+           href="./bandits-can-trick-you-about-your-outcomes.html#bandits-can-trick-you-about-your-outcomes">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -138,7 +170,10 @@
   <div>
       <p>In the age of big data, everyone had heard sentences about something being statistically significant or insignificant. But significantly less people are able to explain what it truly means. Research shows that even people with formal statistical training misinterpret statistical significance. <a href="https://blog.craftlab.hu/in-significant-thoughts-474bc65760de">This post</a> published at <a href="https://blog.craftlab.hu/">Emarsys Craftlab</a> is my (in)significant attempt to clear things&nbsp;up.</p>
         <br>
-        <a class="btn" href="./insignificant-thoughts.html#insignificant-thoughts">Continue reading</a>
+        <a class="btn"
+           href="./insignificant-thoughts.html#insignificant-thoughts">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -149,13 +184,16 @@
       Posted on Thu 06 July 2017 in <a href="./category/blog.html">blog</a>
 
 
-        &#8226; 7 min read
+        &#8226; 6 min read
     </p>
   </header>
   <div>
       <p>The standard practice of deciding about controls &#8212; running a t-test on the potential control &#8212; is very dangerous. More specifically, it leads to biased estimates and too optimistic standard errors. We can avoid these problems by taking into account the correlation between the treatment and the control variables as well (so called&nbsp;double-selection).</p>
         <br>
-        <a class="btn" href="./how-to-select-controls-if-you-are-interested-in-a-causal-effect.html#how-to-select-controls-if-you-are-interested-in-a-causal-effect">Continue reading</a>
+        <a class="btn"
+           href="./how-to-select-controls-if-you-are-interested-in-a-causal-effect.html#how-to-select-controls-if-you-are-interested-in-a-causal-effect">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -166,7 +204,7 @@
       Posted on Wed 27 May 2015 in <a href="./category/blog.html">blog</a>
 
 
-        &#8226; 3 min read
+        &#8226; 2 min read
     </p>
   </header>
   <div>
@@ -178,7 +216,10 @@ probability (e.g. simple
 <a href="http://en.wikipedia.org/wiki/Logistic_regression">logistic regresssion</a>),
 so for …</p>
         <br>
-        <a class="btn" href="./which-binary-classification-model-is-better.html#which-binary-classification-model-is-better">Continue reading</a>
+        <a class="btn"
+           href="./which-binary-classification-model-is-better.html#which-binary-classification-model-is-better">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -193,9 +234,12 @@ so for …</p>
     </p>
   </header>
   <div>
-      
+      <p>&#8230;</p>
         <br>
-        <a class="btn" href="./my-favorite-chart-this-year.html#my-favorite-chart-this-year">Continue reading</a>
+        <a class="btn"
+           href="./my-favorite-chart-this-year.html#my-favorite-chart-this-year">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -212,7 +256,10 @@ so for …</p>
   <div>
       <p><a href="http://en.wikipedia.org/wiki/Instrumental_variable">Instrumental variables</a> are often used in causal analysis when randomized control trials are out of option. However, it is not always emphasized that <strong>the instrumental variable estimator</strong> &#8212; even if the instrument is valid and relevant &#8212;  does not necessarily identify the average treatment effect (<span class="caps">ATE</span>) or the average treatment effect on the treated (<span class="caps">ATET</span>); most often, it <strong>only identifies the local average treatment effect (<span class="caps">LATE</span>)</strong>: the average treatment effect on the complier subpopulation (see <a href="http://www.jstor.org/stable/2951620">Angrist&amp;Imbens, 1994</a>).</p>
         <br>
-        <a class="btn" href="./does-iv-always-identify-late.html#does-iv-always-identify-late">Continue reading</a>
+        <a class="btn"
+           href="./does-iv-always-identify-late.html#does-iv-always-identify-late">
+          Continue reading
+        </a>
   </div>
   <hr />
 </article>
@@ -228,16 +275,18 @@ so for …</p>
   </header>
   <div>
       <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
-<div class="highlight"><pre><span></span>head -2 file-with-dates.csv
+<div class="highlight"><pre><span></span><code>head -2 file-with-dates.csv
 title,url,tag,date
 <span class="s2">&quot;title of the article&quot;</span>,http://www.url-of-the-article.com,<span class="s2">&quot;tag1,etc&quot;</span>,2015-02-27
-</pre></div>
-
+</code></pre></div>
 
 <p>How could I calculate the number of articles posted before a certain date
 without having to load …</p>
         <br>
-        <a class="btn" href="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html#command-line-tricks-how-to-count-lines-with-date-before-a-certain-date">Continue reading</a>
+        <a class="btn"
+           href="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html#command-line-tricks-how-to-count-lines-with-date-before-a-certain-date">
+          Continue reading
+        </a>
   </div>
 </article>
 
@@ -246,10 +295,11 @@ without having to load …</p>
 
 
 
-
     <footer>
 <p>&copy;  </p>
-<p>Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a></p>    </footer>
+<p>
+Built with <a href="http://getpelican.com" target="_blank">Pelican</a> using <a href="http://bit.ly/flex-pelican" target="_blank">Flex</a> theme
+</p>    </footer>
   </main>
 
 
@@ -265,6 +315,7 @@ without having to load …</p>
   "description": ""
 }
 </script>
+
 
 </body>
 </html>
