@@ -55,7 +55,7 @@
 
 
 <meta property="og:site_name" content="Divenyi"/>
-<meta property="og:title" content="Which binary classification model is better?"/>
+<meta property="og:title" content="Which binary classification model is better?"/>
 <meta property="og:description" content="Receiver Operating Characteristic curve is a great tool to visually illustrate the performance of a binary classifier. It plots the true positive rate (TPR) or the sensitivity against the false positive rate (FPR) or 1 - specificity. Usually, the algorithm gives you a probability (e.g. simple logistic regresssion), so for …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="./which-binary-classification-model-is-better.html"/>
@@ -66,7 +66,7 @@
 <meta property="article:section" content="blog"/>
 <meta property="og:image" content="../images/divenyi_circle_small.png">
 
-  <title>Divenyi &ndash; Which binary classification model is better?</title>
+  <title>Divenyi &ndash; Which binary classification model is better?</title>
 
 </head>
 <body class="light-theme">
@@ -89,7 +89,7 @@
               <li>
                 <a target="_self"
                    href="./pages/about-me.html#about-me">
-                  about&nbsp;me
+                  about me
                 </a>
               </li>
               <li>
@@ -145,11 +145,10 @@
 <article class="single">
   <header>
       
-    <h1 id="which-binary-classification-model-is-better">Which binary classification model is&nbsp;better?</h1>
+    <h1 id="which-binary-classification-model-is-better">Which binary classification model is better?</h1>
     <p>
       Posted on Wed 27 May 2015 in <a href="./category/blog.html">blog</a>
 
-        &#8226; 2 min read
     </p>
   </header>
 
@@ -157,42 +156,42 @@
   <div>
     <p><a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic">Receiver Operating Characteristic curve</a> 
 is a great tool to visually illustrate the performance of a binary classifier. 
-It plots the true positive rate (<span class="caps">TPR</span>) or the sensitivity against the false 
-positive rate (<span class="caps">FPR</span>) or 1 - specificity. Usually, the algorithm gives you a
+It plots the true positive rate (TPR) or the sensitivity against the false 
+positive rate (FPR) or 1 - specificity. Usually, the algorithm gives you a
 probability (e.g. simple 
 <a href="http://en.wikipedia.org/wiki/Logistic_regression">logistic regresssion</a>),
-so for classification you need to choose a cutoff point. The <span class="caps">FPR</span>-<span class="caps">TPR</span> pairs for
-different values of the cutoff gives you the <span class="caps">ROC</span> curve. Non-informative
+so for classification you need to choose a cutoff point. The FPR-TPR pairs for
+different values of the cutoff gives you the ROC curve. Non-informative
 algorithms lie on the 45-degree line, as they classify the same fraction of
 positives and negatives as positives, that is <span class="math">\(TPR = TP/P = FP/N = FPR\)</span>.</p>
 <p>But what if you want to compare two algorithms which give direct classification,
 i.e. you have only two points in the plot? How to decide whether algorithm (2)
-is better than algorithm&nbsp;(1)?</p>
+is better than algorithm (1)?</p>
 <p><img src="../images/roc.png" width="60%" /></p>
 <p>It is clear that algorithm (2) classifies more items as positive than algorithm
 (1) and that this results in both more true positives (higher sensitivity) and
 more false positives (lower specificity). Is this higher rate of positive
 classification informative? What would we get if we just got labels negatively
 classified by algorithm (1) and classified them randomly as positive? How would 
-we move from algorithm (1) on the&nbsp;graph?</p>
+we move from algorithm (1) on the graph?</p>
 <p>The original negative-labels are both true negatives and false negatives. A 
-random classifier would classify them as positives in the same share. Let&#8217;s say
+random classifier would classify them as positives in the same share. Let's say
 we are classifying an item as positive by probability <span class="math">\(\lambda\)</span>. Then, we are
 going to have <span class="math">\(\lambda*TN\)</span> new false positives and <span class="math">\(\lambda*FN\)</span> new true
 positives relative to algorithm (1). This results in the following measures for
-the <span class="caps">ROC</span>&nbsp;curve:</p>
+the ROC curve:</p>
 <div class="math">$$Sensitivity' = Sensitivity + \frac{\lambda*FN}{P} 
 1 - Specificity' = 1 - Specificity + \frac{\lambda*TN}{N}$$</div>
-<p>Thus, the slope of the movement is&nbsp;just</p>
+<p>Thus, the slope of the movement is just</p>
 <div class="math">$$\frac{\lambda*FN / P}{\lambda*TN / N} = \frac{1 - TP / P}{1 - TN / N} =
 \frac{1 - Sensitivity}{Specificity}$$</div>
 <p>It depends on <span class="math">\(\lambda\)</span> where we end up along this line. Therefore, it seems
 that algorithm (2) not just randomly adds more positively-classified items but 
-also contains some information relative to algorithm&nbsp;(1).</p>
+also contains some information relative to algorithm (1).</p>
 <p><img src="../images/roc_random.png" width="60%" /></p>
 <p>We can arrive to the same conclusion by less calculation as well. A possible
 random classification is to classify each item as positive (<span class="math">\(\lambda = 1\)</span>). If
-we take all the negatively-labeled item and classify them &#8220;randomly&#8221; as
+we take all the negatively-labeled item and classify them "randomly" as
 positive, we end up having only positively classified items which leads to
 extreme values of specificity (0) and sensitivity (1). To connect the point with
 the (1, 1) point we should draw a line with slope <span class="math">\(\frac{1 -

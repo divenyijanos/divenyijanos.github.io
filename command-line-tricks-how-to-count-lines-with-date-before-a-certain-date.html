@@ -50,13 +50,13 @@
     <meta name="msapplication-TileColor" content="#333333">
 
 <meta name="author" content="János K. Divényi" />
-<meta name="description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date &#34;title of the article&#34;,http://www.url-of-the-article.com,&#34;tag1,etc&#34;,2015-02-27 How could I calculate the number of articles posted before a certain date without having to load …" />
+<meta name="description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date &#34;title of the article&#34;,http://www.url-of-the-article.com,&#34;tag1,etc&#34;,2015-02-27 How could I calculate the number of articles posted before a certain date without having to load …" />
 <meta name="keywords" content="">
 
 
 <meta property="og:site_name" content="Divenyi"/>
-<meta property="og:title" content="Command Line Tricks: How to count lines with date before a certain date?"/>
-<meta property="og:description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date &#34;title of the article&#34;,http://www.url-of-the-article.com,&#34;tag1,etc&#34;,2015-02-27 How could I calculate the number of articles posted before a certain date without having to load …"/>
+<meta property="og:title" content="Command Line Tricks: How to count lines with date before a certain date?"/>
+<meta property="og:description" content="Assume I have a file with downloaded articles with a similar structure as follows: head -2 file-with-dates.csv title,url,tag,date &#34;title of the article&#34;,http://www.url-of-the-article.com,&#34;tag1,etc&#34;,2015-02-27 How could I calculate the number of articles posted before a certain date without having to load …"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="./command-line-tricks-how-to-count-lines-with-date-before-a-certain-date.html"/>
 <meta property="og:type" content="article"/>
@@ -66,7 +66,7 @@
 <meta property="article:section" content="blog"/>
 <meta property="og:image" content="../images/divenyi_circle_small.png">
 
-  <title>Divenyi &ndash; Command Line Tricks: How to count lines with date before a certain date?</title>
+  <title>Divenyi &ndash; Command Line Tricks: How to count lines with date before a certain date?</title>
 
 </head>
 <body class="light-theme">
@@ -89,7 +89,7 @@
               <li>
                 <a target="_self"
                    href="./pages/about-me.html#about-me">
-                  about&nbsp;me
+                  about me
                 </a>
               </li>
               <li>
@@ -145,17 +145,16 @@
 <article class="single">
   <header>
       
-    <h1 id="command-line-tricks-how-to-count-lines-with-date-before-a-certain-date">Command Line Tricks: How to count lines with date before a certain&nbsp;date?</h1>
+    <h1 id="command-line-tricks-how-to-count-lines-with-date-before-a-certain-date">Command Line Tricks: How to count lines with date before a certain date?</h1>
     <p>
       Posted on Fri 27 February 2015 in <a href="./category/blog.html">blog</a>
 
-        &#8226; 1 min read
     </p>
   </header>
 
 
   <div>
-    <p>Assume I have a file with downloaded articles with a similar structure as&nbsp;follows:</p>
+    <p>Assume I have a file with downloaded articles with a similar structure as follows:</p>
 <div class="highlight"><pre><span></span><code>head -2 file-with-dates.csv
 title,url,tag,date
 <span class="s2">&quot;title of the article&quot;</span>,http://www.url-of-the-article.com,<span class="s2">&quot;tag1,etc&quot;</span>,2015-02-27
@@ -167,7 +166,7 @@ that some solution with <code>awk</code> would definitely work but I always foun
 language hard to learn. There is an easy solution which combines sorting with 
 <code>grep</code> instead of trying to count the dates directly. By writing out total
 number of lines in  the data I can also get the share of the articles before the
- certain&nbsp;date.</p>
+ certain date.</p>
 <div class="highlight"><pre><span></span><code><span class="o">(</span>cat file-with-dates.csv<span class="p">;</span> <span class="nb">echo</span> certainDate<span class="o">)</span> <span class="p">|</span> sort <span class="p">|</span> grep -n <span class="s1">&#39;certainDate&#39;</span>
 wc file-with-dates.csv -l
 </code></pre></div>
